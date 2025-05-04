@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction-to-signaljourney" class="md-skip">
+        <a href="#introduction-to-signal-journey" class="md-skip">
           Skip to content
         </a>
       
@@ -471,6 +471,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -482,6 +495,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-solution-signal-journey-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Solution: Signal Journey Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Benefits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1422,9 +1490,53 @@
   
 
 
-<h1 id="introduction-to-signaljourney">Introduction to signalJourney<a class="headerlink" href="#introduction-to-signaljourney" title="Permanent link">&para;</a></h1>
-<p>This page provides a high-level overview of the signalJourney project.
-<em>(Content to be added in Subtask 10.2)</em> </p>
+<h1 id="introduction-to-signal-journey">Introduction to Signal Journey<a class="headerlink" href="#introduction-to-signal-journey" title="Permanent link">&para;</a></h1>
+<p>Signal Journey is a specification for creating machine-readable descriptions of biosignal processing pipelines. Its primary goal is to enhance the <strong>reproducibility</strong>, <strong>transparency</strong>, and <strong>interoperability</strong> of complex data analysis workflows commonly found in fields like neuroscience, electrophysiology, and biomedical engineering.</p>
+<h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
+<p>Modern biosignal analysis involves numerous steps, diverse software tools (MATLAB, Python, EEGLAB, MNE-Python, etc.), and complex parameter settings. Documenting these pipelines accurately is often challenging, relying on:</p>
+<ul>
+<li>Handwritten notes in lab notebooks.</li>
+<li>Comments within analysis scripts.</li>
+<li>Separate manuscript methods sections.</li>
+</ul>
+<p>These methods are prone to errors, omissions, and inconsistencies, making it difficult for researchers to:</p>
+<ul>
+<li>Understand precisely how data was processed.</li>
+<li>Reproduce the results reliably.</li>
+<li>Compare results across different studies or labs.</li>
+<li>Re-apply or adapt pipelines to new datasets.</li>
+</ul>
+<h2 id="the-solution-signal-journey-files">The Solution: Signal Journey Files<a class="headerlink" href="#the-solution-signal-journey-files" title="Permanent link">&para;</a></h2>
+<p>Signal Journey addresses these challenges by defining a standardized <strong>JSON format</strong> (<code>*.signalJourney.json</code>) to capture the essential details of a processing pipeline. A Signal Journey file describes:</p>
+<ul>
+<li><strong>Pipeline Information:</strong> Name, version, description.</li>
+<li><strong>Input Data:</strong> Origin and type of the raw data.</li>
+<li><strong>Processing Steps:</strong> A detailed sequence of analysis steps, including:<ul>
+<li>Software used (name, version).</li>
+<li>Function or command executed.</li>
+<li>Parameters and their values.</li>
+<li>Inputs and outputs of each step.</li>
+<li>Dependencies between steps.</li>
+</ul>
+</li>
+<li><strong>Output Data:</strong> Description of the final processed data products.</li>
+<li><strong>Schema Versioning:</strong> Ensures compatibility and understanding over time.</li>
+</ul>
+<h2 id="key-benefits">Key Benefits<a class="headerlink" href="#key-benefits" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Standardization:</strong> Provides a common language for describing pipelines.</li>
+<li><strong>Machine Readability:</strong> Allows automated validation, parsing, and potentially visualization or re-execution of pipelines.</li>
+<li><strong>Reproducibility:</strong> Captures the critical details needed to replicate an analysis.</li>
+<li><strong>Transparency:</strong> Makes the entire workflow explicit and understandable.</li>
+<li><strong>Interoperability:</strong> Facilitates sharing and comparison of methods across different tools and platforms.</li>
+</ul>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Dive into the detailed <strong><a href="../specification/">Specification</a></strong>.</li>
+<li>Follow the <strong><a href="../tutorials/">Tutorials</a></strong> to create or validate your first Signal Journey file.</li>
+<li>Explore the <strong><a href="../examples/">Examples</a></strong> of common pipelines.</li>
+<li>Learn how to use the <strong><a href="../guides/">Validation Tools</a></strong>. </li>
+</ul>
 
 
 
@@ -1447,7 +1559,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 3, 2025 22:30:37">May 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 4, 2025 17:45:32">May 4, 2025</span>
   </span>
 
     
@@ -1457,7 +1569,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 3, 2025 22:30:37">May 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 4, 2025 17:45:32">May 4, 2025</span>
   </span>
 
     
