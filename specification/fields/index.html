@@ -713,9 +713,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#software-object" class="md-nav__link">
+  <a href="#software-details-object" class="md-nav__link">
     <span class="md-ellipsis">
-      Software Object
+      Software Details Object
     </span>
   </a>
   
@@ -731,9 +731,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pipeline-source-object" class="md-nav__link">
+  <a href="#extensions-object" class="md-nav__link">
     <span class="md-ellipsis">
-      Pipeline Source Object
+      Extensions Object
     </span>
   </a>
   
@@ -1625,7 +1625,7 @@
 </ul>
 </li>
 <li><code>versionHistory</code> (array, optional)<ul>
-<li><strong>Description:</strong> Records changes made to this specific signalJourney file over time.</li>
+<li><strong>Description:</strong> Records changes made to this specific signalJourney file over time. Each item is an object.</li>
 <li><strong>See:</strong> <a href="#version-history-object">Version History Object</a></li>
 </ul>
 </li>
@@ -1672,17 +1672,17 @@
 <hr />
 <h2 id="processing-step-object">Processing Step Object<a class="headerlink" href="#processing-step-object" title="Permanent link">&para;</a></h2>
 <p>A single step within the processing pipeline.</p>
-<ul>
-<li><code>stepId</code> (string, required): A unique identifier for this step within the pipeline (e.g., "01_filter", "ica_run").</li>
-<li><code>name</code> (string, required): A human-readable name for the step (e.g., "High-pass Filter", "ICA Decomposition").</li>
-<li><code>description</code> (string, required): A brief description of what the step does.</li>
-<li><code>software</code> (array, required): An array of <a href="#software-details-object">softwareDetails</a> objects detailing the software used.</li>
-<li><code>parameters</code> (object, optional): Key-value pairs representing parameters specific to this step.</li>
-<li><code>inputSources</code> (array, required): An array of <a href="#inputsource-object">inputSource</a> objects defining the inputs.</li>
-<li><code>outputTargets</code> (array, optional): An array of <a href="#outputtarget-object">outputTarget</a> objects defining the outputs.</li>
-<li><code>qualityMetrics</code> (object, optional): A <a href="#qualitymetricsobject">qualityMetricsObject</a> containing metrics relevant to this step's output.</li>
-<li><code>extensions</code> (object, optional): Container for <a href="#extensions-object">extensions</a>.</li>
-</ul>
+<p>Required Fields:
+*   <code>stepId</code> (string): A unique identifier for this step within the pipeline (e.g., "01_filter", "ica_run").
+*   <code>name</code> (string): A human-readable name for the step (e.g., "High-pass Filter", "ICA Decomposition").
+*   <code>description</code> (string): A brief description of what the step does.
+*   <code>software</code> (array): An array of <a href="#software-details-object">softwareDetails</a> objects detailing the software used.
+*   <code>inputSources</code> (array): An array of <a href="#inputsource-object">inputSource</a> objects defining the inputs. Must contain at least one item.</p>
+<p>Optional Fields:
+*   <code>parameters</code> (object): Key-value pairs representing parameters specific to this step.
+*   <code>outputTargets</code> (array): An array of <a href="#outputtarget-object">outputTarget</a> objects defining the outputs.
+*   <code>qualityMetrics</code> (object): A <a href="#quality-metrics-object">qualityMetricsObject</a> containing metrics relevant to this step's output.
+*   <code>extensions</code> (object): Container for <a href="#extensions-object">extensions</a>.</p>
 <h3 id="inputsource-object">inputSource Object<a class="headerlink" href="#inputsource-object" title="Permanent link">&para;</a></h3>
 <p>Defines a source of input data for a processing step.</p>
 <ul>
@@ -1695,14 +1695,21 @@
 <ul>
 <li><code>description</code> (string, required): Describes the output data (e.g., "Filtered EEG data", "Cleaned IC weights", "Rejected channels list").</li>
 <li><code>targetType</code> (string, required): Specifies the storage method. Must be one of:<ul>
-<li><code>file</code>: The output is stored in an external file.</li>
-<li><code>inlineData</code>: The output data is embedded directly within the JSON.</li>
+<li><code>file</code>: The output is stored in an external file (maps to <code>location</code>).</li>
+<li><code>in-memory</code>: Output exists in memory (e.g., a specific data structure in a script) but isn't explicitly saved to a file or variable name in this record. Use <code>format</code> for data type description.</li>
+<li><code>variable</code>: Output is stored as a named variable within the execution environment (maps to <code>name</code>). Use <code>format</code> for data type description.</li>
+<li><code>report</code>: Output is a report (e.g., HTML, PDF). May optionally use <code>location</code>. Use <code>format</code> for report type.</li>
+<li><code>userDefined</code>: A custom output type not covered by others (maps to <code>details</code>).</li>
+<li><code>inlineData</code>: The output data is embedded directly within the JSON (maps to <code>data</code>, <code>encoding</code>, <code>formatDescription</code>).</li>
 </ul>
 </li>
-<li><code>location</code> (string, required if <code>targetType</code> is <code>file</code>): Path to the output file, relative path convention same as <code>inputSource.location</code>.</li>
-<li><code>format</code> (string, optional if <code>targetType</code> is <code>file</code>): The file format (e.g., "SET", "FIF", "TSV").</li>
+<li><code>location</code> (string, required if <code>targetType</code> is <code>file</code>, optional for <code>report</code>): Path to the output file, relative path convention same as <code>inputSource.location</code>.</li>
+<li><code>format</code> (string, optional, recommended for <code>file</code>, <code>in-memory</code>, <code>variable</code>, <code>report</code>): The file format, data type, or report type (e.g., "SET", "FIF", "TSV", "NumPy array", "HTML").</li>
+<li><code>entityLabels</code> (object, optional, applicable if <code>targetType</code> is <code>file</code>): Key-value pairs representing BIDS-like entities for the output file. Example: <code>{"desc": "filtered"}</code>.</li>
+<li><code>name</code> (string, required if <code>targetType</code> is <code>variable</code>): Name of the variable stored.</li>
+<li><code>details</code> (string, required if <code>targetType</code> is <code>userDefined</code>): Description of the user-defined output.</li>
 <li><code>data</code> (any, required if <code>targetType</code> is <code>inlineData</code>): The embedded data itself (e.g., a list of bad channel names, an ICA weight matrix as a nested array, QC metrics as an object).</li>
-<li><code>encoding</code> (string, optional if <code>targetType</code> is <code>inlineData</code>): Specifies how the <code>data</code> is encoded if it's binary or needs special handling (e.g., "base64", "gzip+base64"). Defaults to standard JSON types if omitted.</li>
+<li><code>encoding</code> (string, optional if <code>targetType</code> is <code>inlineData</code>, default: "utf-8"): Specifies how the <code>data</code> is encoded if it's binary or needs special handling (e.g., "base64", "gzip+base64"). Defaults to standard JSON types if omitted.</li>
 <li><code>formatDescription</code> (string, required if <code>targetType</code> is <code>inlineData</code>): A human-readable description of the <code>data</code> field's format (e.g., "List of bad channel labels", "NumPy array serialized to list", "JSON object with QC scores").</li>
 </ul>
 <h4 id="example-inlinedata-usage">Example <code>inlineData</code> Usage:<a class="headerlink" href="#example-inlinedata-usage" title="Permanent link">&para;</a></h4>
@@ -1726,35 +1733,16 @@
 <span class="p">}</span>
 </code></pre></div>
 <hr />
-<h2 id="software-object">Software Object<a class="headerlink" href="#software-object" title="Permanent link">&para;</a></h2>
-<p>Describes the software used in a processing step.</p>
-<ul>
-<li><code>name</code> (string, required)<ul>
-<li><strong>Description:</strong> The name of the software package or library (e.g., "MNE-Python", "EEGLAB", "FieldTrip").</li>
-</ul>
-</li>
-<li><code>version</code> (string, required)<ul>
-<li><strong>Description:</strong> The specific version of the software used.</li>
-</ul>
-</li>
-<li><code>functionCall</code> (string, optional)<ul>
-<li><strong>Description:</strong> The specific function or command executed (potentially abbreviated or representative).</li>
-<li><strong>Example:</strong> <code>"functionCall": "raw.filter(l_freq=1.0, h_freq=40.0)"</code></li>
-</ul>
-</li>
-<li><code>operatingSystem</code> (string, optional)<ul>
-<li><strong>Description:</strong> The operating system the software was run on.</li>
-</ul>
-</li>
-<li><code>repository</code> (string, optional, format: uri)<ul>
-<li><strong>Description:</strong> URL to the software's source code repository (e.g., GitHub link).</li>
-</ul>
-</li>
-<li><code>commitHash</code> (string, optional)<ul>
-<li><strong>Description:</strong> Specific Git commit hash of the software version used, if applicable.</li>
-</ul>
-</li>
-</ul>
+<h2 id="software-details-object">Software Details Object<a class="headerlink" href="#software-details-object" title="Permanent link">&para;</a></h2>
+<p>Describes the software used in a processing step. Corresponds to items in the <code>processingSteps[].software</code> array.</p>
+<p>Required Fields:
+*   <code>name</code> (string): The name of the software package or library (e.g., "MNE-Python", "EEGLAB", "FieldTrip").
+*   <code>version</code> (string): The specific version of the software used.</p>
+<p>Optional Fields:
+*   <code>functionCall</code> (string): The specific function or command executed (potentially abbreviated or representative). Example: <code>"functionCall": "raw.filter(l_freq=1.0, h_freq=40.0)"</code>
+*   <code>operatingSystem</code> (string): The operating system the software was run on.
+*   <code>repository</code> (string, format: uri): URL to the software's source code repository (e.g., GitHub link).
+*   <code>commitHash</code> (string): Specific Git commit hash of the software version used, if applicable.</p>
 <hr />
 <h2 id="quality-metrics-object">Quality Metrics Object<a class="headerlink" href="#quality-metrics-object" title="Permanent link">&para;</a></h2>
 <p>Container for quality metrics, used in <code>summaryMetrics</code> and <code>processingSteps[].qualityMetrics</code>.</p>
@@ -1771,43 +1759,32 @@
 </code></pre></div></li>
 </ul>
 <hr />
-<h2 id="pipeline-source-object">Pipeline Source Object<a class="headerlink" href="#pipeline-source-object" title="Permanent link">&para;</a></h2>
-<p>Used within <code>inputSources</code> of type <code>"file"</code> to link to the pipeline that generated the file.</p>
+<h2 id="extensions-object">Extensions Object<a class="headerlink" href="#extensions-object" title="Permanent link">&para;</a></h2>
+<p>Container for domain-specific or tool-specific information not covered by the core schema.</p>
 <ul>
-<li><code>pipelineName</code> (string, required)<ul>
-<li><strong>Description:</strong> The name of the pipeline (should match <code>pipelineInfo.name</code> of the source signalJourney file).</li>
-</ul>
-</li>
-<li><code>pipelineVersion</code> (string, required)<ul>
-<li><strong>Description:</strong> The version of the pipeline (should match <code>pipelineInfo.version</code> of the source signalJourney file).</li>
-</ul>
-</li>
-<li><code>signalJourneyFile</code> (string, optional)<ul>
-<li><strong>Description:</strong> Relative path to the signalJourney file documenting the source pipeline.</li>
-</ul>
-</li>
+<li><strong>Structure:</strong> Key-value pairs where keys are namespace prefixes (e.g., "eeg", "mne", "iclabel") and values are objects containing the extension data.</li>
+<li><strong>See:</strong> <a href="../namespaces/">Namespaces</a> for details.</li>
+<li><strong>Location:</strong> Can appear at the top level (<code>extensions</code>) or within a <code>processingStep</code> (<code>extensions</code>).</li>
+<li><strong>Example (within a step):</strong>
+    <div class="highlight"><pre><span></span><code><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;iclabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;componentClassifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="nt">&quot;icIndex&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brain&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;probability&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="nt">&quot;icIndex&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Eye&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;probability&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.88</span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
 </ul>
 <hr />
 <h2 id="version-history-object">Version History Object<a class="headerlink" href="#version-history-object" title="Permanent link">&para;</a></h2>
 <p>Describes a single entry in the top-level <code>versionHistory</code> array.</p>
-<ul>
-<li><code>version</code> (string, required)<ul>
-<li><strong>Description:</strong> The version identifier for this entry (e.g., "1.1.0").</li>
-</ul>
-</li>
-<li><code>date</code> (string, required, format: date)<ul>
-<li><strong>Description:</strong> The date this version was created (ISO 8601 format YYYY-MM-DD).</li>
-</ul>
-</li>
-<li><code>changes</code> (string, required)<ul>
-<li><strong>Description:</strong> A description of the changes made in this version of the signalJourney file.</li>
-</ul>
-</li>
-<li><code>author</code> (string, optional)<ul>
-<li><strong>Description:</strong> The person or entity who made the changes. </li>
-</ul>
-</li>
-</ul>
+<p>Required Fields:
+*   <code>version</code> (string): The version identifier for this entry (e.g., "1.1.0"). Should correspond to <code>schema_version</code> at the time of change.
+*   <code>date</code> (string, format: date): The date this version was created (ISO 8601 format YYYY-MM-DD).
+*   <code>changes</code> (string): A description of the changes made in this version of the signalJourney file.</p>
+<p>Optional Fields:
+*   <code>author</code> (string): The person or entity who made the changes. </p>
 
 
 
@@ -1830,7 +1807,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2025 04:38:56">May 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2025 05:03:21">May 5, 2025</span>
   </span>
 
     
