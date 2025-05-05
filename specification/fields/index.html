@@ -671,30 +671,51 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Processing Step Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inputsource-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      inputSource Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputtarget-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      outputTarget Object
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="outputTarget Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-inlinedata-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example inlineData Usage:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#software-object" class="md-nav__link">
     <span class="md-ellipsis">
       Software Object
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#input-source-object" class="md-nav__link">
-    <span class="md-ellipsis">
-      Input Source Object
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#output-target-object" class="md-nav__link">
-    <span class="md-ellipsis">
-      Output Target Object
     </span>
   </a>
   
@@ -1650,57 +1671,60 @@
 </ul>
 <hr />
 <h2 id="processing-step-object">Processing Step Object<a class="headerlink" href="#processing-step-object" title="Permanent link">&para;</a></h2>
-<p>Describes a single step within the <code>processingSteps</code> array.</p>
+<p>A single step within the processing pipeline.</p>
 <ul>
-<li><code>stepId</code> (string, required)<ul>
-<li><strong>Description:</strong> A unique identifier for this step within the pipeline (e.g., "1", "2a", "filter_step"). Used in <code>dependsOn</code>.</li>
-<li><strong>Example:</strong> <code>"stepId": "filter_highpass"</code></li>
+<li><code>stepId</code> (string, required): A unique identifier for this step within the pipeline (e.g., "01_filter", "ica_run").</li>
+<li><code>name</code> (string, required): A human-readable name for the step (e.g., "High-pass Filter", "ICA Decomposition").</li>
+<li><code>description</code> (string, required): A brief description of what the step does.</li>
+<li><code>software</code> (array, required): An array of <a href="#software-details-object">softwareDetails</a> objects detailing the software used.</li>
+<li><code>parameters</code> (object, optional): Key-value pairs representing parameters specific to this step.</li>
+<li><code>inputSources</code> (array, required): An array of <a href="#inputsource-object">inputSource</a> objects defining the inputs.</li>
+<li><code>outputTargets</code> (array, optional): An array of <a href="#outputtarget-object">outputTarget</a> objects defining the outputs.</li>
+<li><code>qualityMetrics</code> (object, optional): A <a href="#qualitymetricsobject">qualityMetricsObject</a> containing metrics relevant to this step's output.</li>
+<li><code>extensions</code> (object, optional): Container for <a href="#extensions-object">extensions</a>.</li>
+</ul>
+<h3 id="inputsource-object">inputSource Object<a class="headerlink" href="#inputsource-object" title="Permanent link">&para;</a></h3>
+<p>Defines a source of input data for a processing step.</p>
+<ul>
+<li><code>description</code> (string, required): Describes the input data (e.g., "Raw EEG data", "ICA component activations").</li>
+<li><code>location</code> (string, required): Path to the input file, relative to the dataset root or the <code>signalJourney.json</code> file itself (convention TBD, likely relative to dataset root for BIDS).</li>
+<li><code>format</code> (string, optional): The file format (e.g., "SET", "FIF", "EDF").</li>
+</ul>
+<h3 id="outputtarget-object">outputTarget Object<a class="headerlink" href="#outputtarget-object" title="Permanent link">&para;</a></h3>
+<p>Defines the target location or method for storing the output of a processing step.</p>
+<ul>
+<li><code>description</code> (string, required): Describes the output data (e.g., "Filtered EEG data", "Cleaned IC weights", "Rejected channels list").</li>
+<li><code>targetType</code> (string, required): Specifies the storage method. Must be one of:<ul>
+<li><code>file</code>: The output is stored in an external file.</li>
+<li><code>inlineData</code>: The output data is embedded directly within the JSON.</li>
 </ul>
 </li>
-<li><code>name</code> (string, required)<ul>
-<li><strong>Description:</strong> A human-readable name for the processing step.</li>
-<li><strong>Example:</strong> <code>"name": "Apply High-pass Filter"</code></li>
+<li><code>location</code> (string, required if <code>targetType</code> is <code>file</code>): Path to the output file, relative path convention same as <code>inputSource.location</code>.</li>
+<li><code>format</code> (string, optional if <code>targetType</code> is <code>file</code>): The file format (e.g., "SET", "FIF", "TSV").</li>
+<li><code>data</code> (any, required if <code>targetType</code> is <code>inlineData</code>): The embedded data itself (e.g., a list of bad channel names, an ICA weight matrix as a nested array, QC metrics as an object).</li>
+<li><code>encoding</code> (string, optional if <code>targetType</code> is <code>inlineData</code>): Specifies how the <code>data</code> is encoded if it's binary or needs special handling (e.g., "base64", "gzip+base64"). Defaults to standard JSON types if omitted.</li>
+<li><code>formatDescription</code> (string, required if <code>targetType</code> is <code>inlineData</code>): A human-readable description of the <code>data</code> field's format (e.g., "List of bad channel labels", "NumPy array serialized to list", "JSON object with QC scores").</li>
 </ul>
-</li>
-<li><code>description</code> (string, required)<ul>
-<li><strong>Description:</strong> Detailed description of what this specific step does.</li>
-</ul>
-</li>
-<li><code>software</code> (object, required)<ul>
-<li><strong>Description:</strong> Information about the software used for this step.</li>
-<li><strong>See:</strong> <a href="#software-object">Software Object</a></li>
-</ul>
-</li>
-<li><code>parameters</code> (object, optional)<ul>
-<li><strong>Description:</strong> Key-value pairs detailing the parameters used for this step. Values can be strings, numbers, booleans, arrays, or nested objects.</li>
-<li><strong>Example:</strong> <code>"parameters": { "cutoff_freq_hz": 1.0, "filter_type": "FIR", "order": 512 }</code></li>
-</ul>
-</li>
-<li><code>inputSources</code> (array, optional)<ul>
-<li><strong>Description:</strong> List of data sources used as input for this step.</li>
-<li><strong>See:</strong> <a href="#input-source-object">Input Source Object</a></li>
-</ul>
-</li>
-<li><code>outputTargets</code> (array, optional)<ul>
-<li><strong>Description:</strong> List of data targets produced by this step.</li>
-<li><strong>See:</strong> <a href="#output-target-object">Output Target Object</a></li>
-</ul>
-</li>
-<li><code>dependsOn</code> (array, optional)<ul>
-<li><strong>Description:</strong> An array of <code>stepId</code> strings from previous steps that must be completed before this step can run. Defines the pipeline's execution graph.</li>
-<li><strong>Example:</strong> <code>"dependsOn": ["load_data", "filter_highpass"]</code></li>
-</ul>
-</li>
-<li><code>executionDateTime</code> (string, optional, format: date-time)<ul>
-<li><strong>Description:</strong> The specific date and time this step was executed.</li>
-</ul>
-</li>
-<li><code>qualityMetrics</code> (object, optional)<ul>
-<li><strong>Description:</strong> Quality metrics specific to the output of this particular step.</li>
-<li><strong>See:</strong> <a href="#quality-metrics-object">Quality Metrics Object</a></li>
-</ul>
-</li>
-</ul>
+<h4 id="example-inlinedata-usage">Example <code>inlineData</code> Usage:<a class="headerlink" href="#example-inlinedata-usage" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;List of channels rejected during artifact removal&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;formatDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;List of bad channel labels&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Fp1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Oz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;T7&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ICA weight matrix&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;formatDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ICA weights matrix (channels x components) as nested list&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="c1">// Or omit if standard JSON types</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.2</span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span><span class="mf">-0.3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">],</span>
+<span class="w">    </span><span class="c1">// ... more rows ...</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h2 id="software-object">Software Object<a class="headerlink" href="#software-object" title="Permanent link">&para;</a></h2>
 <p>Describes the software used in a processing step.</p>
@@ -1728,85 +1752,6 @@
 </li>
 <li><code>commitHash</code> (string, optional)<ul>
 <li><strong>Description:</strong> Specific Git commit hash of the software version used, if applicable.</li>
-</ul>
-</li>
-</ul>
-<hr />
-<h2 id="input-source-object">Input Source Object<a class="headerlink" href="#input-source-object" title="Permanent link">&para;</a></h2>
-<p>Describes an input to a processing step.</p>
-<ul>
-<li><code>sourceType</code> (string, required)<ul>
-<li><strong>Description:</strong> Type of the input source.</li>
-<li><strong>Enum:</strong> <code>"file"</code>, <code>"previousStepOutput"</code>, <code>"variable"</code>, <code>"resource"</code>, <code>"userDefined"</code></li>
-</ul>
-</li>
-<li><strong>Conditional Fields:</strong><ul>
-<li><strong>If <code>sourceType</code> is <code>"file"</code>:</strong><ul>
-<li><code>location</code> (string, required): Path to the input file (relative or absolute).</li>
-<li><code>format</code> (string, optional): File format (e.g., "FIF", "SET", "EDF").</li>
-<li><code>entityLabels</code> (object, optional): Key-value pairs representing BIDS-like entities (e.g., <code>{"sub": "01", "task": "rest"}</code>).</li>
-<li><code>pipelineSource</code> (object, optional): If the file was generated by another documented pipeline. See <a href="#pipeline-source-object">Pipeline Source Object</a>.</li>
-</ul>
-</li>
-<li><strong>If <code>sourceType</code> is <code>"previousStepOutput"</code>:</strong><ul>
-<li><code>stepId</code> (string, required): The <code>stepId</code> of the previous step that produced this input.</li>
-<li><code>outputId</code> (string, required): A descriptive identifier matching the <code>description</code> field in the corresponding <code>outputTarget</code> of the source step.</li>
-</ul>
-</li>
-<li><strong>If <code>sourceType</code> is <code>"variable"</code>:</strong><ul>
-<li><code>name</code> (string, required): Name of the in-memory variable.</li>
-<li><code>description</code> (string, optional): Description of the variable.</li>
-</ul>
-</li>
-<li><strong>If <code>sourceType</code> is <code>"resource"</code>:</strong><ul>
-<li><code>location</code> (string, required): Description or identifier of the external resource (e.g., "fsaverage MRI data", URL).</li>
-</ul>
-</li>
-<li><strong>If <code>sourceType</code> is <code>"userDefined"</code>:</strong><ul>
-<li><code>description</code> (string, required): Description of the user-provided input.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr />
-<h2 id="output-target-object">Output Target Object<a class="headerlink" href="#output-target-object" title="Permanent link">&para;</a></h2>
-<p>Describes an output from a processing step.</p>
-<ul>
-<li><code>targetType</code> (string, required)<ul>
-<li><strong>Description:</strong> Type of the output target.</li>
-<li><strong>Enum:</strong> <code>"file"</code>, <code>"in-memory"</code>, <code>"variable"</code>, <code>"report"</code>, <code>"userDefined"</code></li>
-</ul>
-</li>
-<li><code>description</code> (string, required)<ul>
-<li><strong>Description:</strong> A descriptive identifier for this output, used by subsequent steps referencing it via <code>previousStepOutput</code> inputs.</li>
-<li><strong>Example:</strong> <code>"description": "Band-pass filtered data."</code></li>
-</ul>
-</li>
-<li><strong>Conditional Fields:</strong><ul>
-<li><strong>If <code>targetType</code> is <code>"file"</code>:</strong><ul>
-<li><code>location</code> (string, required): Path where the output file was saved (relative or absolute).</li>
-<li><code>format</code> (string, optional): File format (e.g., "FIF", "NetCDF", "HDF5").</li>
-<li><code>entityLabels</code> (object, optional): Key-value pairs representing BIDS-like entities.</li>
-</ul>
-</li>
-<li><strong>If <code>targetType</code> is <code>"in-memory"</code>:</strong><ul>
-<li><code>format</code> (string, optional): Description of the data format/object type in memory (e.g., "mne.io.Raw", "mne.Epochs").</li>
-</ul>
-</li>
-<li><strong>If <code>targetType</code> is <code>"variable"</code>:</strong><ul>
-<li><code>name</code> (string, required): Name of the variable stored.</li>
-</ul>
-</li>
-<li><strong>If <code>targetType</code> is <code>"report"</code>:</strong><ul>
-<li><code>location</code> (string, optional): Path to a generated report file (e.g., HTML, PDF).</li>
-<li><code>format</code> (string, optional): Format of the report.</li>
-</ul>
-</li>
-<li><strong>If <code>targetType</code> is <code>"userDefined"</code>:</strong><ul>
-<li><code>details</code> (string, required): Description of the output.</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -1885,7 +1830,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 2, 2025 02:07:33">May 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2025 04:38:56">May 5, 2025</span>
   </span>
 
     

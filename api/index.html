@@ -1604,7 +1604,7 @@ Optionally performs BIDS context validation.</p>
 
 
 <h4 id="signaljourney_validator.Validator.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#signaljourney_validator.Validator.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
 
@@ -1635,23 +1635,8 @@ Optionally performs BIDS context validation.</p>
             <td>
               <div class="doc-md-description">
                 <p>Path to the schema file, the schema dictionary, or None
-    to use the default schema.</p>
-              </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>resolver</code>
-            </td>
-            <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="jsonschema.RefResolver">RefResolver</span>]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>An optional pre-configured RefResolver instance.</p>
+    to use the default schema. External file $refs will be
+    automatically inlined during initialization.</p>
               </div>
             </td>
             <td>
@@ -1802,7 +1787,7 @@ Optionally performs BIDS context validation.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="SignalJourneyValidationError (signaljourney_validator.validator.SignalJourneyValidationError)" href="#signaljourney_validator.validator.SignalJourneyValidationError">SignalJourneyValidationError</a></code>
+                  <code><a class="autorefs autorefs-internal" title="SignalJourneyValidationError (signaljourney_validator.errors.SignalJourneyValidationError)" href="#signaljourney_validator.errors.SignalJourneyValidationError">SignalJourneyValidationError</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1890,70 +1875,6 @@ Optionally performs BIDS context validation.</p>
 
 
 
-<h3 id="signaljourney_validator.validator.SignalJourneyValidationError" class="doc doc-heading">
-            <code>SignalJourneyValidationError</code>
-
-
-<a href="#signaljourney_validator.validator.SignalJourneyValidationError" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><span title="Exception">Exception</span></code></p>
-
-
-        <p>Custom exception for validation errors.</p>
-
-
-
-
-
-
-
-              <details class="quote">
-                <summary>Source code in <code>src/signaljourney_validator/validator.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SignalJourneyValidationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom exception for validation errors.&quot;&quot;&quot;</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ValidationErrorDetail</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="n">errors</span> <span class="ow">or</span> <span class="p">[]</span>
-</code></pre></div></td></tr></table></div>
-              </details>
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
 <h3 id="signaljourney_validator.validator.Validator" class="doc doc-heading">
             <code>Validator</code>
 
@@ -1975,71 +1896,7 @@ Optionally performs BIDS context validation.</p>
 
               <details class="quote">
                 <summary>Source code in <code>src/signaljourney_validator/validator.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 28</span>
-<span class="normal"> 29</span>
-<span class="normal"> 30</span>
-<span class="normal"> 31</span>
-<span class="normal"> 32</span>
-<span class="normal"> 33</span>
-<span class="normal"> 34</span>
-<span class="normal"> 35</span>
-<span class="normal"> 36</span>
-<span class="normal"> 37</span>
-<span class="normal"> 38</span>
-<span class="normal"> 39</span>
-<span class="normal"> 40</span>
-<span class="normal"> 41</span>
-<span class="normal"> 42</span>
-<span class="normal"> 43</span>
-<span class="normal"> 44</span>
-<span class="normal"> 45</span>
-<span class="normal"> 46</span>
-<span class="normal"> 47</span>
-<span class="normal"> 48</span>
-<span class="normal"> 49</span>
-<span class="normal"> 50</span>
-<span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
-<span class="normal"> 55</span>
-<span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
-<span class="normal"> 61</span>
-<span class="normal"> 62</span>
-<span class="normal"> 63</span>
-<span class="normal"> 64</span>
-<span class="normal"> 65</span>
-<span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 92</span>
 <span class="normal"> 93</span>
 <span class="normal"> 94</span>
 <span class="normal"> 95</span>
@@ -2176,70 +2033,173 @@ Optionally performs BIDS context validation.</p>
 <span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span>
-<span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Validator</span><span class="p">:</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Validator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validates a signalJourney JSON file or dictionary against the schema.</span>
 <span class="sd">    Optionally performs BIDS context validation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">_schema</span><span class="p">:</span> <span class="n">JsonDict</span>
+    <span class="n">_validator</span><span class="p">:</span> <span class="n">Draft202012Validator</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">JsonDict</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">resolver</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">RefResolver</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the Validator.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            schema: Path to the schema file, the schema dictionary, or None</span>
-<span class="sd">                    to use the default schema.</span>
-<span class="sd">            resolver: An optional pre-configured RefResolver instance.</span>
+<span class="sd">                    to use the default schema. External file $refs will be</span>
+<span class="sd">                    automatically inlined during initialization.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_schema</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
-        <span class="c1"># Pass the resolver during Draft7Validator instantiation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span> <span class="o">=</span> <span class="n">Draft7Validator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_schema</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="n">resolver</span><span class="p">)</span>
+        <span class="n">schema_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_schema_path</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+        <span class="n">initial_schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_schema_dict</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">schema_path</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_load_schema</span><span class="p">(</span>
+        <span class="c1"># For simplicity, let&#39;s assume if it&#39;s a dict, it might not have relative refs,</span>
+        <span class="c1"># or we use the default schema path&#39;s directory as a fallback base.</span>
+        <span class="n">base_resolve_path</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">schema_path</span><span class="o">.</span><span class="n">parent</span> <span class="k">if</span> <span class="n">schema_path</span> <span class="k">else</span> <span class="n">DEFAULT_SCHEMA_PATH</span><span class="o">.</span><span class="n">parent</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Inline external $refs</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Inlining schema refs within Validator ---&quot;</span><span class="p">)</span>
+        <span class="n">loaded_cache</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span> <span class="o">=</span> <span class="n">inline_refs</span><span class="p">(</span><span class="n">initial_schema</span><span class="p">,</span> <span class="n">base_resolve_path</span><span class="p">,</span> <span class="n">loaded_cache</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Inlining complete --- </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Debug: Check if refs are actually gone (optional)</span>
+        <span class="c1"># import pprint</span>
+        <span class="c1"># pprint.pprint(self._schema)</span>
+
+        <span class="c1"># Initialize the validator with the resolved schema.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Check if schema is valid before creating validator</span>
+            <span class="n">Draft202012Validator</span><span class="o">.</span><span class="n">check_schema</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_schema</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span> <span class="o">=</span> <span class="n">Draft202012Validator</span><span class="p">(</span>
+                <span class="n">schema</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_schema</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">SchemaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid schema provided: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_schema_path</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">schema_input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">JsonDict</span><span class="p">]]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JsonDict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads the JSON schema from a file or uses the provided dictionary.&quot;&quot;&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines the Path object if schema is given as Path or str.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">schema_input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">schema_path</span> <span class="o">=</span> <span class="n">DEFAULT_SCHEMA_PATH</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">schema_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-                <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Default schema file not found at </span><span class="si">{</span><span class="n">schema_path</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">schema_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Error decoding default schema JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Error loading default schema file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema_input</span><span class="p">,</span> <span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
-            <span class="n">schema_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">schema_input</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">schema_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-                <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Schema file not found: </span><span class="si">{</span><span class="n">schema_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">schema_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Error decoding schema JSON from </span><span class="si">{</span><span class="n">schema_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Error loading schema file from </span><span class="si">{</span><span class="n">schema_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema_input</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="c1"># TODO: Add basic validation to ensure it looks like a schema?</span>
+            <span class="k">return</span> <span class="n">DEFAULT_SCHEMA_PATH</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema_input</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">schema_input</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Schema input must be a Path, string, dictionary, or None.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema_input</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">schema_input</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_schema_dict</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">schema_input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">JsonDict</span><span class="p">]],</span>
+        <span class="n">schema_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JsonDict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads the schema into a dictionary.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema_input</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">schema_input</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Return a copy</span>
+
+        <span class="c1"># Determine path to load from</span>
+        <span class="n">load_path</span> <span class="o">=</span> <span class="n">schema_path</span> <span class="k">if</span> <span class="n">schema_path</span> <span class="k">else</span> <span class="n">DEFAULT_SCHEMA_PATH</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">load_path</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">load_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Schema file not found: </span><span class="si">{</span><span class="n">load_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">load_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error reading schema file </span><span class="si">{</span><span class="n">load_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -2273,6 +2233,7 @@ Optionally performs BIDS context validation.</p>
         <span class="n">instance</span><span class="p">:</span> <span class="n">JsonDict</span>
         <span class="n">file_path_context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For BIDS checks</span>
 
+        <span class="c1"># --- Load Instance ---</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
             <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
             <span class="n">file_path_context</span> <span class="o">=</span> <span class="n">file_path</span>  <span class="c1"># Store for BIDS checks</span>
@@ -2298,10 +2259,13 @@ Optionally performs BIDS context validation.</p>
         <span class="n">bids_errors</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ValidationErrorDetail</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="c1"># --- Schema Validation ---</span>
+        <span class="c1"># Use the internal validator&#39;s iter_errors method</span>
         <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># The validator now uses the registry passed during __init__</span>
             <span class="n">errors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+                    <span class="c1"># Convert jsonschema error to our custom format</span>
                     <span class="n">detail</span> <span class="o">=</span> <span class="n">ValidationErrorDetail</span><span class="p">(</span>
                         <span class="n">message</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
                         <span class="n">path</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">path</span><span class="p">),</span>
@@ -2309,26 +2273,27 @@ Optionally performs BIDS context validation.</p>
                         <span class="n">validator</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">validator</span><span class="p">,</span>
                         <span class="n">validator_value</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">validator_value</span><span class="p">,</span>
                         <span class="n">instance_value</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
-                        <span class="n">context</span><span class="o">=</span><span class="p">[</span>  <span class="c1"># Recursively convert context errors</span>
-                            <span class="n">ValidationErrorDetail</span><span class="p">(</span>
-                                <span class="n">message</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
-                                <span class="n">path</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">sub_error</span><span class="o">.</span><span class="n">path</span><span class="p">),</span>
-                                <span class="n">schema_path</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">sub_error</span><span class="o">.</span><span class="n">schema_path</span><span class="p">),</span>
-                                <span class="n">validator</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">validator</span><span class="p">,</span>
-                                <span class="n">validator_value</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">validator_value</span><span class="p">,</span>
-                                <span class="n">instance_value</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
-                            <span class="p">)</span>
-                            <span class="k">for</span> <span class="n">sub_error</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">context</span>
-                        <span class="p">],</span>
+                        <span class="c1"># suggestion is added by ValidationErrorDetail constructor</span>
                     <span class="p">)</span>
-                    <span class="c1"># Suggestion generated in __post_init__</span>
                     <span class="n">schema_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detail</span><span class="p">)</span>
-
+        <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">RefResolutionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># This shouldn&#39;t happen if schema is fully resolved, but handle defensively</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG: Unexpected RefResolutionError: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">failed_ref</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s2">&quot;ref&quot;</span><span class="p">,</span> <span class="s2">&quot;[unknown ref]&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Schema validation failed: Unexpectedly could not resolve &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;reference &#39;</span><span class="si">{</span><span class="n">failed_ref</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
         <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">SchemaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="c1"># Indicates a problem with the schema itself</span>
+            <span class="c1"># Catch schema errors separately from resolution errors</span>
             <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid schema: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="c1"># Catch other unexpected errors during validation</span>
+            <span class="c1"># Capture the actual exception type for better debugging</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;DEBUG: Unexpected validation error type: &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="c1"># Reraise or wrap depending on desired behavior</span>
             <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred during schema validation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
@@ -2397,7 +2362,7 @@ Optionally performs BIDS context validation.</p>
 
 
 <h4 id="signaljourney_validator.validator.Validator.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#signaljourney_validator.validator.Validator.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
 
@@ -2428,23 +2393,8 @@ Optionally performs BIDS context validation.</p>
             <td>
               <div class="doc-md-description">
                 <p>Path to the schema file, the schema dictionary, or None
-    to use the default schema.</p>
-              </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>resolver</code>
-            </td>
-            <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="jsonschema.RefResolver">RefResolver</span>]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>An optional pre-configured RefResolver instance.</p>
+    to use the default schema. External file $refs will be
+    automatically inlined during initialization.</p>
               </div>
             </td>
             <td>
@@ -2457,37 +2407,85 @@ Optionally performs BIDS context validation.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/signaljourney_validator/validator.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">JsonDict</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">resolver</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">RefResolver</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initializes the Validator.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        schema: Path to the schema file, the schema dictionary, or None</span>
-<span class="sd">                to use the default schema.</span>
-<span class="sd">        resolver: An optional pre-configured RefResolver instance.</span>
+<span class="sd">                to use the default schema. External file $refs will be</span>
+<span class="sd">                automatically inlined during initialization.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_schema</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
-    <span class="c1"># Pass the resolver during Draft7Validator instantiation</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span> <span class="o">=</span> <span class="n">Draft7Validator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_schema</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="n">resolver</span><span class="p">)</span>
+    <span class="n">schema_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_schema_path</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+    <span class="n">initial_schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_schema_dict</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">schema_path</span><span class="p">)</span>
+
+    <span class="c1"># For simplicity, let&#39;s assume if it&#39;s a dict, it might not have relative refs,</span>
+    <span class="c1"># or we use the default schema path&#39;s directory as a fallback base.</span>
+    <span class="n">base_resolve_path</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">schema_path</span><span class="o">.</span><span class="n">parent</span> <span class="k">if</span> <span class="n">schema_path</span> <span class="k">else</span> <span class="n">DEFAULT_SCHEMA_PATH</span><span class="o">.</span><span class="n">parent</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Inline external $refs</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Inlining schema refs within Validator ---&quot;</span><span class="p">)</span>
+    <span class="n">loaded_cache</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span> <span class="o">=</span> <span class="n">inline_refs</span><span class="p">(</span><span class="n">initial_schema</span><span class="p">,</span> <span class="n">base_resolve_path</span><span class="p">,</span> <span class="n">loaded_cache</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Inlining complete --- </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Debug: Check if refs are actually gone (optional)</span>
+    <span class="c1"># import pprint</span>
+    <span class="c1"># pprint.pprint(self._schema)</span>
+
+    <span class="c1"># Initialize the validator with the resolved schema.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check if schema is valid before creating validator</span>
+        <span class="n">Draft202012Validator</span><span class="o">.</span><span class="n">check_schema</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_schema</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span> <span class="o">=</span> <span class="n">Draft202012Validator</span><span class="p">(</span>
+            <span class="n">schema</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_schema</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">SchemaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid schema provided: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2630,7 +2628,7 @@ Optionally performs BIDS context validation.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="SignalJourneyValidationError (signaljourney_validator.validator.SignalJourneyValidationError)" href="#signaljourney_validator.validator.SignalJourneyValidationError">SignalJourneyValidationError</a></code>
+                  <code><a class="autorefs autorefs-internal" title="SignalJourneyValidationError (signaljourney_validator.errors.SignalJourneyValidationError)" href="#signaljourney_validator.errors.SignalJourneyValidationError">SignalJourneyValidationError</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2665,88 +2663,7 @@ Optionally performs BIDS context validation.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/signaljourney_validator/validator.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">174</span>
 <span class="normal">175</span>
 <span class="normal">176</span>
 <span class="normal">177</span>
@@ -2774,7 +2691,93 @@ Optionally performs BIDS context validation.</p>
 <span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
-<span class="normal">202</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">JsonDict</span><span class="p">],</span>
     <span class="n">raise_exceptions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -2806,6 +2809,7 @@ Optionally performs BIDS context validation.</p>
     <span class="n">instance</span><span class="p">:</span> <span class="n">JsonDict</span>
     <span class="n">file_path_context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For BIDS checks</span>
 
+    <span class="c1"># --- Load Instance ---</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
         <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">file_path_context</span> <span class="o">=</span> <span class="n">file_path</span>  <span class="c1"># Store for BIDS checks</span>
@@ -2831,10 +2835,13 @@ Optionally performs BIDS context validation.</p>
     <span class="n">bids_errors</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ValidationErrorDetail</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c1"># --- Schema Validation ---</span>
+    <span class="c1"># Use the internal validator&#39;s iter_errors method</span>
     <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># The validator now uses the registry passed during __init__</span>
         <span class="n">errors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+                <span class="c1"># Convert jsonschema error to our custom format</span>
                 <span class="n">detail</span> <span class="o">=</span> <span class="n">ValidationErrorDetail</span><span class="p">(</span>
                     <span class="n">message</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
                     <span class="n">path</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">path</span><span class="p">),</span>
@@ -2842,26 +2849,27 @@ Optionally performs BIDS context validation.</p>
                     <span class="n">validator</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">validator</span><span class="p">,</span>
                     <span class="n">validator_value</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">validator_value</span><span class="p">,</span>
                     <span class="n">instance_value</span><span class="o">=</span><span class="n">error</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
-                    <span class="n">context</span><span class="o">=</span><span class="p">[</span>  <span class="c1"># Recursively convert context errors</span>
-                        <span class="n">ValidationErrorDetail</span><span class="p">(</span>
-                            <span class="n">message</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
-                            <span class="n">path</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">sub_error</span><span class="o">.</span><span class="n">path</span><span class="p">),</span>
-                            <span class="n">schema_path</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">sub_error</span><span class="o">.</span><span class="n">schema_path</span><span class="p">),</span>
-                            <span class="n">validator</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">validator</span><span class="p">,</span>
-                            <span class="n">validator_value</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">validator_value</span><span class="p">,</span>
-                            <span class="n">instance_value</span><span class="o">=</span><span class="n">sub_error</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
-                        <span class="p">)</span>
-                        <span class="k">for</span> <span class="n">sub_error</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">context</span>
-                    <span class="p">],</span>
+                    <span class="c1"># suggestion is added by ValidationErrorDetail constructor</span>
                 <span class="p">)</span>
-                <span class="c1"># Suggestion generated in __post_init__</span>
                 <span class="n">schema_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detail</span><span class="p">)</span>
-
+    <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">RefResolutionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># This shouldn&#39;t happen if schema is fully resolved, but handle defensively</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG: Unexpected RefResolutionError: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">failed_ref</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s2">&quot;ref&quot;</span><span class="p">,</span> <span class="s2">&quot;[unknown ref]&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Schema validation failed: Unexpectedly could not resolve &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;reference &#39;</span><span class="si">{</span><span class="n">failed_ref</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
     <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">SchemaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="c1"># Indicates a problem with the schema itself</span>
+        <span class="c1"># Catch schema errors separately from resolution errors</span>
         <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid schema: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="c1"># Catch other unexpected errors during validation</span>
+        <span class="c1"># Capture the actual exception type for better debugging</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;DEBUG: Unexpected validation error type: &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="c1"># Reraise or wrap depending on desired behavior</span>
         <span class="k">raise</span> <span class="n">SignalJourneyValidationError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred during schema validation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
@@ -2898,6 +2906,170 @@ Optionally performs BIDS context validation.</p>
 
 </div>
 
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="signaljourney_validator.validator.inline_refs" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">inline_refs</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">loaded_schemas_cache</span><span class="p">)</span></code>
+
+<a href="#signaljourney_validator.validator.inline_refs" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Recursively replace $ref keys with the content of the referenced file.
+Uses a cache (loaded_schemas_cache) to avoid infinite loops with circular refs
+and redundant file loading.
+Cache keys should be absolute POSIX paths of the schema files.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>src/signaljourney_validator/validator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">inline_refs</span><span class="p">(</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">],</span> <span class="n">base_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">loaded_schemas_cache</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recursively replace $ref keys with the content of the referenced file.</span>
+<span class="sd">    Uses a cache (loaded_schemas_cache) to avoid infinite loops with circular refs</span>
+<span class="sd">    and redundant file loading.</span>
+<span class="sd">    Cache keys should be absolute POSIX paths of the schema files.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="s2">&quot;$ref&quot;</span> <span class="ow">in</span> <span class="n">schema</span>
+            <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema</span><span class="p">[</span><span class="s2">&quot;$ref&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;$ref&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">ref_path_str</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;$ref&quot;</span><span class="p">]</span>
+            <span class="c1"># Resolve relative ref path against the current base path</span>
+            <span class="n">ref_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_path</span> <span class="o">/</span> <span class="n">ref_path_str</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+            <span class="c1"># Cache key based on resolved absolute path</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="n">ref_path</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+
+            <span class="c1"># Check cache first</span>
+            <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="n">loaded_schemas_cache</span><span class="p">:</span>
+                <span class="c1"># Return a copy to prevent modification issues during recursion</span>
+                <span class="k">return</span> <span class="n">loaded_schemas_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="c1"># If not cached, load the file</span>
+            <span class="k">if</span> <span class="n">ref_path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">ref_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># print(</span>
+                    <span class="c1">#     f&quot;[Inline] Loading $ref: {ref_path_str} &quot;</span>
+                    <span class="c1">#     f&quot;(from {base_path}) -&gt; {ref_path}&quot;</span>
+                    <span class="c1"># )</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ref_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">ref_content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                    <span class="c1"># Store in cache BEFORE recursion to handle circular refs</span>
+                    <span class="n">loaded_schemas_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref_content</span>
+                    <span class="c1"># Recursively resolve refs *within* the loaded content</span>
+                    <span class="c1"># Use the directory of the *referenced* file as the new base path</span>
+                    <span class="n">resolved_content</span> <span class="o">=</span> <span class="n">inline_refs</span><span class="p">(</span>
+                        <span class="n">ref_content</span><span class="p">,</span> <span class="n">ref_path</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">loaded_schemas_cache</span>
+                    <span class="p">)</span>
+                    <span class="c1"># Update cache with the fully resolved content</span>
+                    <span class="n">loaded_schemas_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">resolved_content</span>
+                    <span class="c1"># Return a copy of the resolved content</span>
+                    <span class="k">return</span> <span class="n">resolved_content</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Warning: Failed to load or parse $ref: </span><span class="si">{</span><span class="n">ref_path_str</span><span class="si">}</span><span class="s2"> &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;from </span><span class="si">{</span><span class="n">ref_path</span><span class="si">}</span><span class="s2">. Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">return</span> <span class="n">schema</span>  <span class="c1"># Keep original $ref on error</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Warning: $ref path does not exist or is not a file: &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_path_str</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">ref_path</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">schema</span>  <span class="c1"># Keep original $ref if file not found</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Recursively process other keys in the dictionary</span>
+            <span class="n">new_schema</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">schema</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">new_schema</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">inline_refs</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">loaded_schemas_cache</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">new_schema</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="c1"># Recursively process items in the list</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">inline_refs</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">loaded_schemas_cache</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Return non-dict/list items as is</span>
+        <span class="k">return</span> <span class="n">schema</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 
 
@@ -2957,7 +3129,10 @@ Supports validating single files or entire directories.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/signaljourney_validator/cli.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
@@ -2966,10 +3141,7 @@ Supports validating single files or entire directories.</p>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">context_settings</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">help_option_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-h&quot;</span><span class="p">,</span> <span class="s2">&quot;--help&quot;</span><span class="p">]))</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">context_settings</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">help_option_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-h&quot;</span><span class="p">,</span> <span class="s2">&quot;--help&quot;</span><span class="p">]))</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">(</span>
     <span class="n">package_name</span><span class="o">=</span><span class="s2">&quot;signaljourney-validator&quot;</span><span class="p">,</span> <span class="n">prog_name</span><span class="o">=</span><span class="s2">&quot;signaljourney-validate&quot;</span>
 <span class="p">)</span>
@@ -3020,7 +3192,10 @@ if provided via --schema).</p>
 
             <details class="quote">
               <summary>Source code in <code>src/signaljourney_validator/cli.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
 <span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
@@ -3309,18 +3484,7 @@ if provided via --schema).</p>
 <span class="normal">328</span>
 <span class="normal">329</span>
 <span class="normal">330</span>
-<span class="normal">331</span>
-<span class="normal">332</span>
-<span class="normal">333</span>
-<span class="normal">334</span>
-<span class="normal">335</span>
-<span class="normal">336</span>
-<span class="normal">337</span>
-<span class="normal">338</span>
-<span class="normal">339</span>
-<span class="normal">340</span>
-<span class="normal">341</span>
-<span class="normal">342</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@cli</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="normal">331</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@cli</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span>
     <span class="s2">&quot;path&quot;</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resolve_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">path_type</span><span class="o">=</span><span class="n">Path</span><span class="p">),</span>
@@ -3441,8 +3605,6 @@ if provided via --schema).</p>
     <span class="c1"># Prepare results structure</span>
     <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;overall_success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="p">[]}</span>
     <span class="n">validator_instance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Validator</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">main_schema_dict</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">JsonDict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">resolver</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">RefResolver</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">files_to_validate</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
@@ -3459,47 +3621,20 @@ if provided via --schema).</p>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># --- Schema Loading and Resolver Setup (Load ONCE) ---</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">schema_to_use</span> <span class="o">=</span> <span class="n">schema</span> <span class="k">if</span> <span class="n">schema</span> <span class="k">else</span> <span class="n">DEFAULT_SCHEMA_PATH</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">schema_to_use</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Schema file not found: </span><span class="si">{</span><span class="n">schema_to_use</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">schema_to_use</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">main_schema_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-        <span class="c1"># Setup resolver similar to conftest.py</span>
-        <span class="n">schema_base_uri</span> <span class="o">=</span> <span class="n">SCHEMA_DIR</span><span class="o">.</span><span class="n">as_uri</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span>  <span class="c1"># Ensure trailing slash</span>
-        <span class="n">base_resolve_uri</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">schema_base_uri</span>  <span class="c1"># For resolving within definitions/extensions</span>
-        <span class="p">)</span>
-
-        <span class="n">store</span> <span class="o">=</span> <span class="p">{</span><span class="n">schema_base_uri</span> <span class="o">+</span> <span class="n">schema_to_use</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">main_schema_dict</span><span class="p">}</span>
-
-        <span class="c1"># Load definition schemas</span>
-        <span class="k">if</span> <span class="n">DEFINITIONS_DIR</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">schema_file</span> <span class="ow">in</span> <span class="n">DEFINITIONS_DIR</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.schema.json&quot;</span><span class="p">):</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">schema_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="n">schema_content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-                <span class="n">resolved_uri</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span>
-                    <span class="n">base_resolve_uri</span> <span class="o">+</span> <span class="s2">&quot;definitions/&quot;</span><span class="p">,</span> <span class="n">schema_file</span><span class="o">.</span><span class="n">name</span>
-                <span class="p">)</span>
-                <span class="n">store</span><span class="p">[</span><span class="n">resolved_uri</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema_content</span>
-
-        <span class="c1"># Load extension schemas</span>
-        <span class="k">if</span> <span class="n">EXTENSIONS_DIR</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">schema_file</span> <span class="ow">in</span> <span class="n">EXTENSIONS_DIR</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.schema.json&quot;</span><span class="p">):</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">schema_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="n">schema_content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-                <span class="n">resolved_uri</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span>
-                    <span class="n">base_resolve_uri</span> <span class="o">+</span> <span class="s2">&quot;extensions/&quot;</span><span class="p">,</span> <span class="n">schema_file</span><span class="o">.</span><span class="n">name</span>
-                <span class="p">)</span>
-                <span class="n">store</span><span class="p">[</span><span class="n">resolved_uri</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema_content</span>
-
-        <span class="n">resolver</span> <span class="o">=</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">RefResolver</span><span class="p">(</span>
-            <span class="n">base_uri</span><span class="o">=</span><span class="n">schema_base_uri</span><span class="p">,</span> <span class="n">referrer</span><span class="o">=</span><span class="n">main_schema_dict</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="n">store</span>
-        <span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading schema or building resolver: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># try:</span>
+    <span class="c1">#     schema_to_use = schema if schema else DEFAULT_SCHEMA_PATH</span>
+    <span class="c1">#     if not schema_to_use.exists():</span>
+    <span class="c1">#         raise FileNotFoundError(f&quot;Schema file not found: {schema_to_use}&quot;)</span>
+    <span class="c1">#     with open(schema_to_use, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:</span>
+    <span class="c1">#         main_schema_dict = json.load(f)</span>
+    <span class="c1">#</span>
+    <span class="c1">#     # Setup resolver similar to conftest.py - REMOVED</span>
+    <span class="c1">#     ...</span>
+    <span class="c1">#</span>
+    <span class="c1">#     resolver = jsonschema.RefResolver(...)</span>
+    <span class="c1"># except Exception as e:</span>
+    <span class="c1">#     click.echo(f&quot;Error loading schema or building resolver: {e}&quot;, err=True)</span>
+    <span class="c1">#     sys.exit(1)</span>
     <span class="c1"># --- End Schema Loading ---</span>
 
     <span class="n">overall_success</span> <span class="o">=</span> <span class="kc">True</span>
@@ -3514,10 +3649,31 @@ if provided via --schema).</p>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">validator_instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="c1"># Create validator ONCE using the loaded schema and resolver</span>
-                <span class="n">validator_instance</span> <span class="o">=</span> <span class="n">Validator</span><span class="p">(</span>
-                    <span class="n">schema</span><span class="o">=</span><span class="n">main_schema_dict</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="n">resolver</span>
-                <span class="p">)</span>
+                <span class="c1"># Create validator ONCE using the schema path (or None for default)</span>
+                <span class="c1"># Validator internal __init__ now handles registry setup.</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Pass schema path/None</span>
+                    <span class="n">validator_instance</span> <span class="o">=</span> <span class="n">Validator</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="c1"># Handle potential errors during Validator initialization</span>
+                    <span class="c1"># (e.g., schema loading)</span>
+                    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CRITICAL ERROR initializing validator: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="c1"># For JSON output, log the critical error at file level</span>
+                    <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+                        <span class="n">file_result</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;critical_error&quot;</span>
+                        <span class="n">file_result</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                            <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Validator init failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+                        <span class="p">]</span>
+                        <span class="n">results</span><span class="p">[</span><span class="s2">&quot;files&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_result</span><span class="p">)</span>
+                        <span class="n">results</span><span class="p">[</span><span class="s2">&quot;overall_success&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="n">overall_success</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Ensure overall failure</span>
+                    <span class="c1"># Exit or continue? Maybe continue to report errors for other files?</span>
+                    <span class="c1"># For now, let&#39;s make it a fatal error for the specific file.</span>
+                    <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
+                        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot; CRITICAL ERROR&quot;</span><span class="p">)</span>
+                        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - Initialization Failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="c1"># Skip to the next file if validator init fails</span>
+                    <span class="k">continue</span>
 
             <span class="c1"># Pass bids_root to validator if bids flag is set</span>
             <span class="n">current_bids_context</span> <span class="o">=</span> <span class="n">bids_root</span> <span class="k">if</span> <span class="n">bids</span> <span class="k">else</span> <span class="kc">None</span>
@@ -3693,9 +3849,7 @@ if provided via --schema).</p>
 
               <details class="quote">
                 <summary>Source code in <code>src/signaljourney_validator/errors.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 17</span>
 <span class="normal"> 18</span>
 <span class="normal"> 19</span>
 <span class="normal"> 20</span>
@@ -3849,7 +4003,9 @@ if provided via --schema).</p>
 <span class="normal">168</span>
 <span class="normal">169</span>
 <span class="normal">170</span>
-<span class="normal">171</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ValidationErrorDetail</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a detailed validation error.&quot;&quot;&quot;</span>
 
@@ -4037,9 +4193,9 @@ if provided via --schema).</p>
 
             <details class="quote">
               <summary>Source code in <code>src/signaljourney_validator/errors.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate suggestions based on error type after initialization.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_generate_suggestion</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -4047,6 +4203,70 @@ if provided via --schema).</p>
     </div>
 
 </div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="signaljourney_validator.errors.SignalJourneyValidationError" class="doc doc-heading">
+            <code>SignalJourneyValidationError</code>
+
+
+<a href="#signaljourney_validator.errors.SignalJourneyValidationError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="Exception">Exception</span></code></p>
+
+
+        <p>Custom exception for validation errors.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/signaljourney_validator/errors.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SignalJourneyValidationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom exception for validation errors.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ValidationErrorDetail</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="n">errors</span> <span class="ow">or</span> <span class="p">[]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
 
 
 
