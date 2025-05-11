@@ -125,90 +125,72 @@ class FunctionDefCollector(cst.CSTVisitor):
         self.current_class.pop()
     
     def visit_FunctionDef(self, node: cst.FunctionDef) -> None:
+        """Visit a function definition and extract its information."""
         name = node.name.value
-        qualified_name = f"{'.'.join(self.current_class)}.{name}" if self.current_class else name
+        qualified_name = f"{self.current_class}.{name}" if self.current_class else name
         
+        # Get parameters
         parameters = []
         for param in node.params.params:
-            if isinstance(param, cst.Param):
-                annotation = ""
-                if param.annotation:
-                    annotation_node = param.annotation.annotation
-                    if isinstance(annotation_node, cst.Name):
-                        annotation = annotation_node.value
-                    elif isinstance(annotation_node, cst.Attribute):
-                        annotation = self._get_attribute_name(annotation_node)
-                
-                default_value = ""
-                if param.default:
-                    default_value = self._get_node_value(param.default)
-                
-                parameters.append(FunctionParameter(
-                    name=param.name.value,
-                    annotation=annotation,
-                    default_value=default_value,
-                    is_keyword_only=False,  # Will set correctly based on param type
-                    is_positional_only=False,  # Will set correctly based on param type
-                    is_variadic=False  # Will set correctly based on param type
-                ))
-            elif isinstance(param, cst.StarParam):
-                # This is *args
-                if param.param:
-                    parameters.append(FunctionParameter(
-                        name=param.param.name.value,
-                        is_variadic=True
-                    ))
-            elif isinstance(param, cst.ParamStar):
-                # This is the * separator for keyword-only params
-                pass
-            elif isinstance(param, cst.Param):
-                # Handle positional-only parameters (in Python 3.8+)
-                pass
-        
-        # Handle keyword-only parameters
-        for param in node.params.kwonly_params:
-            annotation = ""
+            param_name = param.name.value
+            param_annotation = ""
             if param.annotation:
-                annotation_node = param.annotation.annotation
-                if isinstance(annotation_node, cst.Name):
-                    annotation = annotation_node.value
-                elif isinstance(annotation_node, cst.Attribute):
-                    annotation = self._get_attribute_name(annotation_node)
+                param_annotation = self._extract_annotation(param.annotation.annotation)
             
             default_value = ""
             if param.default:
-                default_value = self._get_node_value(param.default)
+                default_value = "..." # Default value placeholder
             
             parameters.append(FunctionParameter(
-                name=param.name.value,
-                annotation=annotation,
+                name=param_name,
+                annotation=param_annotation,
+                default_value=default_value,
+                is_keyword_only=False,  # Can be refined with more complex logic
+                is_positional_only=False, # Can be refined with more complex logic
+                is_variadic=param_name.startswith("*")
+            ))
+        
+        # Handle star_arg and kwonly_params
+        if node.params.star_arg:
+            parameters.append(FunctionParameter(
+                name=f"*{node.params.star_arg.name.value if hasattr(node.params.star_arg, 'name') else ''}",
+                is_variadic=True
+            ))
+        
+        # Handle kwonly params
+        for param in node.params.kwonly_params:
+            param_name = param.name.value
+            param_annotation = ""
+            if param.annotation:
+                param_annotation = self._extract_annotation(param.annotation.annotation)
+            
+            default_value = ""
+            if param.default:
+                default_value = "..." # Default value placeholder
+            
+            parameters.append(FunctionParameter(
+                name=param_name,
+                annotation=param_annotation,
                 default_value=default_value,
                 is_keyword_only=True
             ))
         
-        # Handle **kwargs
+        # Handle star_kwarg
         if node.params.star_kwarg:
             parameters.append(FunctionParameter(
-                name=node.params.star_kwarg.name.value,
-                is_variadic=True,
-                is_keyword_only=True
+                name=f"**{node.params.star_kwarg.name.value}",
+                is_variadic=True
             ))
         
         # Get return annotation
         return_annotation = ""
         if node.returns:
-            returns_node = node.returns.annotation
-            if isinstance(returns_node, cst.Name):
-                return_annotation = returns_node.value
-            elif isinstance(returns_node, cst.Attribute):
-                return_annotation = self._get_attribute_name(returns_node)
+            return_annotation = self._extract_annotation(node.returns.annotation)
         
-        # Get docstring
+        # Extract docstring
         docstring = ""
-        if (node.body.body and isinstance(node.body.body[0], cst.SimpleStatementLine) and 
-            node.body.body[0].body and isinstance(node.body.body[0].body[0], cst.Expr) and
-            isinstance(node.body.body[0].body[0].value, cst.SimpleString)):
-            docstring = node.body.body[0].body[0].value.evaluated_value
+        if node.body.body and isinstance(node.body.body[0], cst.SimpleString):
+            docstring = node.body.body[0].evaluated_value
         
         # Get decorators
         decorators = []
@@ -231,12 +213,8 @@ class FunctionDefCollector(cst.CSTVisitor):
             location=location,
             decorators=decorators,
             is_method=bool(self.current_class),
-            is_async=isinstance(node, cst.AsyncFunctionDef)
+            is_async=False  # Regular function is not async
         ))
-    
-    def visit_AsyncFunctionDef(self, node: cst.AsyncFunctionDef) -> None:
-        # Treat async functions the same as regular functions but mark as async
-        self.visit_FunctionDef(node)
     
     def _get_attribute_name(self, node: cst.Attribute) -> str:
         """Get the full name of an attribute (e.g., module.submodule.name)."""
@@ -246,18 +224,18 @@ class FunctionDefCollector(cst.CSTVisitor):
             return f"{self._get_attribute_name(node.value)}.{node.attr.value}"
         return f"?.{node.attr.value}"
     
-    def _get_node_value(self, node: cst.BaseExpression) -> str:
-        """Get a string representation of a node's value."""
-        if isinstance(node, cst.SimpleString):
-            return node.evaluated_value
-        elif isinstance(node, cst.Name):
+    def _extract_annotation(self, node: cst.BaseExpression) -> str:
+        """Extract type annotation from a node."""
+        if isinstance(node, cst.Name):
             return node.value
-        elif isinstance(node, cst.Integer):
-            return str(node.value)
-        elif isinstance(node, cst.Float):
-            return str(node.value)
-        elif isinstance(node, (cst.Dict, cst.List, cst.Tuple)):
-            return "..." # Placeholder for complex values
+        elif isinstance(node, cst.Attribute):
+            return self._get_attribute_name(node)
+        elif isinstance(node, cst.Subscript):
+            # Handle generic types like List[int]
+            if isinstance(node.value, cst.Name):
+                return f"{node.value.value}[...]"
+            elif isinstance(node.value, cst.Attribute):
+                return f"{self._get_attribute_name(node.value)}[...]"
         return "..."
 
 
@@ -281,13 +259,6 @@ class FunctionCallCollector(cst.CSTVisitor):
         return True
     
     def leave_FunctionDef(self, node: cst.FunctionDef) -> None:
-        self.current_function.pop()
-    
-    def visit_AsyncFunctionDef(self, node: cst.AsyncFunctionDef) -> bool:
-        self.current_function.append(node.name.value)
-        return True
-    
-    def leave_AsyncFunctionDef(self, node: cst.AsyncFunctionDef) -> None:
         self.current_function.pop()
     
     def visit_Call(self, node: cst.Call) -> None:

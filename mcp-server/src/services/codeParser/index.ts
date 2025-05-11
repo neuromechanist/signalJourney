@@ -1,14 +1,38 @@
 /**
- * Code parser module for extracting function calls and relationships from code files.
- * This module provides a unified interface for parsing different programming languages
- * and a factory system for registering language-specific parsers.
+ * Code Parser module index.
+ * Exports all code parsing functionality.
  */
 
-// Export public interfaces
-export * from './types';
-export * from './baseParser';
-export * from './parserFactory';
-export * from './service';
+// Export main parser service
+export { CodeParserService } from './service';
+
+// Export factory
+export { CodeParserFactory } from './parserFactory';
+
+// Export base parser
+export { BaseCodeParser } from './baseParser';
+
+// Export normalizer
+export { ParserOutputNormalizer } from './normalizer';
+
+// Export individual language parsers
+export { PythonParser } from './languages/python';
+export { MatlabParser } from './languages/matlab';
+
+// Export types and interfaces
+export {
+  ICodeParser,
+  ICodeParserResult,
+  IFunctionCall,
+  IFunctionDefinition,
+  IFunctionParameter,
+  IImport,
+  IVariable,
+  IParserOptions,
+  ISourceLocation,
+  SupportedLanguage,
+  ParameterStyle
+} from './types';
 
 // Import language parsers
 import { PythonCodeParser } from './languages/python';

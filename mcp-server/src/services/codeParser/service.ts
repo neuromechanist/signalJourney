@@ -17,18 +17,21 @@ import {
   IParserOptions,
   SupportedLanguage
 } from './types';
+import { ParserOutputNormalizer } from './normalizer';
 
 /**
  * Service for parsing code files
  */
 export class CodeParserService {
   private factory: CodeParserFactory;
+  private normalizer: ParserOutputNormalizer;
   
   /**
    * Constructor
    */
   constructor() {
     this.factory = CodeParserFactory.getInstance();
+    this.normalizer = new ParserOutputNormalizer();
     logger.debug('CodeParserService initialized');
   }
   
@@ -55,9 +58,17 @@ export class CodeParserService {
     try {
       // Get the appropriate parser based on the file extension
       const parser = this.factory.getParserForFile(filePath);
+      const language = parser.getSupportedLanguage();
       
       // Parse the file using the selected parser
-      return await parser.parseFile(file, options);
+      const result = await parser.parseFile(file, options);
+      
+      // Normalize the output
+      return this.normalizer.normalizeResult(
+        result, 
+        language, 
+        parser.constructor.name
+      );
     } catch (error: any) {
       if (error.code === 'PARSER_NOT_FOUND' || error.code === 'UNSUPPORTED_LANGUAGE') {
         // For known errors about unsupported languages, return a minimal result
@@ -180,7 +191,14 @@ export class CodeParserService {
   ): Promise<ICodeParserResult> {
     try {
       const parser = this.factory.getParser(language);
-      return await parser.parseContent(content, language, options);
+      const result = await parser.parseContent(content, language, options);
+      
+      // Normalize the output
+      return this.normalizer.normalizeResult(
+        result, 
+        language, 
+        parser.constructor.name
+      );
     } catch (error: any) {
       if (error.code === 'PARSER_NOT_FOUND') {
         // No parser available for this language
