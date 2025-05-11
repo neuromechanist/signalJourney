@@ -9,6 +9,16 @@ import logger from '@/utils/logger';
 // Import handlers directly since the system handlers may not be available yet
 // We'll define mockups for these handlers that can be replaced later
 import { McpApplicationError } from '@/core/mcp-types';
+import {
+  handleGetStatus,
+  handleGetVersion,
+  handleCreateResource,
+  handleGetResource,
+  handleUpdateResource,
+  handleDeleteResource
+} from '@/handlers/system.handlers';
+import { handleScanRepository } from '@/handlers/scanner.handlers';
+import { handleParseFile, handleParseContent } from '@/handlers/parser.handlers';
 
 // Mock handlers until actual handlers are implemented
 const handleGetStatus = async () => {
@@ -113,6 +123,10 @@ export function createMcpServer(options?: any): McpServer {
   serverInstance.tool('resource.update', handleUpdateResource);
   serverInstance.tool('resource.delete', handleDeleteResource);
   serverInstance.tool('scanner.scanRepository', handleScanRepository);
+  
+  // Register new code parser tools
+  serverInstance.tool('parser.parseFile', handleParseFile);
+  serverInstance.tool('parser.parseContent', handleParseContent);
   
   coreLogger.info('MCP Server instance created successfully...');
 

@@ -4,6 +4,8 @@ import { RequestHandlerExtra } from '@modelcontextprotocol/sdk/shared/protocol.j
 
 // Import the class, not the default
 import { RepositoryScannerService, TraversalOptions, TraversedFile } from '@/services/repositoryScanner.service';
+import { CodeParserService } from '@/services/codeParser/service';
+import { ICodeParserResult, IParserOptions } from '@/services/codeParser/types';
 import { McpExecutionContext, CallToolResult, McpApplicationError } from '@/core/mcp-types';
 import { AuthPayload } from '@/middleware/auth.middleware';
 import logger from '@/utils/logger';
@@ -17,7 +19,7 @@ export const scanRepositoryParamsSchema = z.object({
   parseCode: z.boolean().optional().default(true).describe('Whether to perform basic code structure parsing.'),
 });
 
-// Use the local schema definition instead of importing
+// Extract TypeScript type from the schema
 export type ScanRepositoryParams = z.infer<typeof scanRepositoryParamsSchema>;
 
 // MCP Tool Handler function
@@ -26,6 +28,9 @@ export async function handleScanRepository(
   extra: RequestHandlerExtra<ServerRequest, ServerNotification>
 ): Promise<CallToolResult> {
   const repositoryScannerService = new RepositoryScannerService();
+  // Create a code parser service instance
+  const codeParserService = new CodeParserService();
+  
   const scanId = extra.requestId || `scan-${Date.now()}`;
   logger.info(`[${scanId}] Received scan_repository request`, { repoPath: args.repoPath });
 
@@ -40,6 +45,19 @@ export async function handleScanRepository(
     const startTime = Date.now();
     // Use the instantiated service
     const files = await repositoryScannerService.scanRepository(args.repoPath, scanOptions);
+    
+    // Parse code if requested
+    let parseResults: ICodeParserResult[] = [];
+    if (args.parseCode) {
+      logger.info(`[${scanId}] Starting code parsing for ${files.length} files`);
+      parseResults = await codeParserService.parseTraversedFiles(files, {
+        extractComments: true,
+        maxDepth: 2, // Don't go too deep with nested calls for the initial scan
+        includeSourceCode: false // Don't include full source code to keep response size reasonable
+      });
+      logger.info(`[${scanId}] Code parsing complete. Parsed ${parseResults.length} files.`);
+    }
+    
     const scanDuration = Date.now() - startTime;
 
     logger.info(`[${scanId}] Scan completed in ${scanDuration}ms. Found ${files.length} items.`);
@@ -62,6 +80,9 @@ export async function handleScanRepository(
     // Limit the response size if necessary
     const maxResponseItems = 1000; // Example limit
     const limitedFiles = files.slice(0, maxResponseItems);
+    
+    // Include parse results in the response
+    const limitedParseResults = parseResults.slice(0, maxResponseItems);
 
     return {
       content: [{ 
@@ -71,26 +92,27 @@ export async function handleScanRepository(
           scanId, 
           count: files.length, 
           durationMs: scanDuration, 
-          items: limitedFiles 
+          items: limitedFiles,
+          parseResults: limitedParseResults,
+          parsedFileCount: parseResults.length
         }) 
       }]
     };
   } catch (error: any) {
-    logger.error(`[${scanId}] Repository scan failed: ${error.message}`, { stack: error.stack });
-    if (error instanceof McpApplicationError) {
-      throw error; // Let the MCP server handle the application error
-    }
-
-    // For unexpected errors
+    logger.error(`[${scanId}] Scan failed:`, error);
+    
+    // Create a more user-friendly error message
+    const errorMessage = error.message || 'An unknown error occurred';
+    const errorCode = error.code || 'UNKNOWN_ERROR';
+    
     return {
       content: [{ 
         type: 'text', 
-        text: JSON.stringify({
-          success: false,
-          error: {
-            message: 'Failed to scan repository due to an unexpected error.',
-            code: 'SCAN_UNEXPECTED_ERROR',
-          }
+        text: JSON.stringify({ 
+          success: false, 
+          error: errorMessage,
+          code: errorCode,
+          scanId 
         }) 
       }]
     };
