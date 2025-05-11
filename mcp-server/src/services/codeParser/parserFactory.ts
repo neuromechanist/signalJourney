@@ -8,6 +8,8 @@ import * as path from 'path';
 import logger from '@/utils/logger';
 import { ICodeParser, SupportedLanguage } from './types';
 import { McpApplicationError } from '@/core/mcp-types';
+import { PythonParser } from './languages/python';
+import { MatlabParser } from './languages/matlab';
 
 /**
  * Singleton factory for managing code parser implementations
@@ -22,6 +24,10 @@ export class CodeParserFactory {
   private constructor() {
     this.parsers = new Map<SupportedLanguage, ICodeParser>();
     logger.debug('CodeParserFactory initialized');
+
+    // Initialize the default parsers
+    this.registerParser(new PythonParser());
+    this.registerParser(new MatlabParser());
   }
   
   /**
