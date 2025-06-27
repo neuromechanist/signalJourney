@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Documentation for the signalJourney specification and tools." name="description"/>
-<link href="https://neuromechanist.github.io/signalJourney/examples/ica_decomposition_eeglab/" rel="canonical"/>
-<link href="../ica_decomposition_mne/" rel="prev"/>
-<link href="../time_frequency_mne/" rel="next"/>
+<link href="https://neuromechanist.github.io/signalJourney/examples/time_frequency_mne/" rel="canonical"/>
+<link href="../ica_decomposition_eeglab/" rel="prev"/>
+<link href="../time_frequency_eeglab/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
-<title>EEGLAB - Signal Journey</title>
+<title>MNE-Python - Signal Journey</title>
 <link href="../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -25,7 +25,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#example-ica-decomposition-pipeline-eeglab">
+<a class="md-skip" href="#example-time-frequency-analysis-mne-python">
           Skip to content
         </a>
 </div>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              EEGLAB
+              MNE-Python
             
           </span>
 </div>
@@ -461,8 +461,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_5_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
 <span class="md-ellipsis">
     ICA Decomposition
@@ -470,7 +470,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_5_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_5_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_5_3">
 <span class="md-nav__icon md-icon"></span>
             ICA Decomposition
@@ -484,18 +484,44 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ica_decomposition_eeglab/">
+<span class="md-ellipsis">
+    EEGLAB
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_5_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+<span class="md-ellipsis">
+    Time-Frequency Analysis
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_5_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_4">
+<span class="md-nav__icon md-icon"></span>
+            Time-Frequency Analysis
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
-    EEGLAB
+    MNE-Python
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
-    EEGLAB
+    MNE-Python
     
   </span>
 </a>
@@ -520,24 +546,24 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#key-eeglab-features-demonstrated">
+<a class="md-nav__link" href="#key-mne-python-features-demonstrated">
 <span class="md-ellipsis">
-      Key EEGLAB Features Demonstrated
+      Key MNE-Python Features Demonstrated
     </span>
 </a>
-<nav aria-label="Key EEGLAB Features Demonstrated" class="md-nav">
+<nav aria-label="Key MNE-Python Features Demonstrated" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#ica-specific-functions">
+<a class="md-nav__link" href="#time-frequency-functions">
 <span class="md-ellipsis">
-      ICA-Specific Functions
+      Time-Frequency Functions
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-specific-parameters">
+<a class="md-nav__link" href="#advanced-parameters">
 <span class="md-ellipsis">
-      EEGLAB-Specific Parameters
+      Advanced Parameters
     </span>
 </a>
 </li>
@@ -553,16 +579,9 @@
 <nav aria-label="Example JSON Structure" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#iclabel-component-classification">
+<a class="md-nav__link" href="#multi-output-documentation">
 <span class="md-ellipsis">
-      ICLabel Component Classification
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-signaljourney-features">
-<span class="md-ellipsis">
-      Advanced signalJourney Features
+      Multi-Output Documentation
     </span>
 </a>
 </li>
@@ -570,31 +589,24 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-ica-workflow">
+<a class="md-nav__link" href="#time-frequency-analysis-features">
 <span class="md-ellipsis">
-      EEGLAB ICA Workflow
+      Time-Frequency Analysis Features
     </span>
 </a>
-<nav aria-label="EEGLAB ICA Workflow" class="md-nav">
+<nav aria-label="Time-Frequency Analysis Features" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#extended-infomax-algorithm">
+<a class="md-nav__link" href="#wavelet-parameter-selection">
 <span class="md-ellipsis">
-      Extended Infomax Algorithm
+      Wavelet Parameter Selection
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#iclabel-classification-system">
+<a class="md-nav__link" href="#baseline-correction-methods">
 <span class="md-ellipsis">
-      ICLabel Classification System
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#interactive-component-review">
-<span class="md-ellipsis">
-      Interactive Component Review
+      Baseline Correction Methods
     </span>
 </a>
 </li>
@@ -602,43 +614,11 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-vs-mne-python-comparison">
+<a class="md-nav__link" href="#mne-python-vs-eeglab-comparison">
 <span class="md-ellipsis">
-      EEGLAB vs MNE-Python Comparison
+      MNE-Python vs EEGLAB Comparison
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-features">
-<span class="md-ellipsis">
-      Advanced Features
-    </span>
-</a>
-<nav aria-label="Advanced Features" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#component-classification-workflow">
-<span class="md-ellipsis">
-      Component Classification Workflow
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#data-provenance-and-quality-control">
-<span class="md-ellipsis">
-      Data Provenance and Quality Control
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-dataset-integration">
-<span class="md-ellipsis">
-      EEGLAB Dataset Integration
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#usage-notes">
@@ -649,32 +629,6 @@
 </li>
 </ul>
 </nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_5_4" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
-<span class="md-ellipsis">
-    Time-Frequency Analysis
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_5_4_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_4">
-<span class="md-nav__icon md-icon"></span>
-            Time-Frequency Analysis
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../time_frequency_mne/">
-<span class="md-ellipsis">
-    MNE-Python
-    
-  </span>
-</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../time_frequency_eeglab/">
@@ -868,48 +822,43 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="example-ica-decomposition-pipeline-eeglab">Example: ICA Decomposition Pipeline (EEGLAB)<a class="headerlink" href="#example-ica-decomposition-pipeline-eeglab" title="Permanent link">¶</a></h1>
-<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/ica_decomposition_pipeline_eeglab.signalJourney.json"><code>ica_decomposition_pipeline_eeglab.signalJourney.json</code></a> example file, which documents an Independent Component Analysis (ICA) workflow for artifact removal using EEGLAB.</p>
+<h1 id="example-time-frequency-analysis-mne-python">Example: Time-Frequency Analysis (MNE-Python)<a class="headerlink" href="#example-time-frequency-analysis-mne-python" title="Permanent link">¶</a></h1>
+<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/time_frequency_analysis_pipeline_mne.signalJourney.json"><code>time_frequency_analysis_pipeline_mne.signalJourney.json</code></a> example file, which documents a typical time-frequency analysis using MNE-Python.</p>
 <h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">¶</a></h2>
-<p>This EEGLAB pipeline demonstrates how to apply ICA to remove artifacts from preprocessed EEG data using EEGLAB's ICA functions and ICLabel for component classification:</p>
-<ul>
-<li><strong>Loading preprocessed data</strong> from the basic preprocessing pipeline</li>
-<li><strong>Computing ICA decomposition</strong> using extended Infomax algorithm</li>
-<li><strong>Classifying components</strong> with ICLabel to identify artifacts</li>
-<li><strong>Removing artifact components</strong> from the data</li>
-<li><strong>Saving cleaned data</strong> for further analysis</li>
-</ul>
+<p>This MNE-Python pipeline demonstrates time-frequency analysis using Morlet wavelets:
+- <strong>Load cleaned data</strong> from ICA decomposition pipeline
+- <strong>Extract event-related epochs</strong>
+- <strong>Compute time-frequency decomposition</strong> using <code>mne.time_frequency.tfr_morlet</code>
+- <strong>Apply baseline correction</strong> and save results
+- <strong>Generate visualization plots</strong></p>
 <h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Load Preprocessed Data<br/>pop_loadset] --&gt; B[Run ICA Decomposition<br/>pop_runica]
-    B --&gt; C[Classify Components<br/>pop_iclabel]
-    C --&gt; D[Select Components<br/>pop_selectcomps]
-    D --&gt; E[Remove Components<br/>pop_subcomp]
-    E --&gt; F[Save Cleaned Data<br/>pop_saveset]
+    A[Load Cleaned Data<br/>mne.io.read_raw_fif] --&gt; B[Extract Epochs<br/>mne.Epochs]
+    B --&gt; C[Compute TFR<br/>mne.time_frequency.tfr_morlet]
+    C --&gt; D[Apply Baseline Correction<br/>tfr.apply_baseline]
+    D --&gt; E[Save TFR Results<br/>tfr.save]
 
-    %% Input from basic preprocessing
-    G["📁 sub-01_task-rest_desc-preproc_eeg.set<br/>From: Basic Preprocessing Pipeline"] --&gt; A
+    %% Input from previous pipeline
+    F["📁 sub-01_task-rest_desc-cleaned_eeg.fif<br/>From: ICA Decomposition Pipeline"] --&gt; A
 
     %% Intermediate outputs
-    A --&gt; A1["📊 EEG Structure<br/>Preprocessed dataset"]
-    B --&gt; B1["📊 ICA Weights<br/>Extended Infomax decomposition"]
-    C --&gt; C1["📊 ICLabel Classifications<br/>Brain/Artifact probabilities"]
-    D --&gt; D1["📊 Component Selection<br/>Manual review interface"]
+    A --&gt; A1["📊 Raw Object<br/>ICA-cleaned data"]
+    B --&gt; B1["📊 Epochs Object<br/>Event-related epochs"]
+    C --&gt; C1["📊 TFR Object<br/>Time-frequency data"]
+    D --&gt; D1["📊 TFR Object<br/>Baseline corrected"]
 
-    %% ICA analysis data
-    B --&gt; V1["📊 ICA Sphere<br/>Whitening matrix"]
-    B --&gt; V2["📊 Component Maps<br/>Scalp topographies"]
-    C --&gt; V3["📊 Classification Scores<br/>Brain: 0.92, Eye: 0.05"]
-    E --&gt; V4["📊 Artifact Components<br/>[2, 15, 23] removed"]
+    %% Variables and data
+    B --&gt; V1["📊 Events Array<br/>Event timings"]
+    C --&gt; V2["📊 Frequencies<br/>[4, 8, 13, 30] Hz"]
+    C --&gt; V3["📊 Power Matrix<br/>Channels × Frequencies × Time"]
 
     %% Final outputs
-    F --&gt; H["💾 sub-01_task-rest_desc-cleaned_eeg.set<br/>ICA-cleaned dataset"]
-    D --&gt; I["💾 sub-01_task-rest_desc-components_review.fig<br/>Component browser"]
-    C --&gt; J["💾 sub-01_task-rest_desc-iclabel_report.mat<br/>Classification results"]
+    E --&gt; G["💾 sub-01_task-rest_desc-tfr_eeg.h5<br/>Time-frequency results"]
+    D --&gt; H["💾 sub-01_task-rest_desc-tfr_plot.png<br/>Visualization"]
 
     %% Quality metrics
-    C --&gt; Q1["📈 Brain components: 58/64<br/>Muscle components: 3/64"]
-    E --&gt; Q2["📈 Components removed: 3<br/>Variance preserved: 92.1%"]
+    C --&gt; Q1["📈 Frequency range: 4-30 Hz<br/>Cycles: 2-15"]
+    D --&gt; Q2["📈 Baseline: [-0.2, 0] s<br/>Mode: percent"]
 
     %% Styling
     classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -918,172 +867,124 @@
     classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
     classDef qualityMetric fill:#f9f9f9,stroke:#666,stroke-width:1px
 
-    class A,B,C,D,E,F processStep
-    class G inputFile
-    class H,I,J outputFile
-    class A1,B1,C1,D1,V1,V2,V3,V4 inlineData
+    class A,B,C,D,E processStep
+    class F inputFile
+    class G,H outputFile
+    class A1,B1,C1,D1,V1,V2,V3 inlineData
     class Q1,Q2 qualityMetric
 </code></pre>
-<h2 id="key-eeglab-features-demonstrated">Key EEGLAB Features Demonstrated<a class="headerlink" href="#key-eeglab-features-demonstrated" title="Permanent link">¶</a></h2>
-<h3 id="ica-specific-functions">ICA-Specific Functions<a class="headerlink" href="#ica-specific-functions" title="Permanent link">¶</a></h3>
+<h2 id="key-mne-python-features-demonstrated">Key MNE-Python Features Demonstrated<a class="headerlink" href="#key-mne-python-features-demonstrated" title="Permanent link">¶</a></h2>
+<h3 id="time-frequency-functions">Time-Frequency Functions<a class="headerlink" href="#time-frequency-functions" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong><code>pop_runica</code></strong>: Extended Infomax ICA decomposition</li>
-<li><strong><code>pop_iclabel</code></strong>: Automated component classification using deep learning</li>
-<li><strong><code>pop_selectcomps</code></strong>: Interactive component selection interface</li>
-<li><strong><code>pop_subcomp</code></strong>: Remove components from EEG data</li>
-<li><strong>ICLabel integration</strong>: Brain vs. artifact classification with probability scores</li>
+<li><strong><code>mne.Epochs</code></strong>: Event-related epoch extraction</li>
+<li><strong><code>mne.time_frequency.tfr_morlet</code></strong>: Morlet wavelet decomposition</li>
+<li><strong><code>tfr.apply_baseline</code></strong>: Baseline correction for power changes</li>
+<li><strong><code>tfr.save</code></strong>: Save time-frequency results in HDF5 format</li>
 </ul>
-<h3 id="eeglab-specific-parameters">EEGLAB-Specific Parameters<a class="headerlink" href="#eeglab-specific-parameters" title="Permanent link">¶</a></h3>
+<h3 id="advanced-parameters">Advanced Parameters<a class="headerlink" href="#advanced-parameters" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Extended Infomax</strong>: Natural gradient algorithm for ICA</li>
-<li><strong>ICLabel classification</strong>: Automated artifact detection using trained models</li>
-<li><strong>Interactive selection</strong>: GUI-based component review and selection</li>
-<li><strong>Dataset integration</strong>: Seamless EEGLAB structure preservation</li>
+<li><strong>Wavelet parameters</strong>: Adaptive cycles for different frequencies</li>
+<li><strong>Baseline correction</strong>: Percent change from pre-stimulus period</li>
+<li><strong>Frequency selection</strong>: Logarithmically spaced frequencies</li>
+<li><strong>Output formats</strong>: Both HDF5 data and PNG visualization</li>
 </ul>
 <h2 id="example-json-structure">Example JSON Structure<a class="headerlink" href="#example-json-structure" title="Permanent link">¶</a></h2>
-<p>The ICA decomposition step demonstrates complex output documentation:</p>
+<p>The time-frequency computation step demonstrates complex parameter documentation:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Run ICA Decomposition"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute ICA decomposition using extended Infomax algorithm."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute Time-Frequency Decomposition"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calculate time-frequency representation using Morlet wavelets."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pop_runica(EEG, 'icatype', 'runica', 'extended', 1, 'interrupt', 'off')"</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MNE-Python"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.6.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mne.time_frequency.tfr_morlet(epochs, freqs=freqs, n_cycles=n_cycles, return_itc=False)"</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"icatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runica"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"extended"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"interrupt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"pca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"lrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"maxsteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"stop"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-7</span>
+<span class="w">    </span><span class="nt">"freqs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"n_cycles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6.5</span><span class="p">,</span><span class="w"> </span><span class="mf">8.5</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"use_fft"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"return_itc"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"decim"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"n_jobs"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="iclabel-component-classification">ICLabel Component Classification<a class="headerlink" href="#iclabel-component-classification" title="Permanent link">¶</a></h3>
-<p>The ICLabel step showcases automated artifact classification:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Classify Components with ICLabel"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automatically classify ICA components using ICLabel deep learning model."</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEG = pop_iclabel(EEG, 'default')"</span>
+<h3 id="multi-output-documentation">Multi-Output Documentation<a class="headerlink" href="#multi-output-documentation" title="Permanent link">¶</a></h3>
+<p>Steps can produce multiple related outputs:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"outputTargets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./derivatives/signaljourney/sub-01/eeg/sub-01_task-rest_desc-tfr_eeg.h5"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HDF5"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Time-frequency power data."</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"qualityMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"brain_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"muscle_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"eye_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"heart_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"line_noise_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"channel_noise_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"other_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./derivatives/signaljourney/sub-01/eeg/sub-01_task-rest_desc-tfr_plot.png"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNG"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Time-frequency plot visualization."</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div>
-<h3 id="advanced-signaljourney-features">Advanced signalJourney Features<a class="headerlink" href="#advanced-signaljourney-features" title="Permanent link">¶</a></h3>
+<h2 id="time-frequency-analysis-features">Time-Frequency Analysis Features<a class="headerlink" href="#time-frequency-analysis-features" title="Permanent link">¶</a></h2>
+<h3 id="wavelet-parameter-selection">Wavelet Parameter Selection<a class="headerlink" href="#wavelet-parameter-selection" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Variable storage</strong>: ICA weights and sphere matrices</li>
-<li><strong>Inline data preservation</strong>: Component timecourses and topographies</li>
-<li><strong>Quality metrics</strong>: Classification probabilities and removal statistics</li>
-<li><strong>Multi-output steps</strong>: Steps generating both files and variables</li>
+<li><strong>Frequency-dependent cycles</strong>: Lower frequencies use fewer cycles for better temporal resolution</li>
+<li><strong>Higher frequencies</strong>: More cycles for better frequency resolution</li>
+<li><strong>Adaptive approach</strong>: Balances time-frequency trade-off across spectrum</li>
 </ul>
-<h2 id="eeglab-ica-workflow">EEGLAB ICA Workflow<a class="headerlink" href="#eeglab-ica-workflow" title="Permanent link">¶</a></h2>
-<h3 id="extended-infomax-algorithm">Extended Infomax Algorithm<a class="headerlink" href="#extended-infomax-algorithm" title="Permanent link">¶</a></h3>
-<p>EEGLAB's <code>pop_runica</code> provides:
-- <strong>Natural gradient optimization</strong>: Efficient convergence for EEG data
-- <strong>Extended model</strong>: Handles both sub- and super-Gaussian sources
-- <strong>Robust convergence</strong>: Adaptive learning rate and stopping criteria
-- <strong>Reproducible results</strong>: Fixed random seed options</p>
-<h3 id="iclabel-classification-system">ICLabel Classification System<a class="headerlink" href="#iclabel-classification-system" title="Permanent link">¶</a></h3>
+<h3 id="baseline-correction-methods">Baseline Correction Methods<a class="headerlink" href="#baseline-correction-methods" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Deep learning model</strong>: Trained on thousands of manually labeled components</li>
-<li><strong>Multiple artifact types</strong>: Brain, muscle, eye, heart, line noise, channel noise</li>
-<li><strong>Probability scores</strong>: Confidence levels for each classification</li>
-<li><strong>Automatic thresholding</strong>: Configurable probability thresholds for removal</li>
+<li><strong>Percent change</strong>: <code>(power - baseline) / baseline * 100</code></li>
+<li><strong>Ratio</strong>: <code>power / baseline</code></li>
+<li><strong>Decibel</strong>: <code>10 * log10(power / baseline)</code></li>
+<li><strong>Z-score</strong>: <code>(power - baseline_mean) / baseline_std</code></li>
 </ul>
-<h3 id="interactive-component-review">Interactive Component Review<a class="headerlink" href="#interactive-component-review" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>Visual inspection</strong>: Component topographies, time courses, and spectra</li>
-<li><strong>Classification overlay</strong>: ICLabel probabilities displayed for each component</li>
-<li><strong>Manual override</strong>: User can override automatic classifications</li>
-<li><strong>Batch selection</strong>: Tools for selecting multiple components efficiently</li>
-</ul>
-<h2 id="eeglab-vs-mne-python-comparison">EEGLAB vs MNE-Python Comparison<a class="headerlink" href="#eeglab-vs-mne-python-comparison" title="Permanent link">¶</a></h2>
+<h2 id="mne-python-vs-eeglab-comparison">MNE-Python vs EEGLAB Comparison<a class="headerlink" href="#mne-python-vs-eeglab-comparison" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
 <th>Aspect</th>
-<th>EEGLAB Version</th>
 <th>MNE-Python Version</th>
+<th>EEGLAB Version</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Algorithm</strong></td>
-<td>Extended Infomax (runica)</td>
-<td>FastICA, Infomax, Picard</td>
+<td><strong>Method</strong></td>
+<td>Morlet wavelets</td>
+<td>Morlet wavelets (timef)</td>
 </tr>
 <tr>
-<td><strong>Classification</strong></td>
-<td>ICLabel (automated)</td>
-<td>Manual inspection + correlation</td>
+<td><strong>Baseline</strong></td>
+<td><code>apply_baseline()</code></td>
+<td>Built into <code>timef</code></td>
 </tr>
 <tr>
-<td><strong>Component Removal</strong></td>
-<td><code>pop_subcomp</code></td>
-<td><code>ica.apply()</code></td>
+<td><strong>Output</strong></td>
+<td>HDF5, NPZ formats</td>
+<td>MATLAB .mat files</td>
 </tr>
 <tr>
 <td><strong>Visualization</strong></td>
-<td>Built-in component plots</td>
-<td>Custom plotting functions</td>
+<td>matplotlib plots</td>
+<td>EEGLAB plots</td>
 </tr>
 <tr>
-<td><strong>Integration</strong></td>
-<td>Seamless EEGLAB workflow</td>
-<td>Object-oriented approach</td>
-</tr>
-<tr>
-<td><strong>Automation</strong></td>
-<td>Highly automated</td>
-<td>Semi-automatic workflow</td>
+<td><strong>Cycles</strong></td>
+<td>Manual specification</td>
+<td>Automatic or manual</td>
 </tr>
 </tbody>
 </table>
-<h2 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">¶</a></h2>
-<h3 id="component-classification-workflow">Component Classification Workflow<a class="headerlink" href="#component-classification-workflow" title="Permanent link">¶</a></h3>
-<ol>
-<li><strong>Automated Classification</strong>: ICLabel provides probability scores for each component type</li>
-<li><strong>Threshold-Based Selection</strong>: Components automatically flagged based on classification confidence</li>
-<li><strong>Quality Assurance</strong>: Detailed metrics on component types and removal decisions</li>
-<li><strong>Manual Review</strong>: Interactive interface for validation and adjustment</li>
-</ol>
-<h3 id="data-provenance-and-quality-control">Data Provenance and Quality Control<a class="headerlink" href="#data-provenance-and-quality-control" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>Pipeline Dependencies</strong>: Clear links to preprocessing steps</li>
-<li><strong>Parameter Tracking</strong>: Complete ICA algorithm parameters</li>
-<li><strong>Component Documentation</strong>: Full record of which components were removed and why</li>
-<li><strong>Classification Confidence</strong>: Probability scores for reproducibility</li>
-</ul>
-<h3 id="eeglab-dataset-integration">EEGLAB Dataset Integration<a class="headerlink" href="#eeglab-dataset-integration" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>Structure Preservation</strong>: EEG structure maintained throughout processing</li>
-<li><strong>History Tracking</strong>: All operations recorded in EEG.history</li>
-<li><strong>Compatibility</strong>: Works seamlessly with other EEGLAB functions</li>
-<li><strong>STUDY Integration</strong>: Results compatible with group-level analysis</li>
-</ul>
 <h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
 <p>This example demonstrates:
-- <strong>Advanced EEGLAB workflows</strong> with ICA and automated artifact classification
-- <strong>ICLabel integration</strong> for objective component classification
-- <strong>Complex data documentation</strong> with multiple output types
-- <strong>Quality control integration</strong> for comprehensive artifact removal validation
-- <strong>Interactive workflow support</strong> with manual review capabilities</p>
-<p>The pipeline showcases signalJourney's ability to document sophisticated processing workflows while maintaining the flexibility needed for various EEGLAB analysis approaches. The combination of automated classification and manual review provides a robust framework for artifact removal that balances efficiency with quality control. </p>
+- <strong>Time-frequency decomposition</strong> with optimal parameters
+- <strong>Baseline correction</strong> for interpretable results
+- <strong>Multi-format outputs</strong> for analysis and visualization
+- <strong>Pipeline integration</strong> building on previous processing steps
+- <strong>Quality documentation</strong> for reproducible analysis</p>
+<p>The pipeline showcases MNE-Python's comprehensive time-frequency analysis capabilities while maintaining full parameter transparency for reproducibility. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
@@ -1095,7 +996,7 @@
 <span class="md-icon" title="Created">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 2, 2025 02:27:11 UTC">May 2, 2025</span>
 </span>
 </aside>
 </article>

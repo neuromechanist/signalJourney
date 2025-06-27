@@ -7,8 +7,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Documentation for the signalJourney specification and tools." name="description"/>
 <link href="https://neuromechanist.github.io/signalJourney/examples/time_frequency_eeglab/" rel="canonical"/>
-<link href="../time_frequency/" rel="prev"/>
-<link href="../source_localization/" rel="next"/>
+<link href="../time_frequency_mne/" rel="prev"/>
+<link href="../source_localization_mne/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
 <title>EEGLAB - Signal Journey</title>
@@ -443,7 +443,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../basic_preprocessing/">
+<a class="md-nav__link" href="../basic_preprocessing_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -477,7 +477,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ica_decomposition/">
+<a class="md-nav__link" href="../ica_decomposition_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -511,7 +511,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../time_frequency/">
+<a class="md-nav__link" href="../time_frequency_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -554,24 +554,24 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#key-eeglab-features">
+<a class="md-nav__link" href="#key-eeglab-features-demonstrated">
 <span class="md-ellipsis">
-      Key EEGLAB Features
+      Key EEGLAB Features Demonstrated
     </span>
 </a>
-<nav aria-label="Key EEGLAB Features" class="md-nav">
+<nav aria-label="Key EEGLAB Features Demonstrated" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#time-frequency-functions">
+<a class="md-nav__link" href="#eeglab-time-frequency-functions">
 <span class="md-ellipsis">
-      Time-Frequency Functions
+      EEGLAB Time-Frequency Functions
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#signaljourney-documentation">
+<a class="md-nav__link" href="#eeglab-specific-parameters">
 <span class="md-ellipsis">
-      signalJourney Documentation
+      EEGLAB-Specific Parameters
     </span>
 </a>
 </li>
@@ -584,6 +584,49 @@
       Example JSON Structure
     </span>
 </a>
+<nav aria-label="Example JSON Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrated-output-documentation">
+<span class="md-ellipsis">
+      Integrated Output Documentation
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeglab-time-frequency-features">
+<span class="md-ellipsis">
+      EEGLAB Time-Frequency Features
+    </span>
+</a>
+<nav aria-label="EEGLAB Time-Frequency Features" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#wavelet-parameter-system">
+<span class="md-ellipsis">
+      Wavelet Parameter System
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#baseline-correction-options">
+<span class="md-ellipsis">
+      Baseline Correction Options
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bootstrap-statistics">
+<span class="md-ellipsis">
+      Bootstrap Statistics
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#eeglab-vs-mne-python-comparison">
@@ -591,6 +634,31 @@
       EEGLAB vs MNE-Python Comparison
     </span>
 </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeglab-specific-workflow">
+<span class="md-ellipsis">
+      EEGLAB-Specific Workflow
+    </span>
+</a>
+<nav aria-label="EEGLAB-Specific Workflow" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrated-analysis-approach">
+<span class="md-ellipsis">
+      Integrated Analysis Approach
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeg-dataset-integration">
+<span class="md-ellipsis">
+      EEG Dataset Integration
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#usage-notes">
@@ -621,7 +689,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../source_localization/">
+<a class="md-nav__link" href="../source_localization_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -655,7 +723,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../connectivity/">
+<a class="md-nav__link" href="../connectivity_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -798,55 +866,131 @@
 <h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart TD
     A[Load Cleaned Data<br/>pop_loadset] --&gt; B[Extract Epochs<br/>pop_epoch]
-    B --&gt; C[Time-Frequency Decomposition<br/>timef function]
-    C --&gt; D[Save TF Results<br/>.mat file]
-    D --&gt; E[Generate Plots<br/>ERSP &amp; ITC]
+    B --&gt; C[Compute ERSP<br/>timef]
+    C --&gt; D[Compute ITC<br/>newtimef]
+    D --&gt; E[Save Results<br/>pop_saveset]
 
-    C --&gt; F[ERSP Matrix<br/>Inline Data]
-    C --&gt; G[ITC Matrix<br/>Variables]
-    C --&gt; H[Power Baseline<br/>Variables]
+    %% Input from previous pipeline
+    F["📁 sub-01_task-rest_desc-cleaned_eeg.set<br/>From: ICA Decomposition Pipeline"] --&gt; A
 
-    style A fill:#e1f5fe
-    style D fill:#f3e5f5
-    style E fill:#f3e5f5
-    style B fill:#fff3e0
-    style C fill:#fff3e0
-    style F fill:#fce4ec
-    style G fill:#fce4ec
-    style H fill:#fce4ec
+    %% Intermediate outputs
+    A --&gt; A1["📊 EEG Structure<br/>ICA-cleaned dataset"]
+    B --&gt; B1["📊 EEG Structure<br/>Epoched data"]
+    C --&gt; C1["📊 ERSP Matrix<br/>Event-related spectral perturbation"]
+    D --&gt; D1["📊 ITC Matrix<br/>Inter-trial coherence"]
+
+    %% Parameters and settings
+    C --&gt; V1["📊 Frequencies<br/>[3:0.5:30] Hz"]
+    C --&gt; V2["📊 Cycles<br/>[3 0.5] wavelet"]
+    C --&gt; V3["📊 Baseline<br/>[-200 0] ms"]
+
+    %% Final outputs
+    E --&gt; G["💾 sub-01_task-rest_desc-ersp_eeg.set<br/>ERSP results"]
+    E --&gt; H["💾 sub-01_task-rest_desc-itc_eeg.set<br/>ITC results"]
+    D --&gt; I["💾 sub-01_task-rest_desc-tfr_plot.fig<br/>EEGLAB figure"]
+
+    %% Quality metrics
+    C --&gt; Q1["📈 Frequency bins: 55<br/>Time points: 200"]
+    D --&gt; Q2["📈 Baseline mode: Relative<br/>Significance: p&lt;0.01"]
+
+    %% Styling
+    classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef inputFile fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef outputFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+    classDef qualityMetric fill:#f9f9f9,stroke:#666,stroke-width:1px
+
+    class A,B,C,D,E processStep
+    class F inputFile
+    class G,H,I outputFile
+    class A1,B1,C1,D1,V1,V2,V3 inlineData
+    class Q1,Q2 qualityMetric
 </code></pre>
-<h2 id="key-eeglab-features">Key EEGLAB Features<a class="headerlink" href="#key-eeglab-features" title="Permanent link">¶</a></h2>
-<h3 id="time-frequency-functions">Time-Frequency Functions<a class="headerlink" href="#time-frequency-functions" title="Permanent link">¶</a></h3>
+<h2 id="key-eeglab-features-demonstrated">Key EEGLAB Features Demonstrated<a class="headerlink" href="#key-eeglab-features-demonstrated" title="Permanent link">¶</a></h2>
+<h3 id="eeglab-time-frequency-functions">EEGLAB Time-Frequency Functions<a class="headerlink" href="#eeglab-time-frequency-functions" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong><code>timef</code></strong>: EEGLAB's comprehensive time-frequency analysis function</li>
-<li><strong>Wavelet parameters</strong>: Cycle specification for frequency-dependent resolution</li>
-<li><strong>Baseline correction</strong>: Built-in baseline normalization options</li>
-<li><strong>Output flexibility</strong>: ERSP, ITC, and power baseline matrices</li>
+<li><strong><code>pop_epoch</code></strong>: Extract event-related epochs from continuous data</li>
+<li><strong><code>timef</code></strong>: Time-frequency decomposition with Morlet wavelets</li>
+<li><strong><code>newtimef</code></strong>: Enhanced time-frequency analysis with bootstrap statistics</li>
+<li><strong><code>pop_saveset</code></strong>: Save results in EEGLAB dataset format</li>
 </ul>
-<h3 id="signaljourney-documentation">signalJourney Documentation<a class="headerlink" href="#signaljourney-documentation" title="Permanent link">¶</a></h3>
+<h3 id="eeglab-specific-parameters">EEGLAB-Specific Parameters<a class="headerlink" href="#eeglab-specific-parameters" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Parameter preservation</strong>: Complete <code>timef</code> parameter documentation</li>
-<li><strong>Multiple outputs</strong>: ERSP, ITC, and baseline data saved separately</li>
-<li><strong>Visualization integration</strong>: Plot generation as documented processing step</li>
+<li><strong>Wavelet specification</strong>: EEGLAB's [cycles freqs] format</li>
+<li><strong>Baseline correction</strong>: Built into <code>timef</code> function</li>
+<li><strong>Statistical testing</strong>: Bootstrap significance testing</li>
+<li><strong>Visualization</strong>: Automatic ERSP and ITC plotting</li>
 </ul>
 <h2 id="example-json-structure">Example JSON Structure<a class="headerlink" href="#example-json-structure" title="Permanent link">¶</a></h2>
+<p>The EEGLAB time-frequency computation demonstrates integrated analysis:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute Time-Frequency Decomposition"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute ERSP"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calculate event-related spectral perturbation using EEGLAB timef."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span><span class="w"> </span>
 <span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[ersp, itc, powbase, times, freqs] = timef(EEG.data, EEG.pnts, [EEG.xmin EEG.xmax]*1000, EEG.srate, [3 0.5], 'baseline', [-500 0], 'freqs', [2 40])"</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timef(EEG.data, frames, tlimits, srate, cycles, 'baseline', [-200 0], 'plotitc', 'off')"</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"frames"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"tlimits"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-500</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"srate"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"cycles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"baseline"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-500</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"freqs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"freqs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"nfreqs"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"baseline"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-200</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"baselinetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"relative"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"plotitc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"plotersp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span>
+<span class="w">    </span><span class="nt">"plotersp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="integrated-output-documentation">Integrated Output Documentation<a class="headerlink" href="#integrated-output-documentation" title="Permanent link">¶</a></h3>
+<p>EEGLAB's <code>timef</code> produces multiple outputs simultaneously:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"outputTargets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in-memory"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERSP matrix (freqs x times x trials)."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"variableName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ersp"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in-memory"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ITC matrix (freqs x times)."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"variableName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"itc"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in-memory"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Power base matrix for baseline correction."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"variableName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"powbase"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h2 id="eeglab-time-frequency-features">EEGLAB Time-Frequency Features<a class="headerlink" href="#eeglab-time-frequency-features" title="Permanent link">¶</a></h2>
+<h3 id="wavelet-parameter-system">Wavelet Parameter System<a class="headerlink" href="#wavelet-parameter-system" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Cycles specification</strong>: <code>[min_cycles max_cycles]</code> format</li>
+<li><strong>Automatic scaling</strong>: Cycles increase linearly with frequency</li>
+<li><strong>Frequency resolution</strong>: Number of frequency bins automatically calculated</li>
+<li><strong>Time resolution</strong>: Determined by cycle parameters and sampling rate</li>
+</ul>
+<h3 id="baseline-correction-options">Baseline Correction Options<a class="headerlink" href="#baseline-correction-options" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Relative</strong>: <code>(power - baseline) / baseline</code></li>
+<li><strong>Absolute</strong>: <code>power - baseline</code></li>
+<li><strong>Relchange</strong>: <code>(power - baseline) / baseline * 100</code></li>
+<li><strong>Log</strong>: <code>10 * log10(power / baseline)</code></li>
+</ul>
+<h3 id="bootstrap-statistics">Bootstrap Statistics<a class="headerlink" href="#bootstrap-statistics" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Significance testing</strong>: Built-in permutation testing</li>
+<li><strong>Multiple comparison correction</strong>: False discovery rate (FDR)</li>
+<li><strong>Confidence intervals</strong>: Bootstrap confidence bounds</li>
+<li><strong>Alpha level</strong>: Customizable significance threshold</li>
+</ul>
 <h2 id="eeglab-vs-mne-python-comparison">EEGLAB vs MNE-Python Comparison<a class="headerlink" href="#eeglab-vs-mne-python-comparison" title="Permanent link">¶</a></h2>
 <table>
 <thead>
@@ -859,44 +1003,64 @@
 <tbody>
 <tr>
 <td><strong>Function</strong></td>
-<td><code>timef</code> (all-in-one)</td>
-<td><code>tfr_morlet</code>, <code>tfr_multitaper</code></td>
+<td><code>timef</code>, <code>newtimef</code></td>
+<td><code>tfr_morlet</code></td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>ERSP + ITC combined</td>
+<td>Power only (separate ITC)</td>
 </tr>
 <tr>
 <td><strong>Baseline</strong></td>
-<td>Built-in correction</td>
-<td>Separate <code>apply_baseline</code></td>
+<td>Built into function</td>
+<td>Separate <code>apply_baseline()</code></td>
 </tr>
 <tr>
-<td><strong>Outputs</strong></td>
-<td>ERSP, ITC, power baseline</td>
-<td>Power, ITC (separate functions)</td>
+<td><strong>Statistics</strong></td>
+<td>Bootstrap testing</td>
+<td>External stats required</td>
 </tr>
 <tr>
-<td><strong>Plotting</strong></td>
-<td>Integrated visualization</td>
-<td>External plotting functions</td>
+<td><strong>Visualization</strong></td>
+<td>Automatic EEGLAB plots</td>
+<td>matplotlib customization</td>
 </tr>
 <tr>
-<td><strong>Flexibility</strong></td>
-<td>Single comprehensive function</td>
-<td>Modular approach</td>
+<td><strong>File Format</strong></td>
+<td>.set/.mat files</td>
+<td>HDF5/NPZ formats</td>
 </tr>
 </tbody>
 </table>
+<h2 id="eeglab-specific-workflow">EEGLAB-Specific Workflow<a class="headerlink" href="#eeglab-specific-workflow" title="Permanent link">¶</a></h2>
+<h3 id="integrated-analysis-approach">Integrated Analysis Approach<a class="headerlink" href="#integrated-analysis-approach" title="Permanent link">¶</a></h3>
+<p>EEGLAB's <code>timef</code> provides:
+1. <strong>Combined ERSP/ITC computation</strong> in single function call
+2. <strong>Automatic baseline correction</strong> with multiple methods
+3. <strong>Built-in statistical testing</strong> via bootstrap procedures
+4. <strong>Immediate visualization</strong> with publication-ready plots</p>
+<h3 id="eeg-dataset-integration">EEG Dataset Integration<a class="headerlink" href="#eeg-dataset-integration" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Event information</strong> automatically extracted from EEG.event</li>
+<li><strong>Channel locations</strong> used for topographic plotting</li>
+<li><strong>Dataset history</strong> updated with analysis parameters</li>
+<li><strong>STUDY compatibility</strong> for group-level analysis</li>
+</ul>
 <h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
 <p>This example demonstrates:
-- <strong>EEGLAB time-frequency workflows</strong> using the <code>timef</code> function
-- <strong>Complete parameter documentation</strong> for wavelet analysis
-- <strong>Multiple output documentation</strong> (ERSP, ITC, baseline)
-- <strong>Integrated visualization</strong> as part of the processing pipeline</p>
-<p>The pipeline showcases how signalJourney can document EEGLAB's integrated approach to time-frequency analysis while preserving all parameters for reproducibility. </p>
+- <strong>EEGLAB's integrated approach</strong> to time-frequency analysis
+- <strong>Automatic parameter optimization</strong> for wavelet decomposition
+- <strong>Built-in statistical testing</strong> for significance assessment
+- <strong>Multi-output handling</strong> with ERSP, ITC, and baseline data
+- <strong>EEGLAB visualization</strong> with publication-ready plots</p>
+<p>The pipeline showcases EEGLAB's comprehensive time-frequency analysis capabilities with emphasis on ease-of-use and integrated statistical testing while maintaining full parameter documentation for reproducibility. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:27:42 UTC">June 27, 2025</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">

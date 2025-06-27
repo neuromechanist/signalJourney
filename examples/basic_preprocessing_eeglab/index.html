@@ -7,8 +7,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Documentation for the signalJourney specification and tools." name="description"/>
 <link href="https://neuromechanist.github.io/signalJourney/examples/basic_preprocessing_eeglab/" rel="canonical"/>
-<link href="../basic_preprocessing/" rel="prev"/>
-<link href="../ica_decomposition/" rel="next"/>
+<link href="../basic_preprocessing_mne/" rel="prev"/>
+<link href="../ica_decomposition_mne/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
 <title>EEGLAB - Signal Journey</title>
@@ -443,7 +443,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../basic_preprocessing/">
+<a class="md-nav__link" href="../basic_preprocessing_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -536,6 +536,31 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#eeglab-specific-workflow">
+<span class="md-ellipsis">
+      EEGLAB-Specific Workflow
+    </span>
+</a>
+<nav aria-label="EEGLAB-Specific Workflow" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-by-step-filtering-approach">
+<span class="md-ellipsis">
+      Step-by-Step Filtering Approach
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeg-structure-preservation">
+<span class="md-ellipsis">
+      EEG Structure Preservation
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#usage-notes">
 <span class="md-ellipsis">
       Usage Notes
@@ -564,7 +589,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ica_decomposition/">
+<a class="md-nav__link" href="../ica_decomposition_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -598,7 +623,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../time_frequency/">
+<a class="md-nav__link" href="../time_frequency_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -632,7 +657,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../source_localization/">
+<a class="md-nav__link" href="../source_localization_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -666,7 +691,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../connectivity/">
+<a class="md-nav__link" href="../connectivity_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -803,25 +828,49 @@
 <p>The EEGLAB basic preprocessing pipeline demonstrates fundamental EEG preprocessing steps using EEGLAB functions:</p>
 <ul>
 <li><strong>Load raw data</strong> from EEGLAB .set format</li>
-<li><strong>Apply band-pass filtering</strong> (1-40 Hz) using <code>pop_eegfiltnew</code></li>
+<li><strong>Apply high-pass filtering</strong> (1 Hz) using <code>pop_eegfiltnew</code></li>
+<li><strong>Apply low-pass filtering</strong> (40 Hz) using <code>pop_eegfiltnew</code></li>
 <li><strong>Apply notch filtering</strong> (60 Hz) using <code>pop_eegfiltnew</code></li>
 <li><strong>Set average reference</strong> using <code>pop_reref</code></li>
 <li><strong>Interpolate bad channels</strong> using <code>pop_interp</code></li>
 </ul>
 <h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Load Raw Data<br/>pop_loadset] --&gt; B[Band-pass Filter<br/>1-40 Hz<br/>pop_eegfiltnew]
-    B --&gt; C[Notch Filter<br/>60 Hz<br/>pop_eegfiltnew]
-    C --&gt; D[Average Reference<br/>pop_reref]
-    D --&gt; E[Interpolate Bad Channels<br/>pop_interp]
-    E --&gt; F[Save Preprocessed Data<br/>pop_saveset]
+    A[Load Raw Data<br/>pop_loadset] --&gt; B[High-pass Filter<br/>pop_eegfiltnew<br/>1 Hz]
+    B --&gt; C[Low-pass Filter<br/>pop_eegfiltnew<br/>40 Hz]
+    C --&gt; D[Notch Filter<br/>pop_eegfiltnew<br/>58-62 Hz]
+    D --&gt; E[Average Reference<br/>pop_reref]
+    E --&gt; F[Interpolate Bad Channels<br/>pop_interp]
 
-    style A fill:#e1f5fe
-    style F fill:#f3e5f5
-    style B fill:#fff3e0
-    style C fill:#fff3e0
-    style D fill:#fff3e0
-    style E fill:#fff3e0
+    %% Input from sourcedata
+    G["📁 sub-01_task-rest_raw.set<br/>Raw EEGLAB dataset"] --&gt; A
+
+    %% Intermediate in-memory objects
+    A --&gt; A1["📊 EEG Structure<br/>Loaded dataset"]
+    B --&gt; B1["📊 EEG Structure<br/>High-pass filtered"]
+    C --&gt; C1["📊 EEG Structure<br/>Band-pass filtered"]
+    D --&gt; D1["📊 EEG Structure<br/>Notch filtered"]
+    E --&gt; E1["📊 EEG Structure<br/>Average referenced"]
+
+    %% Final output
+    F --&gt; H["💾 sub-01_task-rest_desc-preproc_eeg.set<br/>Preprocessed dataset"]
+
+    %% Quality metrics
+    E --&gt; Q1["📈 Reference type: average<br/>Channels: 62"]
+    F --&gt; Q2["📈 Interpolated: [53, 21]<br/>Method: spherical"]
+
+    %% Styling
+    classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef inputFile fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef outputFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+    classDef qualityMetric fill:#f9f9f9,stroke:#666,stroke-width:1px
+
+    class A,B,C,D,E,F processStep
+    class G inputFile
+    class H outputFile
+    class A1,B1,C1,D1,E1 inlineData
+    class Q1,Q2 qualityMetric
 </code></pre>
 <h2 id="key-eeglab-features-demonstrated">Key EEGLAB Features Demonstrated<a class="headerlink" href="#key-eeglab-features-demonstrated" title="Permanent link">¶</a></h2>
 <h3 id="eeglab-function-calls">EEGLAB Function Calls<a class="headerlink" href="#eeglab-function-calls" title="Permanent link">¶</a></h3>
@@ -842,18 +891,20 @@
 <p>The signalJourney file documents each processing step with:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Band-pass Filter"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apply band-pass filter (1-40 Hz) to remove low-frequency drift and high-frequency noise."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apply High-pass Filter"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apply a FIR high-pass filter at 1 Hz."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pop_eegfiltnew(EEG, 'locutoff', 1, 'hicutoff', 40)"</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pop_eegfiltnew(EEG, 'locutoff', 1, 'plotfreqz', 0)"</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"locutoff"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"hicutoff"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"filterOrder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"revfilt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nt">"hicutoff"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"filtorder"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">"revfilt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"usefft"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"plotfreqz"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -898,21 +949,38 @@
 <td>Pop-up GUI functions</td>
 <td>Object methods</td>
 </tr>
+<tr>
+<td><strong>Filter Design</strong></td>
+<td>Separate high/low pass</td>
+<td>Combined band-pass</td>
+</tr>
 </tbody>
 </table>
+<h2 id="eeglab-specific-workflow">EEGLAB-Specific Workflow<a class="headerlink" href="#eeglab-specific-workflow" title="Permanent link">¶</a></h2>
+<h3 id="step-by-step-filtering-approach">Step-by-Step Filtering Approach<a class="headerlink" href="#step-by-step-filtering-approach" title="Permanent link">¶</a></h3>
+<p>Unlike MNE-Python's combined band-pass filter, EEGLAB demonstrates:
+1. <strong>Separate high-pass filtering</strong> for drift removal
+2. <strong>Separate low-pass filtering</strong> for noise reduction<br/>
+3. <strong>Independent notch filtering</strong> for line noise</p>
+<h3 id="eeg-structure-preservation">EEG Structure Preservation<a class="headerlink" href="#eeg-structure-preservation" title="Permanent link">¶</a></h3>
+<p>EEGLAB maintains the EEG structure throughout processing:
+- <strong>Channel information</strong> preserved across all steps
+- <strong>Event markers</strong> maintained during filtering
+- <strong>Dataset history</strong> automatically tracked</p>
 <h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
 <p>This example demonstrates:
 - <strong>EEGLAB workflow patterns</strong> with pop_ functions
 - <strong>Parameter documentation</strong> for reproducible processing
 - <strong>File format handling</strong> for EEGLAB datasets
-- <strong>Quality metrics</strong> relevant to EEGLAB processing</p>
+- <strong>Quality metrics</strong> relevant to EEGLAB processing
+- <strong>Sequential filtering approach</strong> common in EEGLAB pipelines</p>
 <p>The pipeline is designed to be representative of standard EEGLAB preprocessing workflows while maintaining full parameter transparency for reproducibility. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:27:42 UTC">June 27, 2025</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">

@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Documentation for the signalJourney specification and tools." name="description"/>
 <link href="https://neuromechanist.github.io/signalJourney/examples/connectivity_eeglab/" rel="canonical"/>
-<link href="../connectivity/" rel="prev"/>
+<link href="../connectivity_mne/" rel="prev"/>
 <link href="../best_practices/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
@@ -443,7 +443,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../basic_preprocessing/">
+<a class="md-nav__link" href="../basic_preprocessing_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -477,7 +477,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ica_decomposition/">
+<a class="md-nav__link" href="../ica_decomposition_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -511,7 +511,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../time_frequency/">
+<a class="md-nav__link" href="../time_frequency_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -545,7 +545,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../source_localization/">
+<a class="md-nav__link" href="../source_localization_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -579,7 +579,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../connectivity/">
+<a class="md-nav__link" href="../connectivity_mne/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -622,24 +622,24 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#key-eeglab-features">
+<a class="md-nav__link" href="#key-eeglab-features-demonstrated">
 <span class="md-ellipsis">
-      Key EEGLAB Features
+      Key EEGLAB Features Demonstrated
     </span>
 </a>
-<nav aria-label="Key EEGLAB Features" class="md-nav">
+<nav aria-label="Key EEGLAB Features Demonstrated" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#connectivity-functions">
+<a class="md-nav__link" href="#eeglab-connectivity-functions">
 <span class="md-ellipsis">
-      Connectivity Functions
+      EEGLAB Connectivity Functions
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#signaljourney-documentation">
+<a class="md-nav__link" href="#eeglab-specific-parameters">
 <span class="md-ellipsis">
-      signalJourney Documentation
+      EEGLAB-Specific Parameters
     </span>
 </a>
 </li>
@@ -652,6 +652,49 @@
       Example JSON Structure
     </span>
 </a>
+<nav aria-label="Example JSON Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeglab-dataset-integration">
+<span class="md-ellipsis">
+      EEGLAB Dataset Integration
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeglab-connectivity-features">
+<span class="md-ellipsis">
+      EEGLAB Connectivity Features
+    </span>
+</a>
+<nav aria-label="EEGLAB Connectivity Features" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#matlab-signal-processing-integration">
+<span class="md-ellipsis">
+      MATLAB Signal Processing Integration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeglab-visualization-tools">
+<span class="md-ellipsis">
+      EEGLAB Visualization Tools
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#quality-control-features">
+<span class="md-ellipsis">
+      Quality Control Features
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#eeglab-vs-mne-python-comparison">
@@ -661,24 +704,31 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-features">
+<a class="md-nav__link" href="#eeglab-specific-workflow">
 <span class="md-ellipsis">
-      Advanced Features
+      EEGLAB-Specific Workflow
     </span>
 </a>
-<nav aria-label="Advanced Features" class="md-nav">
+<nav aria-label="EEGLAB-Specific Workflow" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#cross-software-documentation">
+<a class="md-nav__link" href="#matlab-ecosystem-integration">
 <span class="md-ellipsis">
-      Cross-Software Documentation
+      MATLAB Ecosystem Integration
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#quality-control-integration">
+<a class="md-nav__link" href="#eeg-structure-preservation">
 <span class="md-ellipsis">
-      Quality Control Integration
+      EEG Structure Preservation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#interactive-analysis">
+<span class="md-ellipsis">
+      Interactive Analysis
     </span>
 </a>
 </li>
@@ -824,63 +874,123 @@
 <pre class="mermaid"><code>flowchart TD
     A[Load Cleaned Data<br/>pop_loadset] --&gt; B[Extract Epochs<br/>pop_epoch]
     B --&gt; C[Compute PSD<br/>spectopo]
-    B --&gt; D[Calculate Coherence<br/>mscohere]
-    D --&gt; E[Generate Report<br/>Connectivity Summary]
+    C --&gt; D[Calculate Coherence<br/>mscohere]
+    D --&gt; E[Generate Network Plot<br/>topoplot_connect]
+    E --&gt; F[Save Results<br/>save]
 
-    C --&gt; F[Power Spectra<br/>Variables]
-    C --&gt; G[Frequency Vector<br/>Variables]
-    D --&gt; H[Coherence Matrix<br/>Inline Data]
-    E --&gt; I[HTML Report<br/>File Output]
+    %% Input from ICA pipeline
+    G["📁 sub-01_task-rest_desc-cleaned_eeg.set<br/>From: ICA Decomposition Pipeline"] --&gt; A
 
-    style A fill:#e1f5fe
-    style E fill:#f3e5f5
-    style I fill:#f3e5f5
-    style B fill:#fff3e0
-    style C fill:#fff3e0
-    style D fill:#fff3e0
-    style F fill:#fce4ec
-    style G fill:#fce4ec
-    style H fill:#fce4ec
+    %% Intermediate outputs  
+    A --&gt; A1["📊 EEG Structure<br/>ICA-cleaned dataset"]
+    B --&gt; B1["📊 EEG Structure<br/>Epoched data"]
+    C --&gt; C1["📊 PSD Matrix<br/>Power spectral density"]
+    D --&gt; D1["📊 Coherence Matrix<br/>64×64 connectivity"]
+
+    %% Analysis parameters
+    B --&gt; V1["📊 Epoch Windows<br/>[-1.0, 2.0] s"]
+    C --&gt; V2["📊 Frequency Range<br/>Alpha: 8-12 Hz"]
+    D --&gt; V3["📊 Coherence Method<br/>MATLAB mscohere"]
+
+    %% Final outputs
+    F --&gt; H["💾 sub-01_task-rest_desc-connectivity_eeg.mat<br/>Connectivity results"]
+    E --&gt; I["💾 sub-01_task-rest_desc-network_plot.fig<br/>Network visualization"]
+    E --&gt; J["💾 sub-01_task-rest_desc-connectivity_matrix.png<br/>Matrix plot"]
+
+    %% Quality metrics
+    C --&gt; Q1["📈 Frequency bins: 256<br/>Spectral resolution: 0.25 Hz"]
+    D --&gt; Q2["📈 Significant pairs: 312/2016<br/>Max coherence: 0.78"]
+
+    %% Styling
+    classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef inputFile fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef outputFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+    classDef qualityMetric fill:#f9f9f9,stroke:#666,stroke-width:1px
+
+    class A,B,C,D,E,F processStep
+    class G inputFile
+    class H,I,J outputFile
+    class A1,B1,C1,D1,V1,V2,V3 inlineData
+    class Q1,Q2 qualityMetric
 </code></pre>
-<h2 id="key-eeglab-features">Key EEGLAB Features<a class="headerlink" href="#key-eeglab-features" title="Permanent link">¶</a></h2>
-<h3 id="connectivity-functions">Connectivity Functions<a class="headerlink" href="#connectivity-functions" title="Permanent link">¶</a></h3>
+<h2 id="key-eeglab-features-demonstrated">Key EEGLAB Features Demonstrated<a class="headerlink" href="#key-eeglab-features-demonstrated" title="Permanent link">¶</a></h2>
+<h3 id="eeglab-connectivity-functions">EEGLAB Connectivity Functions<a class="headerlink" href="#eeglab-connectivity-functions" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong><code>spectopo</code></strong>: EEGLAB's power spectral density computation</li>
-<li><strong><code>mscohere</code></strong>: MATLAB's magnitude-squared coherence function</li>
-<li><strong>Custom functions</strong>: Network analysis and visualization integration</li>
-<li><strong>Report generation</strong>: Automated connectivity analysis summaries</li>
+<li><strong><code>pop_epoch</code></strong>: Extract event-related epochs from continuous data</li>
+<li><strong><code>spectopo</code></strong>: Power spectral density computation with multitaper method</li>
+<li><strong><code>mscohere</code></strong>: MATLAB coherence calculation between channel pairs</li>
+<li><strong><code>topoplot_connect</code></strong>: Network visualization on scalp topography</li>
+<li><strong>MATLAB integration</strong>: Leveraging Signal Processing Toolbox functions</li>
 </ul>
-<h3 id="signaljourney-documentation">signalJourney Documentation<a class="headerlink" href="#signaljourney-documentation" title="Permanent link">¶</a></h3>
+<h3 id="eeglab-specific-parameters">EEGLAB-Specific Parameters<a class="headerlink" href="#eeglab-specific-parameters" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Cross-software integration</strong>: EEGLAB + MATLAB Signal Processing Toolbox</li>
-<li><strong>Matrix data preservation</strong>: Coherence matrices saved as inline data</li>
-<li><strong>Quality metrics</strong>: Connectivity strength and significance measures</li>
+<li><strong>Epoch extraction</strong>: EEGLAB event-based epoching with GUI support</li>
+<li><strong>Spectral analysis</strong>: Integrated with EEGLAB channel structure</li>
+<li><strong>Visualization</strong>: EEGLAB topographic plotting with connectivity overlays</li>
+<li><strong>File formats</strong>: MATLAB .mat files for connectivity matrices</li>
 </ul>
 <h2 id="example-json-structure">Example JSON Structure<a class="headerlink" href="#example-json-structure" title="Permanent link">¶</a></h2>
+<p>The EEGLAB coherence computation demonstrates MATLAB integration:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calculate Coherence Matrix"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute magnitude-squared coherence between all channel pairs using MATLAB mscohere."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MATLAB Signal Processing Toolbox"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coh_matrix = compute_coherence_matrix(EEG.data, EEG.srate, [8 13])"</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MATLAB"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R2023a"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"for i=1:64; for j=1:64; [coh,f] = mscohere(epochs(i,:), epochs(j,:), window, noverlap, nfft, srate); end; end"</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"frequency_band"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"window_length"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"overlap"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"nfft"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"outputTargets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inlineData"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coherence_matrix"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{alpha_coherence_matrix}}"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha band coherence connectivity matrix"</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
+<span class="w">    </span><span class="nt">"window"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hann(128)"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"noverlap"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"nfft"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"srate"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"freq_range"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="eeglab-dataset-integration">EEGLAB Dataset Integration<a class="headerlink" href="#eeglab-dataset-integration" title="Permanent link">¶</a></h3>
+<p>EEGLAB connectivity analysis leverages the EEG structure:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute Power Spectral Density"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[spectra,freqs] = spectopo(EEG.data, 0, EEG.srate, 'freqrange', [1 40], 'electrodes', 'on')"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"freqrange"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"electrodes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"overlap"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"nfft"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"winsize"</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="eeglab-connectivity-features">EEGLAB Connectivity Features<a class="headerlink" href="#eeglab-connectivity-features" title="Permanent link">¶</a></h2>
+<h3 id="matlab-signal-processing-integration">MATLAB Signal Processing Integration<a class="headerlink" href="#matlab-signal-processing-integration" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>mscohere function</strong>: Magnitude-squared coherence with Welch's method</li>
+<li><strong>Cross-spectral density</strong>: Full spectral analysis capabilities</li>
+<li><strong>Windowing options</strong>: Hann, Hamming, Bartlett windows</li>
+<li><strong>Frequency resolution</strong>: Configurable FFT parameters</li>
+</ul>
+<h3 id="eeglab-visualization-tools">EEGLAB Visualization Tools<a class="headerlink" href="#eeglab-visualization-tools" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>topoplot integration</strong>: Connectivity overlaid on channel locations</li>
+<li><strong>Channel location support</strong>: 3D electrode positions for accurate plotting</li>
+<li><strong>Network graphs</strong>: Node-edge representations of connectivity</li>
+<li><strong>Matrix visualization</strong>: Heatmaps and connectivity matrices</li>
+</ul>
+<h3 id="quality-control-features">Quality Control Features<a class="headerlink" href="#quality-control-features" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Spectral validation</strong>: Power spectral density verification</li>
+<li><strong>Coherence thresholds</strong>: Statistical significance testing</li>
+<li><strong>Channel quality</strong>: Bad channel identification and exclusion</li>
+<li><strong>Epoch rejection</strong>: Artifact-contaminated epoch removal</li>
+</ul>
 <h2 id="eeglab-vs-mne-python-comparison">EEGLAB vs MNE-Python Comparison<a class="headerlink" href="#eeglab-vs-mne-python-comparison" title="Permanent link">¶</a></h2>
 <table>
 <thead>
@@ -892,57 +1002,72 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Connectivity</strong></td>
-<td>mscohere + custom functions</td>
-<td>MNE-Connectivity package</td>
+<td><strong>Coherence Function</strong></td>
+<td><code>mscohere</code> (MATLAB)</td>
+<td><code>spectral_connectivity_epochs</code></td>
 </tr>
 <tr>
-<td><strong>Frequency Analysis</strong></td>
+<td><strong>PSD Computation</strong></td>
 <td><code>spectopo</code></td>
-<td><code>welch</code>, <code>multitaper</code></td>
-</tr>
-<tr>
-<td><strong>Data Structure</strong></td>
-<td>EEGLAB EEG structure</td>
-<td>MNE Epochs object</td>
+<td><code>compute_psd()</code></td>
 </tr>
 <tr>
 <td><strong>Visualization</strong></td>
-<td>MATLAB plotting</td>
-<td>matplotlib integration</td>
+<td><code>topoplot_connect</code></td>
+<td>matplotlib/mayavi</td>
 </tr>
 <tr>
-<td><strong>Output Format</strong></td>
+<td><strong>File Format</strong></td>
 <td>.mat files</td>
-<td>.h5, NetCDF files</td>
+<td>HDF5, NPZ</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>MATLAB ecosystem</td>
+<td>Python ecosystem</td>
+</tr>
+<tr>
+<td><strong>GUI Support</strong></td>
+<td>Built-in EEGLAB GUI</td>
+<td>Command-line focused</td>
 </tr>
 </tbody>
 </table>
-<h2 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">¶</a></h2>
-<h3 id="cross-software-documentation">Cross-Software Documentation<a class="headerlink" href="#cross-software-documentation" title="Permanent link">¶</a></h3>
-<p>This example demonstrates how signalJourney can document workflows that span multiple software packages:
-- EEGLAB for data handling and preprocessing
-- MATLAB Signal Processing Toolbox for connectivity
-- Custom functions for analysis and visualization</p>
-<h3 id="quality-control-integration">Quality Control Integration<a class="headerlink" href="#quality-control-integration" title="Permanent link">¶</a></h3>
+<h2 id="eeglab-specific-workflow">EEGLAB-Specific Workflow<a class="headerlink" href="#eeglab-specific-workflow" title="Permanent link">¶</a></h2>
+<h3 id="matlab-ecosystem-integration">MATLAB Ecosystem Integration<a class="headerlink" href="#matlab-ecosystem-integration" title="Permanent link">¶</a></h3>
+<p>EEGLAB connectivity analysis benefits from:
+1. <strong>Signal Processing Toolbox</strong>: Professional-grade spectral analysis functions
+2. <strong>Parallel Computing</strong>: Multi-core coherence computation 
+3. <strong>Visualization Tools</strong>: Advanced plotting and 3D visualization
+4. <strong>Statistical Toolbox</strong>: Comprehensive statistical testing capabilities</p>
+<h3 id="eeg-structure-preservation">EEG Structure Preservation<a class="headerlink" href="#eeg-structure-preservation" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Connectivity thresholds</strong>: Automatic significance testing</li>
-<li><strong>Network metrics</strong>: Node degree, clustering coefficients</li>
-<li><strong>Visualization</strong>: Network graphs and connectivity matrices</li>
+<li><strong>Channel information</strong>: Electrode locations automatically used</li>
+<li><strong>Event markers</strong>: Epoch extraction based on EEG.event structure</li>
+<li><strong>Sampling rate</strong>: Automatically extracted from EEG.srate</li>
+<li><strong>Data history</strong>: Processing steps recorded in EEG.history</li>
+</ul>
+<h3 id="interactive-analysis">Interactive Analysis<a class="headerlink" href="#interactive-analysis" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>GUI integration</strong>: Pop-up functions for parameter selection</li>
+<li><strong>Visual feedback</strong>: Real-time plotting during analysis</li>
+<li><strong>Manual adjustment</strong>: Interactive parameter tuning</li>
+<li><strong>Batch processing</strong>: Automated analysis across multiple datasets</li>
 </ul>
 <h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
 <p>This example demonstrates:
-- <strong>Multi-software workflows</strong> combining EEGLAB and MATLAB toolboxes
-- <strong>Connectivity analysis documentation</strong> with complete parameter sets
-- <strong>Matrix data preservation</strong> using inline data features
-- <strong>Quality control integration</strong> for connectivity validation</p>
-<p>The pipeline showcases signalJourney's flexibility in documenting complex analysis workflows that integrate multiple software tools while maintaining complete parameter transparency. </p>
+- <strong>EEGLAB connectivity workflows</strong> using MATLAB integration
+- <strong>Spectral analysis integration</strong> with EEGLAB functions
+- <strong>Multi-format outputs</strong> for matrices and visualizations
+- <strong>Quality control</strong> with spectral validation
+- <strong>MATLAB ecosystem</strong> leveraging Signal Processing Toolbox</p>
+<p>The pipeline showcases EEGLAB's connectivity analysis capabilities through MATLAB integration while maintaining comprehensive parameter documentation for reproducible network analysis. The combination of EEGLAB's EEG-specific tools with MATLAB's signal processing functions provides a powerful framework for connectivity research. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:29:43 UTC">June 27, 2025</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">

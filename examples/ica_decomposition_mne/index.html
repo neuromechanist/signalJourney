@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Documentation for the signalJourney specification and tools." name="description"/>
-<link href="https://neuromechanist.github.io/signalJourney/examples/ica_decomposition_eeglab/" rel="canonical"/>
-<link href="../ica_decomposition_mne/" rel="prev"/>
-<link href="../time_frequency_mne/" rel="next"/>
+<link href="https://neuromechanist.github.io/signalJourney/examples/ica_decomposition_mne/" rel="canonical"/>
+<link href="../basic_preprocessing_eeglab/" rel="prev"/>
+<link href="../ica_decomposition_eeglab/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
-<title>EEGLAB - Signal Journey</title>
+<title>MNE-Python - Signal Journey</title>
 <link href="../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -25,7 +25,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#example-ica-decomposition-pipeline-eeglab">
+<a class="md-skip" href="#example-ica-decomposition-pipeline-mne-python">
           Skip to content
         </a>
 </div>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              EEGLAB
+              MNE-Python
             
           </span>
 </div>
@@ -476,26 +476,18 @@
             ICA Decomposition
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../ica_decomposition_mne/">
-<span class="md-ellipsis">
-    MNE-Python
-    
-  </span>
-</a>
-</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
-    EEGLAB
+    MNE-Python
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
-    EEGLAB
+    MNE-Python
     
   </span>
 </a>
@@ -520,24 +512,24 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#key-eeglab-features-demonstrated">
+<a class="md-nav__link" href="#key-mne-python-features-demonstrated">
 <span class="md-ellipsis">
-      Key EEGLAB Features Demonstrated
+      Key MNE-Python Features Demonstrated
     </span>
 </a>
-<nav aria-label="Key EEGLAB Features Demonstrated" class="md-nav">
+<nav aria-label="Key MNE-Python Features Demonstrated" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#ica-specific-functions">
+<a class="md-nav__link" href="#ica-functions-and-methods">
 <span class="md-ellipsis">
-      ICA-Specific Functions
+      ICA Functions and Methods
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-specific-parameters">
+<a class="md-nav__link" href="#advanced-ica-parameters">
 <span class="md-ellipsis">
-      EEGLAB-Specific Parameters
+      Advanced ICA Parameters
     </span>
 </a>
 </li>
@@ -553,16 +545,9 @@
 <nav aria-label="Example JSON Structure" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#iclabel-component-classification">
+<a class="md-nav__link" href="#artifact-identification-documentation">
 <span class="md-ellipsis">
-      ICLabel Component Classification
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-signaljourney-features">
-<span class="md-ellipsis">
-      Advanced signalJourney Features
+      Artifact Identification Documentation
     </span>
 </a>
 </li>
@@ -570,31 +555,24 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-ica-workflow">
+<a class="md-nav__link" href="#ica-analysis-features">
 <span class="md-ellipsis">
-      EEGLAB ICA Workflow
+      ICA Analysis Features
     </span>
 </a>
-<nav aria-label="EEGLAB ICA Workflow" class="md-nav">
+<nav aria-label="ICA Analysis Features" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#extended-infomax-algorithm">
+<a class="md-nav__link" href="#component-identification-methods">
 <span class="md-ellipsis">
-      Extended Infomax Algorithm
+      Component Identification Methods
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#iclabel-classification-system">
+<a class="md-nav__link" href="#quality-assessment-metrics">
 <span class="md-ellipsis">
-      ICLabel Classification System
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#interactive-component-review">
-<span class="md-ellipsis">
-      Interactive Component Review
+      Quality Assessment Metrics
     </span>
 </a>
 </li>
@@ -602,38 +580,31 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-vs-mne-python-comparison">
+<a class="md-nav__link" href="#mne-python-vs-eeglab-comparison">
 <span class="md-ellipsis">
-      EEGLAB vs MNE-Python Comparison
+      MNE-Python vs EEGLAB Comparison
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-features">
+<a class="md-nav__link" href="#ica-workflow-patterns">
 <span class="md-ellipsis">
-      Advanced Features
+      ICA Workflow Patterns
     </span>
 </a>
-<nav aria-label="Advanced Features" class="md-nav">
+<nav aria-label="ICA Workflow Patterns" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#component-classification-workflow">
+<a class="md-nav__link" href="#component-selection-strategy">
 <span class="md-ellipsis">
-      Component Classification Workflow
+      Component Selection Strategy
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#data-provenance-and-quality-control">
+<a class="md-nav__link" href="#quality-control-steps">
 <span class="md-ellipsis">
-      Data Provenance and Quality Control
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-dataset-integration">
-<span class="md-ellipsis">
-      EEGLAB Dataset Integration
+      Quality Control Steps
     </span>
 </a>
 </li>
@@ -649,6 +620,14 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ica_decomposition_eeglab/">
+<span class="md-ellipsis">
+    EEGLAB
+    
+  </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -868,48 +847,46 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="example-ica-decomposition-pipeline-eeglab">Example: ICA Decomposition Pipeline (EEGLAB)<a class="headerlink" href="#example-ica-decomposition-pipeline-eeglab" title="Permanent link">¶</a></h1>
-<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/ica_decomposition_pipeline_eeglab.signalJourney.json"><code>ica_decomposition_pipeline_eeglab.signalJourney.json</code></a> example file, which documents an Independent Component Analysis (ICA) workflow for artifact removal using EEGLAB.</p>
+<h1 id="example-ica-decomposition-pipeline-mne-python">Example: ICA Decomposition Pipeline (MNE-Python)<a class="headerlink" href="#example-ica-decomposition-pipeline-mne-python" title="Permanent link">¶</a></h1>
+<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/ica_decomposition_pipeline_mne.signalJourney.json"><code>ica_decomposition_pipeline_mne.signalJourney.json</code></a> example file, which documents an Independent Component Analysis (ICA) workflow for artifact removal using MNE-Python.</p>
 <h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">¶</a></h2>
-<p>This EEGLAB pipeline demonstrates how to apply ICA to remove artifacts from preprocessed EEG data using EEGLAB's ICA functions and ICLabel for component classification:</p>
+<p>This pipeline demonstrates how to apply ICA to remove ocular artifacts (eye movements and blinks) from preprocessed EEG data. It builds upon the <a href="../basic_preprocessing_mne/">Basic Preprocessing Pipeline</a> by:</p>
 <ul>
-<li><strong>Loading preprocessed data</strong> from the basic preprocessing pipeline</li>
-<li><strong>Computing ICA decomposition</strong> using extended Infomax algorithm</li>
-<li><strong>Classifying components</strong> with ICLabel to identify artifacts</li>
+<li><strong>Loading preprocessed data</strong> from the previous pipeline</li>
+<li><strong>Fitting ICA decomposition</strong> using FastICA algorithm</li>
+<li><strong>Identifying artifact components</strong> correlated with EOG channels</li>
 <li><strong>Removing artifact components</strong> from the data</li>
 <li><strong>Saving cleaned data</strong> for further analysis</li>
 </ul>
 <h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Load Preprocessed Data<br/>pop_loadset] --&gt; B[Run ICA Decomposition<br/>pop_runica]
-    B --&gt; C[Classify Components<br/>pop_iclabel]
-    C --&gt; D[Select Components<br/>pop_selectcomps]
-    D --&gt; E[Remove Components<br/>pop_subcomp]
-    E --&gt; F[Save Cleaned Data<br/>pop_saveset]
+    A[Load Preprocessed Data<br/>mne.io.read_raw_fif] --&gt; B[Fit ICA<br/>ica.fit]
+    B --&gt; C[Find EOG Components<br/>ica.find_bads_eog]
+    C --&gt; D[Review Components<br/>ica.plot_components]
+    D --&gt; E[Apply ICA<br/>ica.apply]
+    E --&gt; F[Save Cleaned Data<br/>raw.save]
 
     %% Input from basic preprocessing
-    G["📁 sub-01_task-rest_desc-preproc_eeg.set<br/>From: Basic Preprocessing Pipeline"] --&gt; A
+    G["📁 sub-01_task-rest_desc-preproc_eeg.fif<br/>From: Basic Preprocessing Pipeline"] --&gt; A
 
     %% Intermediate outputs
-    A --&gt; A1["📊 EEG Structure<br/>Preprocessed dataset"]
-    B --&gt; B1["📊 ICA Weights<br/>Extended Infomax decomposition"]
-    C --&gt; C1["📊 ICLabel Classifications<br/>Brain/Artifact probabilities"]
-    D --&gt; D1["📊 Component Selection<br/>Manual review interface"]
+    A --&gt; A1["📊 Raw Object<br/>Preprocessed data"]
+    B --&gt; B1["📊 ICA Object<br/>64 components fitted"]
+    C --&gt; C1["📊 Component List<br/>EOG artifact indices"]
+    D --&gt; D1["📊 Component Plot<br/>Topographies &amp; time series"]
 
-    %% ICA analysis data
-    B --&gt; V1["📊 ICA Sphere<br/>Whitening matrix"]
-    B --&gt; V2["📊 Component Maps<br/>Scalp topographies"]
-    C --&gt; V3["📊 Classification Scores<br/>Brain: 0.92, Eye: 0.05"]
-    E --&gt; V4["📊 Artifact Components<br/>[2, 15, 23] removed"]
+    %% Analysis data
+    B --&gt; V1["📊 Unmixing Matrix<br/>64×64 ICA weights"]
+    C --&gt; V2["📊 EOG Correlations<br/>r &gt; 0.7 threshold"]
+    C --&gt; V3["📊 Bad Components<br/>[0, 15, 23] identified"]
 
     %% Final outputs
-    F --&gt; H["💾 sub-01_task-rest_desc-cleaned_eeg.set<br/>ICA-cleaned dataset"]
-    D --&gt; I["💾 sub-01_task-rest_desc-components_review.fig<br/>Component browser"]
-    C --&gt; J["💾 sub-01_task-rest_desc-iclabel_report.mat<br/>Classification results"]
+    F --&gt; H["💾 sub-01_task-rest_desc-cleaned_eeg.fif<br/>ICA-cleaned data"]
+    D --&gt; I["💾 sub-01_task-rest_desc-components_plot.png<br/>Component visualization"]
 
     %% Quality metrics
-    C --&gt; Q1["📈 Brain components: 58/64<br/>Muscle components: 3/64"]
-    E --&gt; Q2["📈 Components removed: 3<br/>Variance preserved: 92.1%"]
+    C --&gt; Q1["📈 Components removed: 3/64<br/>Explained variance: 15.7%"]
+    E --&gt; Q2["📈 EOG correlation: 0.82<br/>SNR improvement: 4.2 dB"]
 
     %% Styling
     classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -920,170 +897,139 @@
 
     class A,B,C,D,E,F processStep
     class G inputFile
-    class H,I,J outputFile
-    class A1,B1,C1,D1,V1,V2,V3,V4 inlineData
+    class H,I outputFile
+    class A1,B1,C1,D1,V1,V2,V3 inlineData
     class Q1,Q2 qualityMetric
 </code></pre>
-<h2 id="key-eeglab-features-demonstrated">Key EEGLAB Features Demonstrated<a class="headerlink" href="#key-eeglab-features-demonstrated" title="Permanent link">¶</a></h2>
-<h3 id="ica-specific-functions">ICA-Specific Functions<a class="headerlink" href="#ica-specific-functions" title="Permanent link">¶</a></h3>
+<h2 id="key-mne-python-features-demonstrated">Key MNE-Python Features Demonstrated<a class="headerlink" href="#key-mne-python-features-demonstrated" title="Permanent link">¶</a></h2>
+<h3 id="ica-functions-and-methods">ICA Functions and Methods<a class="headerlink" href="#ica-functions-and-methods" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong><code>pop_runica</code></strong>: Extended Infomax ICA decomposition</li>
-<li><strong><code>pop_iclabel</code></strong>: Automated component classification using deep learning</li>
-<li><strong><code>pop_selectcomps</code></strong>: Interactive component selection interface</li>
-<li><strong><code>pop_subcomp</code></strong>: Remove components from EEG data</li>
-<li><strong>ICLabel integration</strong>: Brain vs. artifact classification with probability scores</li>
+<li><strong><code>mne.preprocessing.ICA</code></strong>: Create ICA object with FastICA algorithm</li>
+<li><strong><code>ica.fit</code></strong>: Fit ICA decomposition to preprocessed data</li>
+<li><strong><code>ica.find_bads_eog</code></strong>: Automatically identify EOG-correlated components</li>
+<li><strong><code>ica.plot_components</code></strong>: Visualize component topographies and properties</li>
+<li><strong><code>ica.apply</code></strong>: Remove identified artifact components from data</li>
 </ul>
-<h3 id="eeglab-specific-parameters">EEGLAB-Specific Parameters<a class="headerlink" href="#eeglab-specific-parameters" title="Permanent link">¶</a></h3>
+<h3 id="advanced-ica-parameters">Advanced ICA Parameters<a class="headerlink" href="#advanced-ica-parameters" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Extended Infomax</strong>: Natural gradient algorithm for ICA</li>
-<li><strong>ICLabel classification</strong>: Automated artifact detection using trained models</li>
-<li><strong>Interactive selection</strong>: GUI-based component review and selection</li>
-<li><strong>Dataset integration</strong>: Seamless EEGLAB structure preservation</li>
+<li><strong>Algorithm selection</strong>: FastICA vs. Infomax vs. Picard algorithms</li>
+<li><strong>Component number</strong>: Automatic or manual specification</li>
+<li><strong>Convergence criteria</strong>: Tolerance and maximum iterations</li>
+<li><strong>Random state</strong>: Reproducible decomposition results</li>
 </ul>
 <h2 id="example-json-structure">Example JSON Structure<a class="headerlink" href="#example-json-structure" title="Permanent link">¶</a></h2>
-<p>The ICA decomposition step demonstrates complex output documentation:</p>
+<p>The ICA fitting step demonstrates complex parameter documentation:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Run ICA Decomposition"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute ICA decomposition using extended Infomax algorithm."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fit ICA Decomposition"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apply FastICA to decompose data into independent components."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pop_runica(EEG, 'icatype', 'runica', 'extended', 1, 'interrupt', 'off')"</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MNE-Python"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.6.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ica.fit(raw, picks='eeg', decim=2, reject=dict(eeg=100e-6))"</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"icatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runica"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"extended"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"interrupt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"pca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"lrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"maxsteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"stop"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-7</span>
+<span class="w">    </span><span class="nt">"n_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fastica"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"fun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"logcosh"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"max_iter"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"tol"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"w_init"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"whiten"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"random_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="iclabel-component-classification">ICLabel Component Classification<a class="headerlink" href="#iclabel-component-classification" title="Permanent link">¶</a></h3>
-<p>The ICLabel step showcases automated artifact classification:</p>
+<h3 id="artifact-identification-documentation">Artifact Identification Documentation<a class="headerlink" href="#artifact-identification-documentation" title="Permanent link">¶</a></h3>
+<p>The component identification step includes correlation thresholds:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Classify Components with ICLabel"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automatically classify ICA components using ICLabel deep learning model."</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEG = pop_iclabel(EEG, 'default')"</span>
-<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Find EOG Components"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Identify components correlated with EOG channels."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"qualityMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"brain_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"muscle_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"eye_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"heart_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"line_noise_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"channel_noise_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"other_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nt">"eogChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"EOG001"</span><span class="p">,</span><span class="w"> </span><span class="s2">"EOG002"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"correlationThreshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"componentsFound"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"maxCorrelation"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.82</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"explainedVariance"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.7</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="advanced-signaljourney-features">Advanced signalJourney Features<a class="headerlink" href="#advanced-signaljourney-features" title="Permanent link">¶</a></h3>
+<h2 id="ica-analysis-features">ICA Analysis Features<a class="headerlink" href="#ica-analysis-features" title="Permanent link">¶</a></h2>
+<h3 id="component-identification-methods">Component Identification Methods<a class="headerlink" href="#component-identification-methods" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Variable storage</strong>: ICA weights and sphere matrices</li>
-<li><strong>Inline data preservation</strong>: Component timecourses and topographies</li>
-<li><strong>Quality metrics</strong>: Classification probabilities and removal statistics</li>
-<li><strong>Multi-output steps</strong>: Steps generating both files and variables</li>
+<li><strong>EOG correlation</strong>: Correlation with electrooculogram channels</li>
+<li><strong>Variance explained</strong>: Contribution to total signal variance  </li>
+<li><strong>Topographic patterns</strong>: Spatial distributions matching known artifacts</li>
+<li><strong>Time course properties</strong>: Temporal characteristics of components</li>
 </ul>
-<h2 id="eeglab-ica-workflow">EEGLAB ICA Workflow<a class="headerlink" href="#eeglab-ica-workflow" title="Permanent link">¶</a></h2>
-<h3 id="extended-infomax-algorithm">Extended Infomax Algorithm<a class="headerlink" href="#extended-infomax-algorithm" title="Permanent link">¶</a></h3>
-<p>EEGLAB's <code>pop_runica</code> provides:
-- <strong>Natural gradient optimization</strong>: Efficient convergence for EEG data
-- <strong>Extended model</strong>: Handles both sub- and super-Gaussian sources
-- <strong>Robust convergence</strong>: Adaptive learning rate and stopping criteria
-- <strong>Reproducible results</strong>: Fixed random seed options</p>
-<h3 id="iclabel-classification-system">ICLabel Classification System<a class="headerlink" href="#iclabel-classification-system" title="Permanent link">¶</a></h3>
+<h3 id="quality-assessment-metrics">Quality Assessment Metrics<a class="headerlink" href="#quality-assessment-metrics" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Deep learning model</strong>: Trained on thousands of manually labeled components</li>
-<li><strong>Multiple artifact types</strong>: Brain, muscle, eye, heart, line noise, channel noise</li>
-<li><strong>Probability scores</strong>: Confidence levels for each classification</li>
-<li><strong>Automatic thresholding</strong>: Configurable probability thresholds for removal</li>
+<li><strong>Correlation values</strong>: Quantify artifact-component relationships</li>
+<li><strong>Explained variance</strong>: Component contribution to signal</li>
+<li><strong>Signal-to-noise ratio</strong>: Improvement after component removal</li>
+<li><strong>Component stability</strong>: Reproducibility across runs</li>
 </ul>
-<h3 id="interactive-component-review">Interactive Component Review<a class="headerlink" href="#interactive-component-review" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>Visual inspection</strong>: Component topographies, time courses, and spectra</li>
-<li><strong>Classification overlay</strong>: ICLabel probabilities displayed for each component</li>
-<li><strong>Manual override</strong>: User can override automatic classifications</li>
-<li><strong>Batch selection</strong>: Tools for selecting multiple components efficiently</li>
-</ul>
-<h2 id="eeglab-vs-mne-python-comparison">EEGLAB vs MNE-Python Comparison<a class="headerlink" href="#eeglab-vs-mne-python-comparison" title="Permanent link">¶</a></h2>
+<h2 id="mne-python-vs-eeglab-comparison">MNE-Python vs EEGLAB Comparison<a class="headerlink" href="#mne-python-vs-eeglab-comparison" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
 <th>Aspect</th>
-<th>EEGLAB Version</th>
 <th>MNE-Python Version</th>
+<th>EEGLAB Version</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Algorithm</strong></td>
-<td>Extended Infomax (runica)</td>
 <td>FastICA, Infomax, Picard</td>
+<td>Extended Infomax (runica)</td>
 </tr>
 <tr>
-<td><strong>Classification</strong></td>
-<td>ICLabel (automated)</td>
-<td>Manual inspection + correlation</td>
-</tr>
-<tr>
-<td><strong>Component Removal</strong></td>
-<td><code>pop_subcomp</code></td>
-<td><code>ica.apply()</code></td>
+<td><strong>Identification</strong></td>
+<td><code>find_bads_eog()</code></td>
+<td>ICLabel classification</td>
 </tr>
 <tr>
 <td><strong>Visualization</strong></td>
-<td>Built-in component plots</td>
-<td>Custom plotting functions</td>
+<td><code>plot_components()</code></td>
+<td><code>pop_selectcomps</code></td>
 </tr>
 <tr>
-<td><strong>Integration</strong></td>
-<td>Seamless EEGLAB workflow</td>
-<td>Object-oriented approach</td>
+<td><strong>Application</strong></td>
+<td><code>ica.apply()</code></td>
+<td><code>pop_subcomp</code></td>
 </tr>
 <tr>
 <td><strong>Automation</strong></td>
-<td>Highly automated</td>
-<td>Semi-automatic workflow</td>
+<td>Semi-automatic</td>
+<td>Manual + automatic</td>
 </tr>
 </tbody>
 </table>
-<h2 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">¶</a></h2>
-<h3 id="component-classification-workflow">Component Classification Workflow<a class="headerlink" href="#component-classification-workflow" title="Permanent link">¶</a></h3>
+<h2 id="ica-workflow-patterns">ICA Workflow Patterns<a class="headerlink" href="#ica-workflow-patterns" title="Permanent link">¶</a></h2>
+<h3 id="component-selection-strategy">Component Selection Strategy<a class="headerlink" href="#component-selection-strategy" title="Permanent link">¶</a></h3>
 <ol>
-<li><strong>Automated Classification</strong>: ICLabel provides probability scores for each component type</li>
-<li><strong>Threshold-Based Selection</strong>: Components automatically flagged based on classification confidence</li>
-<li><strong>Quality Assurance</strong>: Detailed metrics on component types and removal decisions</li>
-<li><strong>Manual Review</strong>: Interactive interface for validation and adjustment</li>
+<li><strong>Automatic detection</strong>: Use correlation thresholds with reference channels</li>
+<li><strong>Visual inspection</strong>: Review topographies and time courses</li>
+<li><strong>Combined approach</strong>: Automatic detection + manual verification</li>
+<li><strong>Conservative removal</strong>: Remove only clearly artifactual components</li>
 </ol>
-<h3 id="data-provenance-and-quality-control">Data Provenance and Quality Control<a class="headerlink" href="#data-provenance-and-quality-control" title="Permanent link">¶</a></h3>
+<h3 id="quality-control-steps">Quality Control Steps<a class="headerlink" href="#quality-control-steps" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Pipeline Dependencies</strong>: Clear links to preprocessing steps</li>
-<li><strong>Parameter Tracking</strong>: Complete ICA algorithm parameters</li>
-<li><strong>Component Documentation</strong>: Full record of which components were removed and why</li>
-<li><strong>Classification Confidence</strong>: Probability scores for reproducibility</li>
-</ul>
-<h3 id="eeglab-dataset-integration">EEGLAB Dataset Integration<a class="headerlink" href="#eeglab-dataset-integration" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>Structure Preservation</strong>: EEG structure maintained throughout processing</li>
-<li><strong>History Tracking</strong>: All operations recorded in EEG.history</li>
-<li><strong>Compatibility</strong>: Works seamlessly with other EEGLAB functions</li>
-<li><strong>STUDY Integration</strong>: Results compatible with group-level analysis</li>
+<li><strong>Component stability</strong>: Ensure reproducible decomposition</li>
+<li><strong>Artifact effectiveness</strong>: Verify artifact reduction in cleaned data</li>
+<li><strong>Signal preservation</strong>: Confirm minimal neural signal loss</li>
+<li><strong>Validation metrics</strong>: Compare before/after signal characteristics</li>
 </ul>
 <h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
 <p>This example demonstrates:
-- <strong>Advanced EEGLAB workflows</strong> with ICA and automated artifact classification
-- <strong>ICLabel integration</strong> for objective component classification
-- <strong>Complex data documentation</strong> with multiple output types
-- <strong>Quality control integration</strong> for comprehensive artifact removal validation
-- <strong>Interactive workflow support</strong> with manual review capabilities</p>
-<p>The pipeline showcases signalJourney's ability to document sophisticated processing workflows while maintaining the flexibility needed for various EEGLAB analysis approaches. The combination of automated classification and manual review provides a robust framework for artifact removal that balances efficiency with quality control. </p>
+- <strong>ICA workflow patterns</strong> for artifact removal
+- <strong>Parameter documentation</strong> for reproducible decomposition
+- <strong>Quality metrics</strong> for component evaluation
+- <strong>Visualization integration</strong> for manual review
+- <strong>Pipeline continuation</strong> feeding into further analysis</p>
+<p>The pipeline showcases MNE-Python's flexible ICA capabilities while emphasizing the importance of quality control and parameter documentation for reproducible artifact removal. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
@@ -1095,7 +1041,7 @@
 <span class="md-icon" title="Created">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 2, 2025 02:27:11 UTC">May 2, 2025</span>
 </span>
 </aside>
 </article>

@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Documentation for the signalJourney specification and tools." name="description"/>
-<link href="https://neuromechanist.github.io/signalJourney/examples/ica_decomposition_eeglab/" rel="canonical"/>
-<link href="../ica_decomposition_mne/" rel="prev"/>
-<link href="../time_frequency_mne/" rel="next"/>
+<link href="https://neuromechanist.github.io/signalJourney/examples/connectivity_mne/" rel="canonical"/>
+<link href="../source_localization_eeglab/" rel="prev"/>
+<link href="../connectivity_eeglab/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
-<title>EEGLAB - Signal Journey</title>
+<title>MNE-Python - Signal Journey</title>
 <link href="../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -25,7 +25,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#example-ica-decomposition-pipeline-eeglab">
+<a class="md-skip" href="#example-connectivity-analysis-mne-python">
           Skip to content
         </a>
 </div>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              EEGLAB
+              MNE-Python
             
           </span>
 </div>
@@ -461,8 +461,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_5_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
 <span class="md-ellipsis">
     ICA Decomposition
@@ -470,7 +470,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_5_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_5_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_5_3">
 <span class="md-nav__icon md-icon"></span>
             ICA Decomposition
@@ -484,171 +484,13 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    EEGLAB
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ica_decomposition_eeglab/">
 <span class="md-ellipsis">
     EEGLAB
     
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pipeline-overview">
-<span class="md-ellipsis">
-      Pipeline Overview
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pipeline-flowchart">
-<span class="md-ellipsis">
-      Pipeline Flowchart
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#key-eeglab-features-demonstrated">
-<span class="md-ellipsis">
-      Key EEGLAB Features Demonstrated
-    </span>
-</a>
-<nav aria-label="Key EEGLAB Features Demonstrated" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ica-specific-functions">
-<span class="md-ellipsis">
-      ICA-Specific Functions
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-specific-parameters">
-<span class="md-ellipsis">
-      EEGLAB-Specific Parameters
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-json-structure">
-<span class="md-ellipsis">
-      Example JSON Structure
-    </span>
-</a>
-<nav aria-label="Example JSON Structure" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#iclabel-component-classification">
-<span class="md-ellipsis">
-      ICLabel Component Classification
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-signaljourney-features">
-<span class="md-ellipsis">
-      Advanced signalJourney Features
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-ica-workflow">
-<span class="md-ellipsis">
-      EEGLAB ICA Workflow
-    </span>
-</a>
-<nav aria-label="EEGLAB ICA Workflow" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#extended-infomax-algorithm">
-<span class="md-ellipsis">
-      Extended Infomax Algorithm
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#iclabel-classification-system">
-<span class="md-ellipsis">
-      ICLabel Classification System
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#interactive-component-review">
-<span class="md-ellipsis">
-      Interactive Component Review
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-vs-mne-python-comparison">
-<span class="md-ellipsis">
-      EEGLAB vs MNE-Python Comparison
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-features">
-<span class="md-ellipsis">
-      Advanced Features
-    </span>
-</a>
-<nav aria-label="Advanced Features" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#component-classification-workflow">
-<span class="md-ellipsis">
-      Component Classification Workflow
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#data-provenance-and-quality-control">
-<span class="md-ellipsis">
-      Data Provenance and Quality Control
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#eeglab-dataset-integration">
-<span class="md-ellipsis">
-      EEGLAB Dataset Integration
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#usage-notes">
-<span class="md-ellipsis">
-      Usage Notes
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -721,8 +563,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_5_6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_5_6" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="">
 <span class="md-ellipsis">
     Connectivity Analysis
@@ -730,19 +572,138 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_5_6_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_5_6_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_5_6">
 <span class="md-nav__icon md-icon"></span>
             Connectivity Analysis
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../connectivity_mne/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    MNE-Python
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     MNE-Python
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pipeline-overview">
+<span class="md-ellipsis">
+      Pipeline Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pipeline-flowchart">
+<span class="md-ellipsis">
+      Pipeline Flowchart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-mne-python-features-demonstrated">
+<span class="md-ellipsis">
+      Key MNE-Python Features Demonstrated
+    </span>
+</a>
+<nav aria-label="Key MNE-Python Features Demonstrated" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connectivity-functions">
+<span class="md-ellipsis">
+      Connectivity Functions
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#advanced-parameters">
+<span class="md-ellipsis">
+      Advanced Parameters
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example-json-structure">
+<span class="md-ellipsis">
+      Example JSON Structure
+    </span>
+</a>
+<nav aria-label="Example JSON Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-output-connectivity-analysis">
+<span class="md-ellipsis">
+      Multi-Output Connectivity Analysis
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connectivity-analysis-features">
+<span class="md-ellipsis">
+      Connectivity Analysis Features
+    </span>
+</a>
+<nav aria-label="Connectivity Analysis Features" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#frequency-specific-analysis">
+<span class="md-ellipsis">
+      Frequency-Specific Analysis
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connectivity-metrics">
+<span class="md-ellipsis">
+      Connectivity Metrics
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#statistical-assessment">
+<span class="md-ellipsis">
+      Statistical Assessment
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mne-python-vs-eeglab-comparison">
+<span class="md-ellipsis">
+      MNE-Python vs EEGLAB Comparison
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usage-notes">
+<span class="md-ellipsis">
+      Usage Notes
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../connectivity_eeglab/">
@@ -868,48 +829,43 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="example-ica-decomposition-pipeline-eeglab">Example: ICA Decomposition Pipeline (EEGLAB)<a class="headerlink" href="#example-ica-decomposition-pipeline-eeglab" title="Permanent link">¶</a></h1>
-<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/ica_decomposition_pipeline_eeglab.signalJourney.json"><code>ica_decomposition_pipeline_eeglab.signalJourney.json</code></a> example file, which documents an Independent Component Analysis (ICA) workflow for artifact removal using EEGLAB.</p>
+<h1 id="example-connectivity-analysis-mne-python">Example: Connectivity Analysis (MNE-Python)<a class="headerlink" href="#example-connectivity-analysis-mne-python" title="Permanent link">¶</a></h1>
+<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/connectivity_analysis_pipeline_mne.signalJourney.json"><code>connectivity_analysis_pipeline_mne.signalJourney.json</code></a> example file, which documents a functional connectivity analysis workflow. This pipeline calculates spectral coherence between EEG sensors using the MNE-Python and SciPy libraries.</p>
 <h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">¶</a></h2>
-<p>This EEGLAB pipeline demonstrates how to apply ICA to remove artifacts from preprocessed EEG data using EEGLAB's ICA functions and ICLabel for component classification:</p>
-<ul>
-<li><strong>Loading preprocessed data</strong> from the basic preprocessing pipeline</li>
-<li><strong>Computing ICA decomposition</strong> using extended Infomax algorithm</li>
-<li><strong>Classifying components</strong> with ICLabel to identify artifacts</li>
-<li><strong>Removing artifact components</strong> from the data</li>
-<li><strong>Saving cleaned data</strong> for further analysis</li>
-</ul>
+<p>This MNE-Python pipeline demonstrates connectivity analysis:
+- <strong>Load cleaned data</strong> from ICA decomposition pipeline
+- <strong>Extract epochs</strong> for connectivity analysis
+- <strong>Compute power spectral density</strong> for individual channels
+- <strong>Calculate coherence matrix</strong> between channel pairs
+- <strong>Generate connectivity report</strong> with visualization</p>
 <h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Load Preprocessed Data<br/>pop_loadset] --&gt; B[Run ICA Decomposition<br/>pop_runica]
-    B --&gt; C[Classify Components<br/>pop_iclabel]
-    C --&gt; D[Select Components<br/>pop_selectcomps]
-    D --&gt; E[Remove Components<br/>pop_subcomp]
-    E --&gt; F[Save Cleaned Data<br/>pop_saveset]
+    A[Load Cleaned Data<br/>mne.io.read_raw_fif] --&gt; B[Extract Epochs<br/>mne.Epochs]
+    B --&gt; C[Compute PSD<br/>epochs.compute_psd]
+    C --&gt; D[Calculate Coherence<br/>mne.connectivity.spectral_connectivity_epochs]
+    D --&gt; E[Generate Report<br/>connectivity_report]
 
-    %% Input from basic preprocessing
-    G["📁 sub-01_task-rest_desc-preproc_eeg.set<br/>From: Basic Preprocessing Pipeline"] --&gt; A
+    %% Input from ICA pipeline
+    F["📁 sub-01_task-rest_desc-cleaned_eeg.fif<br/>From: ICA Decomposition Pipeline"] --&gt; A
 
     %% Intermediate outputs
-    A --&gt; A1["📊 EEG Structure<br/>Preprocessed dataset"]
-    B --&gt; B1["📊 ICA Weights<br/>Extended Infomax decomposition"]
-    C --&gt; C1["📊 ICLabel Classifications<br/>Brain/Artifact probabilities"]
-    D --&gt; D1["📊 Component Selection<br/>Manual review interface"]
+    A --&gt; A1["📊 Raw Object<br/>ICA-cleaned data"]
+    B --&gt; B1["📊 Epochs Object<br/>Epoched data"]
+    C --&gt; C1["📊 PSD Array<br/>Power spectral density"]
+    D --&gt; D1["📊 Coherence Matrix<br/>64×64 channel pairs"]
 
-    %% ICA analysis data
-    B --&gt; V1["📊 ICA Sphere<br/>Whitening matrix"]
-    B --&gt; V2["📊 Component Maps<br/>Scalp topographies"]
-    C --&gt; V3["📊 Classification Scores<br/>Brain: 0.92, Eye: 0.05"]
-    E --&gt; V4["📊 Artifact Components<br/>[2, 15, 23] removed"]
+    %% Analysis parameters
+    B --&gt; V1["📊 Event Windows<br/>[-0.5, 1.5] s"]
+    C --&gt; V2["📊 Frequency Bands<br/>Alpha: 8-12 Hz"]
+    D --&gt; V3["📊 Connectivity Method<br/>Coherence (magnitude)"]
 
     %% Final outputs
-    F --&gt; H["💾 sub-01_task-rest_desc-cleaned_eeg.set<br/>ICA-cleaned dataset"]
-    D --&gt; I["💾 sub-01_task-rest_desc-components_review.fig<br/>Component browser"]
-    C --&gt; J["💾 sub-01_task-rest_desc-iclabel_report.mat<br/>Classification results"]
+    E --&gt; G["💾 sub-01_task-rest_desc-connectivity_eeg.h5<br/>Connectivity matrix"]
+    E --&gt; H["💾 sub-01_task-rest_desc-connectivity_plot.png<br/>Connectivity visualization"]
 
     %% Quality metrics
-    C --&gt; Q1["📈 Brain components: 58/64<br/>Muscle components: 3/64"]
-    E --&gt; Q2["📈 Components removed: 3<br/>Variance preserved: 92.1%"]
+    C --&gt; Q1["📈 Frequency resolution: 0.5 Hz<br/>Spectral range: 1-40 Hz"]
+    D --&gt; Q2["📈 Significant connections: 245/2016<br/>Mean coherence: 0.32"]
 
     %% Styling
     classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -918,184 +874,144 @@
     classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
     classDef qualityMetric fill:#f9f9f9,stroke:#666,stroke-width:1px
 
-    class A,B,C,D,E,F processStep
-    class G inputFile
-    class H,I,J outputFile
-    class A1,B1,C1,D1,V1,V2,V3,V4 inlineData
+    class A,B,C,D,E processStep
+    class F inputFile
+    class G,H outputFile
+    class A1,B1,C1,D1,V1,V2,V3 inlineData
     class Q1,Q2 qualityMetric
 </code></pre>
-<h2 id="key-eeglab-features-demonstrated">Key EEGLAB Features Demonstrated<a class="headerlink" href="#key-eeglab-features-demonstrated" title="Permanent link">¶</a></h2>
-<h3 id="ica-specific-functions">ICA-Specific Functions<a class="headerlink" href="#ica-specific-functions" title="Permanent link">¶</a></h3>
+<h2 id="key-mne-python-features-demonstrated">Key MNE-Python Features Demonstrated<a class="headerlink" href="#key-mne-python-features-demonstrated" title="Permanent link">¶</a></h2>
+<h3 id="connectivity-functions">Connectivity Functions<a class="headerlink" href="#connectivity-functions" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong><code>pop_runica</code></strong>: Extended Infomax ICA decomposition</li>
-<li><strong><code>pop_iclabel</code></strong>: Automated component classification using deep learning</li>
-<li><strong><code>pop_selectcomps</code></strong>: Interactive component selection interface</li>
-<li><strong><code>pop_subcomp</code></strong>: Remove components from EEG data</li>
-<li><strong>ICLabel integration</strong>: Brain vs. artifact classification with probability scores</li>
+<li><strong><code>mne.Epochs</code></strong>: Extract task-related epochs for connectivity analysis</li>
+<li><strong><code>epochs.compute_psd</code></strong>: Calculate power spectral density using multitaper method</li>
+<li><strong><code>mne.connectivity.spectral_connectivity_epochs</code></strong>: Compute spectral connectivity measures</li>
+<li><strong>Connectivity metrics</strong>: Coherence, PLI, PLV, and other measures</li>
 </ul>
-<h3 id="eeglab-specific-parameters">EEGLAB-Specific Parameters<a class="headerlink" href="#eeglab-specific-parameters" title="Permanent link">¶</a></h3>
+<h3 id="advanced-parameters">Advanced Parameters<a class="headerlink" href="#advanced-parameters" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Extended Infomax</strong>: Natural gradient algorithm for ICA</li>
-<li><strong>ICLabel classification</strong>: Automated artifact detection using trained models</li>
-<li><strong>Interactive selection</strong>: GUI-based component review and selection</li>
-<li><strong>Dataset integration</strong>: Seamless EEGLAB structure preservation</li>
+<li><strong>Frequency bands</strong>: Specific frequency ranges for connectivity analysis</li>
+<li><strong>Connectivity methods</strong>: Multiple algorithms for different connectivity aspects</li>
+<li><strong>Statistical testing</strong>: Permutation tests for connectivity significance</li>
+<li><strong>Visualization</strong>: Network plots and connectivity matrices</li>
 </ul>
 <h2 id="example-json-structure">Example JSON Structure<a class="headerlink" href="#example-json-structure" title="Permanent link">¶</a></h2>
-<p>The ICA decomposition step demonstrates complex output documentation:</p>
+<p>The connectivity computation demonstrates advanced parameter documentation:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Run ICA Decomposition"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute ICA decomposition using extended Infomax algorithm."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calculate Spectral Coherence"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute coherence between all channel pairs in alpha band."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pop_runica(EEG, 'icatype', 'runica', 'extended', 1, 'interrupt', 'off')"</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MNE-Python"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.6.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mne.connectivity.spectral_connectivity_epochs(epochs, method='coh', fmin=8, fmax=12)"</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"icatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runica"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"extended"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"interrupt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"pca"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"lrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"maxsteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"stop"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-7</span>
+<span class="w">    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coh"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"fmin"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"fmax"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sfreq"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"n_jobs"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"verbose"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="iclabel-component-classification">ICLabel Component Classification<a class="headerlink" href="#iclabel-component-classification" title="Permanent link">¶</a></h3>
-<p>The ICLabel step showcases automated artifact classification:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Classify Components with ICLabel"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automatically classify ICA components using ICLabel deep learning model."</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEG = pop_iclabel(EEG, 'default')"</span>
+<h3 id="multi-output-connectivity-analysis">Multi-Output Connectivity Analysis<a class="headerlink" href="#multi-output-connectivity-analysis" title="Permanent link">¶</a></h3>
+<p>Connectivity analysis typically produces multiple related outputs:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"outputTargets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./derivatives/signaljourney/sub-01/eeg/sub-01_task-rest_desc-connectivity_eeg.h5"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HDF5"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Connectivity matrix with channel pairs and frequency bins."</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"qualityMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"brain_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"muscle_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"eye_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"heart_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"line_noise_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"channel_noise_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"other_components"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inlineData"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"connectivity_matrix"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{coherence_matrix_alpha}}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha band coherence matrix (64x64)."</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div>
-<h3 id="advanced-signaljourney-features">Advanced signalJourney Features<a class="headerlink" href="#advanced-signaljourney-features" title="Permanent link">¶</a></h3>
+<h2 id="connectivity-analysis-features">Connectivity Analysis Features<a class="headerlink" href="#connectivity-analysis-features" title="Permanent link">¶</a></h2>
+<h3 id="frequency-specific-analysis">Frequency-Specific Analysis<a class="headerlink" href="#frequency-specific-analysis" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Variable storage</strong>: ICA weights and sphere matrices</li>
-<li><strong>Inline data preservation</strong>: Component timecourses and topographies</li>
-<li><strong>Quality metrics</strong>: Classification probabilities and removal statistics</li>
-<li><strong>Multi-output steps</strong>: Steps generating both files and variables</li>
+<li><strong>Band-specific connectivity</strong>: Focus on particular frequency ranges (alpha, beta, gamma)</li>
+<li><strong>Broadband analysis</strong>: Connectivity across multiple frequency bands</li>
+<li><strong>Time-frequency connectivity</strong>: Dynamic connectivity over time</li>
+<li><strong>Cross-frequency coupling</strong>: Interactions between different frequency bands</li>
 </ul>
-<h2 id="eeglab-ica-workflow">EEGLAB ICA Workflow<a class="headerlink" href="#eeglab-ica-workflow" title="Permanent link">¶</a></h2>
-<h3 id="extended-infomax-algorithm">Extended Infomax Algorithm<a class="headerlink" href="#extended-infomax-algorithm" title="Permanent link">¶</a></h3>
-<p>EEGLAB's <code>pop_runica</code> provides:
-- <strong>Natural gradient optimization</strong>: Efficient convergence for EEG data
-- <strong>Extended model</strong>: Handles both sub- and super-Gaussian sources
-- <strong>Robust convergence</strong>: Adaptive learning rate and stopping criteria
-- <strong>Reproducible results</strong>: Fixed random seed options</p>
-<h3 id="iclabel-classification-system">ICLabel Classification System<a class="headerlink" href="#iclabel-classification-system" title="Permanent link">¶</a></h3>
+<h3 id="connectivity-metrics">Connectivity Metrics<a class="headerlink" href="#connectivity-metrics" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Deep learning model</strong>: Trained on thousands of manually labeled components</li>
-<li><strong>Multiple artifact types</strong>: Brain, muscle, eye, heart, line noise, channel noise</li>
-<li><strong>Probability scores</strong>: Confidence levels for each classification</li>
-<li><strong>Automatic thresholding</strong>: Configurable probability thresholds for removal</li>
+<li><strong>Coherence</strong>: Linear relationship in frequency domain</li>
+<li><strong>Phase-Locking Value (PLV)</strong>: Phase synchronization between signals</li>
+<li><strong>Phase Lag Index (PLI)</strong>: Phase relationship corrected for volume conduction</li>
+<li><strong>Granger Causality</strong>: Directed connectivity measures</li>
 </ul>
-<h3 id="interactive-component-review">Interactive Component Review<a class="headerlink" href="#interactive-component-review" title="Permanent link">¶</a></h3>
+<h3 id="statistical-assessment">Statistical Assessment<a class="headerlink" href="#statistical-assessment" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Visual inspection</strong>: Component topographies, time courses, and spectra</li>
-<li><strong>Classification overlay</strong>: ICLabel probabilities displayed for each component</li>
-<li><strong>Manual override</strong>: User can override automatic classifications</li>
-<li><strong>Batch selection</strong>: Tools for selecting multiple components efficiently</li>
+<li><strong>Permutation testing</strong>: Significance testing for connectivity values</li>
+<li><strong>Multiple comparison correction</strong>: Control for multiple channel pairs</li>
+<li><strong>Confidence intervals</strong>: Bootstrap confidence bounds for connectivity</li>
+<li><strong>Network measures</strong>: Graph theory metrics on connectivity networks</li>
 </ul>
-<h2 id="eeglab-vs-mne-python-comparison">EEGLAB vs MNE-Python Comparison<a class="headerlink" href="#eeglab-vs-mne-python-comparison" title="Permanent link">¶</a></h2>
+<h2 id="mne-python-vs-eeglab-comparison">MNE-Python vs EEGLAB Comparison<a class="headerlink" href="#mne-python-vs-eeglab-comparison" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
 <th>Aspect</th>
-<th>EEGLAB Version</th>
 <th>MNE-Python Version</th>
+<th>EEGLAB Version</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Algorithm</strong></td>
-<td>Extended Infomax (runica)</td>
-<td>FastICA, Infomax, Picard</td>
+<td><strong>Methods</strong></td>
+<td>Multiple algorithms</td>
+<td><code>mscohere</code>, coherence2</td>
 </tr>
 <tr>
-<td><strong>Classification</strong></td>
-<td>ICLabel (automated)</td>
-<td>Manual inspection + correlation</td>
+<td><strong>Frequency Analysis</strong></td>
+<td><code>compute_psd()</code></td>
+<td><code>spectopo</code></td>
 </tr>
 <tr>
-<td><strong>Component Removal</strong></td>
-<td><code>pop_subcomp</code></td>
-<td><code>ica.apply()</code></td>
+<td><strong>Statistical Testing</strong></td>
+<td>Built-in permutations</td>
+<td>External testing</td>
 </tr>
 <tr>
 <td><strong>Visualization</strong></td>
-<td>Built-in component plots</td>
-<td>Custom plotting functions</td>
+<td>matplotlib/mayavi</td>
+<td>EEGLAB plots</td>
 </tr>
 <tr>
-<td><strong>Integration</strong></td>
-<td>Seamless EEGLAB workflow</td>
-<td>Object-oriented approach</td>
-</tr>
-<tr>
-<td><strong>Automation</strong></td>
-<td>Highly automated</td>
-<td>Semi-automatic workflow</td>
+<td><strong>Output Format</strong></td>
+<td>HDF5, NPZ</td>
+<td>.mat files</td>
 </tr>
 </tbody>
 </table>
-<h2 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">¶</a></h2>
-<h3 id="component-classification-workflow">Component Classification Workflow<a class="headerlink" href="#component-classification-workflow" title="Permanent link">¶</a></h3>
-<ol>
-<li><strong>Automated Classification</strong>: ICLabel provides probability scores for each component type</li>
-<li><strong>Threshold-Based Selection</strong>: Components automatically flagged based on classification confidence</li>
-<li><strong>Quality Assurance</strong>: Detailed metrics on component types and removal decisions</li>
-<li><strong>Manual Review</strong>: Interactive interface for validation and adjustment</li>
-</ol>
-<h3 id="data-provenance-and-quality-control">Data Provenance and Quality Control<a class="headerlink" href="#data-provenance-and-quality-control" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>Pipeline Dependencies</strong>: Clear links to preprocessing steps</li>
-<li><strong>Parameter Tracking</strong>: Complete ICA algorithm parameters</li>
-<li><strong>Component Documentation</strong>: Full record of which components were removed and why</li>
-<li><strong>Classification Confidence</strong>: Probability scores for reproducibility</li>
-</ul>
-<h3 id="eeglab-dataset-integration">EEGLAB Dataset Integration<a class="headerlink" href="#eeglab-dataset-integration" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>Structure Preservation</strong>: EEG structure maintained throughout processing</li>
-<li><strong>History Tracking</strong>: All operations recorded in EEG.history</li>
-<li><strong>Compatibility</strong>: Works seamlessly with other EEGLAB functions</li>
-<li><strong>STUDY Integration</strong>: Results compatible with group-level analysis</li>
-</ul>
 <h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
 <p>This example demonstrates:
-- <strong>Advanced EEGLAB workflows</strong> with ICA and automated artifact classification
-- <strong>ICLabel integration</strong> for objective component classification
-- <strong>Complex data documentation</strong> with multiple output types
-- <strong>Quality control integration</strong> for comprehensive artifact removal validation
-- <strong>Interactive workflow support</strong> with manual review capabilities</p>
-<p>The pipeline showcases signalJourney's ability to document sophisticated processing workflows while maintaining the flexibility needed for various EEGLAB analysis approaches. The combination of automated classification and manual review provides a robust framework for artifact removal that balances efficiency with quality control. </p>
+- <strong>Connectivity analysis workflows</strong> with frequency-specific measures
+- <strong>Statistical testing integration</strong> for significance assessment
+- <strong>Multi-output documentation</strong> for matrices and visualizations
+- <strong>Quality metrics</strong> for connectivity analysis validation
+- <strong>Pipeline integration</strong> building on previous processing steps</p>
+<p>The pipeline showcases MNE-Python's comprehensive connectivity analysis capabilities while maintaining full parameter transparency for reproducible network analysis. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:27:42 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:29:43 UTC">June 27, 2025</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 2, 2025 02:27:11 UTC">May 2, 2025</span>
 </span>
 </aside>
 </article>
