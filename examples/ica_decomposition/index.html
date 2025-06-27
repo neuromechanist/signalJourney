@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#example-ica-decomposition" class="md-skip">
+        <a href="#example-ica-decomposition-pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -1129,18 +1129,138 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#pipeline-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Pipeline Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-sections-explained" class="md-nav__link">
+  <a href="#pipeline-flowchart" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Sections Explained
+      Pipeline Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-signaljourney-features-demonstrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key signalJourney Features Demonstrated
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key signalJourney Features Demonstrated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pipeline-source-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pipeline Source Tracking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-multiple-output-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Multiple Output Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-variable-outputs-and-cross-step-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Variable Outputs and Cross-Step References
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-algorithm-specific-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Algorithm-Specific Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-quality-metrics-at-multiple-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Quality Metrics at Multiple Levels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-signaljourney-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced signalJourney Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced signalJourney Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-input-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Input Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-selection-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm Selection Documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artifact-classification-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Artifact Classification Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-pipeline-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-Pipeline Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-research-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in Research Workflows
     </span>
   </a>
   
@@ -1479,84 +1599,199 @@
   
 
 
-<h1 id="example-ica-decomposition">Example: ICA Decomposition<a class="headerlink" href="#example-ica-decomposition" title="Permanent link">&para;</a></h1>
-<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/ica_decomposition_pipeline.signalJourney.json"><code>ica_decomposition_pipeline.signalJourney.json</code></a> example file, which documents an ICA decomposition workflow. This pipeline demonstrates applying Independent Component Analysis (ICA) to remove eye-blink artifacts using MNE-Python, assuming the data has already undergone basic preprocessing (as shown in the <a href="../basic_preprocessing/">Basic Preprocessing Example</a>).</p>
+<h1 id="example-ica-decomposition-pipeline">Example: ICA Decomposition Pipeline<a class="headerlink" href="#example-ica-decomposition-pipeline" title="Permanent link">&para;</a></h1>
+<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/ica_decomposition_pipeline.signalJourney.json"><code>ica_decomposition_pipeline.signalJourney.json</code></a> example file, which documents an Independent Component Analysis (ICA) workflow for artifact removal using MNE-Python.</p>
+<h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">&para;</a></h2>
+<p>This pipeline demonstrates how to apply ICA to remove ocular artifacts (eye movements and blinks) from preprocessed EEG data. It builds upon the <a href="../basic_preprocessing/">Basic Preprocessing Pipeline</a> by:</p>
+<ul>
+<li><strong>Loading preprocessed data</strong> from the previous pipeline</li>
+<li><strong>Fitting ICA decomposition</strong> using FastICA algorithm</li>
+<li><strong>Identifying artifact components</strong> correlated with EOG channels</li>
+<li><strong>Removing artifact components</strong> and saving cleaned data</li>
+</ul>
+<h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>flowchart TD
+    A[&quot;1. Load Preprocessed Data&lt;br/&gt;&#39;read_raw_fif&#39;&quot;] --&gt; B[&quot;2. Fit ICA&lt;br/&gt;&#39;ICA.fit(FastICA)&#39;&quot;]
+    B --&gt; C[&quot;3. Find EOG Components&lt;br/&gt;&#39;find_bads_eog&#39;&quot;]
+    C --&gt; D[&quot;4. Apply ICA (Remove Components)&lt;br/&gt;&#39;ica.apply&#39;&quot;]
+
+    %% Input from previous pipeline
+    E[&quot;📁 sub-01_task-rest_desc-preproc_eeg.fif&lt;br/&gt;From: Basic EEG Preprocessing v1.0.0&quot;] --&gt; A
+
+    %% Intermediate outputs
+    B --&gt; B1[&quot;📊 ICA Object&lt;br/&gt;15 components&quot;]
+    C --&gt; C1[&quot;📊 EOG Indices&lt;br/&gt;[0, 3]&quot;]
+    C --&gt; C2[&quot;📊 EOG Scores&lt;br/&gt;[99, 85]&quot;]
+
+    %% Final output
+    D --&gt; F[&quot;💾 sub-01_task-rest_desc-cleaned_eeg.fif&lt;br/&gt;ICA-cleaned data&quot;]
+
+    %% Styling
+    classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef inputFile fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef outputFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+
+    class A,B,C,D processStep
+    class E inputFile
+    class F outputFile
+    class B1,C1,C2 inlineData
+</code></pre></div>
+<h2 id="key-signaljourney-features-demonstrated">Key signalJourney Features Demonstrated<a class="headerlink" href="#key-signaljourney-features-demonstrated" title="Permanent link">&para;</a></h2>
+<h3 id="1-pipeline-source-tracking">1. Pipeline Source Tracking<a class="headerlink" href="#1-pipeline-source-tracking" title="Permanent link">&para;</a></h3>
+<p>This example shows how to link outputs from previous pipelines:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;sj_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example signalJourney file for an ICA decomposition pipeline using MNE-Python.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;pipelineInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ICA Decomposition&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Applies ICA using FastICA, identifies EOG components, and removes them from the preprocessed data.&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;pipelineType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ica&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;executionDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-05-02T11:00:00Z&quot;</span>
+<span class="w">  </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Load Preprocessed Data&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;inputSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;sourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./derivatives/signaljourney/sub-01/eeg/sub-01_task-rest_desc-preproc_eeg.fif&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;entityLabels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rest&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;desc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;preproc&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;pipelineSource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="nt">&quot;pipelineName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Basic EEG Preprocessing&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pipelineVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>pipelineSource</code> field creates <strong>traceability</strong> between processing stages, enabling:
+- <strong>Provenance tracking</strong> (knowing exactly where data came from)
+- <strong>Version compatibility</strong> (ensuring pipeline versions match)
+- <strong>Dependency management</strong> (understanding pipeline relationships)</p>
+<h3 id="2-multiple-output-types">2. Multiple Output Types<a class="headerlink" href="#2-multiple-output-types" title="Permanent link">&para;</a></h3>
+<p>Step 2 demonstrates different output types from a single processing step:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fit ICA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;outputTargets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;in-memory&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mne.preprocessing.ICA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fitted ICA object.&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mne.preprocessing.ICA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fitted ICA object.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">]]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This shows:
+- <strong>In-memory objects</strong> for pipeline continuation
+- <strong>Inline data</strong> for result preservation and inspection</p>
+<h3 id="3-variable-outputs-and-cross-step-references">3. Variable Outputs and Cross-Step References<a class="headerlink" href="#3-variable-outputs-and-cross-step-references" title="Permanent link">&para;</a></h3>
+<p>Step 3 produces variables that are consumed by Step 4:</p>
+<p><strong>Step 3 outputs:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;outputTargets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;variable&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eog_indices&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Indices of identified EOG components.&quot;</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;processingSteps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="c1">// ... steps detailed below ...</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;summaryMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;numIcaComponents&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;numArtifactComponentsRemoved&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eog_indices&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;variable&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eog_scores&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Scores associated with EOG components.&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eog_scores&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">99</span><span class="p">,</span><span class="w"> </span><span class="mi">85</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p><strong>Step 4 inputs:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;inputSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previousStepOutput&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;outputId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Loaded preprocessed data object.&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previousStepOutput&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;outputId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fitted ICA object.&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previousStepOutput&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;outputId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Indices of identified EOG components.&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p>This demonstrates <strong>complex data dependencies</strong> where multiple previous outputs feed into subsequent steps.</p>
+<h3 id="4-algorithm-specific-parameters">4. Algorithm-Specific Parameters<a class="headerlink" href="#4-algorithm-specific-parameters" title="Permanent link">&para;</a></h3>
+<p>The ICA fitting step shows detailed algorithm configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fit ICA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MNE-Python&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.6.1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;functionCall&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ica = mne.preprocessing.ICA(n_components=15, method=&#39;fastica&#39;, random_state=97, max_iter=&#39;auto&#39;); ica.fit(raw, picks=&#39;eeg&#39;)&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;n_components&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fastica&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;random_state&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_iter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fit_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;picks&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eeg&quot;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The pipeline performs the following steps:</p>
+<p>This preserves:
+- <strong>Exact software versions</strong> for reproducibility
+- <strong>Complete parameter sets</strong> including nested options
+- <strong>Literal function calls</strong> for implementation reference</p>
+<h3 id="5-quality-metrics-at-multiple-levels">5. Quality Metrics at Multiple Levels<a class="headerlink" href="#5-quality-metrics-at-multiple-levels" title="Permanent link">&para;</a></h3>
+<p>Quality metrics are captured at both step and pipeline levels:</p>
+<p><strong>Step-level metrics:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;qualityMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;eogComponentsIdentified&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;numEogComponents&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Pipeline-level metrics:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;summaryMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;numIcaComponents&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;numArtifactComponentsRemoved&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="advanced-signaljourney-patterns">Advanced signalJourney Patterns<a class="headerlink" href="#advanced-signaljourney-patterns" title="Permanent link">&para;</a></h2>
+<p>This example demonstrates several advanced patterns:</p>
+<h3 id="multi-input-dependencies">Multi-Input Dependencies<a class="headerlink" href="#multi-input-dependencies" title="Permanent link">&para;</a></h3>
+<p>Step 4 depends on outputs from three previous steps, showing how complex data flows can be captured.</p>
+<h3 id="algorithm-selection-documentation">Algorithm Selection Documentation<a class="headerlink" href="#algorithm-selection-documentation" title="Permanent link">&para;</a></h3>
+<p>The choice of FastICA is explicitly documented with all parameters, enabling exact reproduction.</p>
+<h3 id="artifact-classification-workflow">Artifact Classification Workflow<a class="headerlink" href="#artifact-classification-workflow" title="Permanent link">&para;</a></h3>
+<p>The two-step process (identification → removal) is clearly separated, allowing for inspection and validation of artifact detection.</p>
+<h3 id="cross-pipeline-integration">Cross-Pipeline Integration<a class="headerlink" href="#cross-pipeline-integration" title="Permanent link">&para;</a></h3>
+<p>The pipeline source tracking creates a clear lineage from raw data through preprocessing to artifact removal.</p>
+<h2 id="usage-in-research-workflows">Usage in Research Workflows<a class="headerlink" href="#usage-in-research-workflows" title="Permanent link">&para;</a></h2>
+<p>This ICA pipeline example shows how signalJourney supports:</p>
 <ol>
-<li>Loads preprocessed EEG data (output from a previous pipeline).</li>
-<li>Fits an ICA model (FastICA) to the data.</li>
-<li>Identifies components highly correlated with an Electrooculogram (EOG) channel.</li>
-<li>Removes the identified EOG components from the data.</li>
-<li>Saves the ICA-cleaned data and the ICA object itself.</li>
+<li><strong>Modular pipeline design</strong> - Each stage can be developed and validated independently</li>
+<li><strong>Parameter sensitivity analysis</strong> - All settings are preserved for comparison across runs</li>
+<li><strong>Quality control</strong> - Intermediate results are available for inspection</li>
+<li><strong>Reproducible research</strong> - Complete provenance chain is maintained</li>
+<li><strong>Collaborative workflows</strong> - Clear interfaces between processing stages</li>
 </ol>
-<h2 id="key-sections-explained">Key Sections Explained<a class="headerlink" href="#key-sections-explained" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong><code>pipelineInfo</code>:</strong> Defines the pipeline name, description, type ("ica"), etc.</li>
-<li><strong><code>processingSteps</code>:</strong><ul>
-<li><strong>Step 1: Load Preprocessed Data</strong><ul>
-<li><code>inputSources</code>: Specifies the preprocessed FIF file as input.<ul>
-<li>Note the <code>pipelineSource</code> field, linking this input file back to the "Basic EEG Preprocessing" pipeline that generated it.</li>
-</ul>
-</li>
-<li><code>outputTargets</code>: Outputs the loaded data to memory.</li>
-</ul>
-</li>
-<li><strong>Step 2: Fit ICA</strong><ul>
-<li><code>dependsOn</code>: <code>["1"]</code>.</li>
-<li><code>software</code>: MNE-Python, using <code>mne.preprocessing.ICA</code> and <code>ica.fit</code>.</li>
-<li><code>parameters</code>: Details the ICA configuration (<code>n_components</code>, <code>method</code>, <code>random_state</code>, etc.).</li>
-<li><code>inputSources</code>: Takes the loaded preprocessed data from Step 1.</li>
-<li><code>outputTargets</code>: Produces two outputs:<ol>
-<li>An <code>in-memory</code> ICA object (<code>description: "Fitted ICA object."</code>).</li>
-<li>A saved <code>file</code> copy of the ICA object (<code>format: "FIF"</code>, <code>description: "Saved ICA object file."</code>).</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><strong>Step 3: Find EOG Components</strong><ul>
-<li><code>dependsOn</code>: <code>["1", "2"]</code> (needs both the raw data and the fitted ICA object).</li>
-<li><code>software</code>: MNE-Python, using <code>ica.find_bads_eog</code>.</li>
-<li><code>parameters</code>: Specifies the EOG channel name (<code>ch_name</code>).</li>
-<li><code>inputSources</code>: References outputs from Step 1 ("Loaded preprocessed data object.") and Step 2 ("Fitted ICA object.").</li>
-<li><code>outputTargets</code>: Produces two <code>variable</code> outputs: <code>eog_indices</code> and <code>eog_scores</code>.</li>
-<li><code>qualityMetrics</code>: Records the indices and count of identified EOG components.</li>
-</ul>
-</li>
-<li><strong>Step 4: Apply ICA (Remove Components)</strong><ul>
-<li><code>dependsOn</code>: <code>["1", "2", "3"]</code> (needs raw data, ICA object, and identified indices).</li>
-<li><code>software</code>: MNE-Python, representing <code>ica.exclude = ...</code> and <code>ica.apply</code>.</li>
-<li><code>parameters</code>: Shows the <code>exclude</code> list (indices identified in Step 3).</li>
-<li><code>inputSources</code>: References outputs from Step 1, Step 2, and Step 3 ("Indices of identified EOG components.").</li>
-<li><code>outputTargets</code>: Saves the final cleaned data to a <code>file</code> (<code>description: "ICA cleaned EEG data file."</code>).</li>
-<li><code>qualityMetrics</code>: Records the indices and count of components actually removed.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong><code>summaryMetrics</code>:</strong> Provides overall metrics like the total number of ICA components fitted and the number removed as artifacts.</li>
-</ul>
-<p>This example highlights how to document pipelines that consume outputs from previous pipelines (using <code>pipelineSource</code>), produce multiple outputs (in-memory objects, saved files, variables), and reference variables between steps. </p>
+<p>The combination of detailed parameter tracking, multi-level outputs, and provenance links makes this example particularly valuable for research applications where transparency and reproducibility are essential. </p>
 
 
 
@@ -1579,7 +1814,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 2, 2025 20:42:38 UTC">May 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:44 UTC">June 27, 2025</span>
   </span>
 
     

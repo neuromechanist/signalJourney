@@ -2,118 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/bids/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/contributing/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/faq/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/introduction/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/pipeline_research/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/api/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/examples/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/examples/basic_preprocessing/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/examples/best_practices/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/examples/connectivity/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/examples/ica_decomposition/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/examples/source_localization/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/examples/time_frequency/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
+    </url>
+    <url>
+         <loc>https://neuromechanist.github.io/signalJourney/examples/real_world/nemar_pipeline/</loc>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/guides/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/guides/tools_matlab/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/guides/validator_cli/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/guides/validator_python/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/specification/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/specification/fields/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/specification/namespaces/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/specification/overview/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/specification/validation/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/specification/versioning/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/tutorials/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/tutorials/creating_manual/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/tutorials/matlab_tools/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/tutorials/python_lib/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
     <url>
          <loc>https://neuromechanist.github.io/signalJourney/tutorials/validating/</loc>
-         <lastmod>2025-06-02</lastmod>
+         <lastmod>2025-06-27</lastmod>
     </url>
 </urlset>

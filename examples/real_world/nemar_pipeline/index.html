@@ -10,28 +10,24 @@
       
       
       
-        <link rel="canonical" href="https://neuromechanist.github.io/signalJourney/examples/basic_preprocessing/">
+        <link rel="canonical" href="https://neuromechanist.github.io/signalJourney/examples/real_world/nemar_pipeline/">
       
       
-        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../ica_decomposition/">
-      
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Basic Preprocessing - Signal Journey</title>
+        <title>Real-World Example: NEMAR EEG Processing Pipeline - Signal Journey</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#example-basic-eeg-preprocessing-pipeline" class="md-skip">
+        <a href="#real-world-example-nemar-eeg-processing-pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Signal Journey" class="md-header__button md-logo" aria-label="Signal Journey" data-md-component="logo">
+    <a href="../../.." title="Signal Journey" class="md-header__button md-logo" aria-label="Signal Journey" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Basic Preprocessing
+              Real-World Example: NEMAR EEG Processing Pipeline
             
           </span>
         </div>
@@ -225,7 +221,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../introduction/" class="md-tabs__link">
+      <a href="../../../introduction/" class="md-tabs__link">
         
   
   
@@ -246,7 +242,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../specification/" class="md-tabs__link">
+        <a href="../../../specification/" class="md-tabs__link">
           
   
   
@@ -268,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../guides/" class="md-tabs__link">
+        <a href="../../../guides/" class="md-tabs__link">
           
   
   
@@ -290,7 +286,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../tutorials/" class="md-tabs__link">
+        <a href="../../../tutorials/" class="md-tabs__link">
           
   
   
@@ -308,13 +304,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -336,7 +330,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../api/" class="md-tabs__link">
+        <a href="../../../api/" class="md-tabs__link">
           
   
   
@@ -358,7 +352,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../bids/" class="md-tabs__link">
+        <a href="../../../bids/" class="md-tabs__link">
           
   
   
@@ -378,7 +372,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../contributing/" class="md-tabs__link">
+      <a href="../../../contributing/" class="md-tabs__link">
         
   
   
@@ -397,7 +391,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../faq/" class="md-tabs__link">
+      <a href="../../../faq/" class="md-tabs__link">
         
   
   
@@ -434,7 +428,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Signal Journey" class="md-nav__button md-logo" aria-label="Signal Journey" data-md-component="logo">
+    <a href="../../.." title="Signal Journey" class="md-nav__button md-logo" aria-label="Signal Journey" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -464,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../introduction/" class="md-nav__link">
+      <a href="../../../introduction/" class="md-nav__link">
         
   
   
@@ -519,7 +513,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../specification/" class="md-nav__link ">
+            <a href="../../../specification/" class="md-nav__link ">
               
   
   
@@ -554,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specification/overview/" class="md-nav__link">
+      <a href="../../../specification/overview/" class="md-nav__link">
         
   
   
@@ -577,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specification/fields/" class="md-nav__link">
+      <a href="../../../specification/fields/" class="md-nav__link">
         
   
   
@@ -600,7 +594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specification/validation/" class="md-nav__link">
+      <a href="../../../specification/validation/" class="md-nav__link">
         
   
   
@@ -623,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specification/namespaces/" class="md-nav__link">
+      <a href="../../../specification/namespaces/" class="md-nav__link">
         
   
   
@@ -646,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specification/versioning/" class="md-nav__link">
+      <a href="../../../specification/versioning/" class="md-nav__link">
         
   
   
@@ -705,7 +699,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../guides/" class="md-nav__link ">
+            <a href="../../../guides/" class="md-nav__link ">
               
   
   
@@ -740,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/validator_python/" class="md-nav__link">
+      <a href="../../../guides/validator_python/" class="md-nav__link">
         
   
   
@@ -763,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/validator_cli/" class="md-nav__link">
+      <a href="../../../guides/validator_cli/" class="md-nav__link">
         
   
   
@@ -786,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/tools_matlab/" class="md-nav__link">
+      <a href="../../../guides/tools_matlab/" class="md-nav__link">
         
   
   
@@ -847,7 +841,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../tutorials/" class="md-nav__link ">
+            <a href="../../../tutorials/" class="md-nav__link ">
               
   
   
@@ -882,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/creating_manual/" class="md-nav__link">
+      <a href="../../../tutorials/creating_manual/" class="md-nav__link">
         
   
   
@@ -905,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/python_lib/" class="md-nav__link">
+      <a href="../../../tutorials/python_lib/" class="md-nav__link">
         
   
   
@@ -928,7 +922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/matlab_tools/" class="md-nav__link">
+      <a href="../../../tutorials/matlab_tools/" class="md-nav__link">
         
   
   
@@ -951,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/validating/" class="md-nav__link">
+      <a href="../../../tutorials/validating/" class="md-nav__link">
         
   
   
@@ -978,8 +972,6 @@
       
   
   
-    
-  
   
   
     
@@ -1005,23 +997,20 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -1034,13 +1023,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Examples
@@ -1053,32 +1042,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Basic Preprocessing
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../basic_preprocessing/" class="md-nav__link">
         
   
   
@@ -1089,122 +1056,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#pipeline-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pipeline Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pipeline-flowchart" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pipeline Flowchart
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-signaljourney-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key signalJourney Structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key signalJourney Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-pipeline-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Pipeline Metadata
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-processing-steps-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Processing Steps Structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-input-sources" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Input Sources
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-output-targets" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Output Targets
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-quality-metrics" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Quality Metrics
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Dependencies
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary-metrics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary Metrics
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1217,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ica_decomposition/" class="md-nav__link">
+      <a href="../../ica_decomposition/" class="md-nav__link">
         
   
   
@@ -1240,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../time_frequency/" class="md-nav__link">
+      <a href="../../time_frequency/" class="md-nav__link">
         
   
   
@@ -1263,7 +1114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_localization/" class="md-nav__link">
+      <a href="../../source_localization/" class="md-nav__link">
         
   
   
@@ -1286,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../connectivity/" class="md-nav__link">
+      <a href="../../connectivity/" class="md-nav__link">
         
   
   
@@ -1309,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../best_practices/" class="md-nav__link">
+      <a href="../../best_practices/" class="md-nav__link">
         
   
   
@@ -1362,7 +1213,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../api/" class="md-nav__link ">
+            <a href="../../../api/" class="md-nav__link ">
               
   
   
@@ -1448,7 +1299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bids/" class="md-nav__link">
+      <a href="../../../bids/" class="md-nav__link">
         
   
   
@@ -1471,7 +1322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pipeline_research/" class="md-nav__link">
+      <a href="../../../pipeline_research/" class="md-nav__link">
         
   
   
@@ -1501,7 +1352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contributing/" class="md-nav__link">
+      <a href="../../../contributing/" class="md-nav__link">
         
   
   
@@ -1523,7 +1374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../faq/" class="md-nav__link">
+      <a href="../../../faq/" class="md-nav__link">
         
   
   
@@ -1557,150 +1408,229 @@
   
 
 
-<h1 id="example-basic-eeg-preprocessing-pipeline">Example: Basic EEG Preprocessing Pipeline<a class="headerlink" href="#example-basic-eeg-preprocessing-pipeline" title="Permanent link">&para;</a></h1>
-<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/basic_preprocessing_pipeline.signalJourney.json"><code>basic_preprocessing_pipeline.signalJourney.json</code></a> example file, which documents a standard EEG preprocessing workflow using MNE-Python.</p>
+<h1 id="real-world-example-nemar-eeg-processing-pipeline">Real-World Example: NEMAR EEG Processing Pipeline<a class="headerlink" href="#real-world-example-nemar-eeg-processing-pipeline" title="Permanent link">&para;</a></h1>
+<p>This page documents the NEMAR (EEGLAB-based) EEG processing pipeline as represented in <a href="../nemar_pipeline.signalJourney.json"><code>nemar_pipeline.signalJourney.json</code></a>. This is a <strong>production pipeline</strong> used to process OpenNeuro EEG datasets, demonstrating the full power of signalJourney for documenting complex, real-world workflows.</p>
 <h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">&para;</a></h2>
-<p>The basic preprocessing pipeline demonstrates fundamental EEG preprocessing steps:</p>
+<p>The NEMAR pipeline is a comprehensive EEG preprocessing workflow that processes BIDS-formatted EEG datasets using EEGLAB and its plugins. It demonstrates several advanced signalJourney features:</p>
 <ul>
-<li><strong>Load raw data</strong> from FIF format</li>
-<li><strong>Apply band-pass filtering</strong> (1-40 Hz) to remove drift and high-frequency noise</li>
-<li><strong>Apply notch filtering</strong> (60 Hz) to remove line noise</li>
-<li><strong>Set average reference</strong> for EEG channels</li>
-<li><strong>Interpolate bad channels</strong> to recover missing data</li>
+<li><strong>12-step processing workflow</strong> with complex dependencies</li>
+<li><strong>Inline data preservation</strong> for critical intermediate results</li>
+<li><strong>Comprehensive quality assessment</strong> at multiple levels</li>
+<li><strong>Extension schema integration</strong> for domain-specific metadata</li>
+<li><strong>Production-grade parameter documentation</strong></li>
 </ul>
+<h3 id="key-processing-stages">Key Processing Stages<a class="headerlink" href="#key-processing-stages" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Data Import &amp; Validation</strong> (Steps 1-3)</li>
+<li><strong>Channel Selection &amp; Preprocessing</strong> (Steps 4-6) </li>
+<li><strong>Automated Artifact Rejection</strong> (Step 7)</li>
+<li><strong>ICA Decomposition &amp; Classification</strong> (Steps 8-9)</li>
+<li><strong>Quality Assessment &amp; Analysis</strong> (Steps 10-11)</li>
+<li><strong>Results Export</strong> (Step 12)</li>
+</ol>
 <h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>flowchart TD
-    A[&quot;1. Load Raw Data&lt;br/&gt;&#39;read_raw_fif&#39;&quot;] --&gt; B[&quot;2. Apply Band-pass Filter&lt;br/&gt;&#39;filter(1-40 Hz)&#39;&quot;]
-    B --&gt; C[&quot;3. Apply Notch Filter&lt;br/&gt;&#39;notch_filter(60 Hz)&#39;&quot;]
-    C --&gt; D[&quot;4. Set Average Reference&lt;br/&gt;&#39;set_eeg_reference&#39;&quot;]
-    D --&gt; E[&quot;5. Interpolate Bad Channels&lt;br/&gt;&#39;interpolate_bads&#39;&quot;]
+    A[&quot;1.Import BIDS Dataset&lt;br/&gt;&#39;pop_importbids&#39;&quot;] --&gt; B[&quot;2.Check Import Status&quot;]
+    B --&gt; C[&quot;3.Check Channel Locations&quot;]
+    C --&gt; D[&quot;4.Remove Non-EEG Channels&lt;br/&gt;&#39;pop_select&#39;&quot;]
+    D --&gt; E[&quot;5.Remove DC Offset&lt;br/&gt;&#39;pop_rmbase&#39;&quot;]
+    E --&gt; F[&quot;6.High-pass Filter&lt;br/&gt;&#39;pop_eegfiltnew&#39;&quot;]
+    F --&gt; G[&quot;7.Clean Raw Data&lt;br/&gt;&#39;clean_rawdata&#39;&quot;]
+    G --&gt; H[&quot;8.Run ICA Decomposition&lt;br/&gt;&#39;runica&#39;&quot;]
+    H --&gt; I[&quot;9.ICLabel Classification&lt;br/&gt;&#39;ICLabel&#39;&quot;]
+    I --&gt; J[&quot;10.Data Quality Assessment&lt;br/&gt;Quality metrics&quot;]
+    J --&gt; K[&quot;11.Power Spectral Analysis&lt;br/&gt;Line noise assessment&quot;]
+    K --&gt; L[&quot;12.Save Processed Dataset&lt;br/&gt;Final output&quot;]
 
-    %% Input/Output Files
-    F[&quot;📁 sub-01_task-rest_raw.fif&lt;br/&gt;Raw EEG data&quot;] --&gt; A
-    E --&gt; G[&quot;💾 sub-01_task-rest_desc-preproc_eeg.fif&lt;br/&gt;Preprocessed data&quot;]
+    %% Inline Data Outputs
+    D --&gt; D1[&quot;📊 removed_channels&lt;br/&gt;Channel list&quot;]
+    G --&gt; G1[&quot;📊 clean_sample_mask&lt;br/&gt;Time samples&quot;]
+    G --&gt; G2[&quot;📊 clean_channel_mask&lt;br/&gt;Channel mask&quot;]
+    G --&gt; G3[&quot;📊 rejected_channels&lt;br/&gt;Rejected list&quot;]
+    H --&gt; H1[&quot;📊 ica_weights&lt;br/&gt;Weight matrix&quot;]
+    H --&gt; H2[&quot;📊 ica_sphere&lt;br/&gt;Sphere matrix&quot;]
+    H --&gt; H3[&quot;📊 ica_components&lt;br/&gt;Activations&quot;]
+    I --&gt; I1[&quot;📊 ic_classification&lt;br/&gt;Probabilities&quot;]
+    I --&gt; I2[&quot;📊 flagged_components&lt;br/&gt;Artifact indices&quot;]
+    J --&gt; J1[&quot;📊 data_quality_metrics&lt;br/&gt;QC measures&quot;]
+    K --&gt; K1[&quot;📊 power_spectrum&lt;br/&gt;PSD data&quot;]
+    K --&gt; K2[&quot;📊 line_noise_assessment&lt;br/&gt;Noise levels&quot;]
+
+    %% Saved File Outputs
+    J --&gt; J2[&quot;💾 dataqual.json&lt;br/&gt;Quality report&quot;]
+    L --&gt; L1[&quot;💾 processed_eeg.set&lt;br/&gt;Final dataset&quot;]
+    L --&gt; L2[&quot;💾 pipeline_status.csv&lt;br/&gt;Step status&quot;]
 
     %% Styling
     classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef inputFile fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef outputFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+    classDef savedFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
 
-    class A,B,C,D,E processStep
-    class F inputFile
-    class G outputFile
+    class A,B,C,D,E,F,G,H,I,J,K,L processStep
+    class D1,G1,G2,G3,H1,H2,H3,I1,I2,J1,K1,K2 inlineData
+    class J2,L1,L2 savedFile
 </code></pre></div>
-<h2 id="key-signaljourney-structure">Key signalJourney Structure<a class="headerlink" href="#key-signaljourney-structure" title="Permanent link">&para;</a></h2>
-<h3 id="1-pipeline-metadata">1. Pipeline Metadata<a class="headerlink" href="#1-pipeline-metadata" title="Permanent link">&para;</a></h3>
+<h2 id="advanced-signaljourney-features-demonstrated">Advanced signalJourney Features Demonstrated<a class="headerlink" href="#advanced-signaljourney-features-demonstrated" title="Permanent link">&para;</a></h2>
+<h3 id="1-inline-data-preservation">1. Inline Data Preservation<a class="headerlink" href="#1-inline-data-preservation" title="Permanent link">&para;</a></h3>
+<p>The NEMAR pipeline showcases extensive use of <code>inlineData</code> to preserve critical intermediate results:</p>
+<p><strong>ICA Weight Matrix (Step 8):</strong>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;sj_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example signalJourney file for a basic EEG preprocessing pipeline.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;pipelineInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Basic EEG Preprocessing&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard preprocessing steps including filtering, referencing, and bad channel interpolation using MNE-Python.&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;pipelineType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;executionDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-05-02T10:00:00Z&quot;</span>
+<span class="w">  </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ica_weights&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ica_weights_matrix}}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;formatDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Matrix of ICA unmixing weights [n_components x n_channels]&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ICA unmixing weight matrix&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Component Classifications (Step 9):</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ic_classification&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ic_labels_probabilities}}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;formatDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Matrix of classification probabilities [n_components x n_classes]&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ICLabel classification probabilities for each component&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>This approach ensures that <strong>critical analysis results are preserved</strong> within the signalJourney file itself, supporting reproducibility and post-hoc analysis.</p>
+<h3 id="2-comprehensive-quality-metrics">2. Comprehensive Quality Metrics<a class="headerlink" href="#2-comprehensive-quality-metrics" title="Permanent link">&para;</a></h3>
+<p>The pipeline implements quality assessment at multiple levels:</p>
+<p><strong>Step-level Quality (Step 7 - Clean Raw Data):</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;qualityMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;percentDataRetained&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{percent_clean_data}}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;percentChannelsRetained&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{percent_clean_channels}}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;channelsRejected&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{num_rejected_channels}}&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Pipeline-level Summary:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;summaryMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;pipelineCompleted&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;totalProcessingSteps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;overallDataQuality&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;goodDataPercent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{overall_good_data_percent}}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;goodChannelsPercent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{overall_good_channels_percent}}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;goodICAPercent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{overall_good_ica_percent}}&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="3-extension-schema-integration">3. Extension Schema Integration<a class="headerlink" href="#3-extension-schema-integration" title="Permanent link">&para;</a></h3>
+<p>The pipeline uses the NEMAR extension schema for domain-specific metadata:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;nemar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;dataset_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{openneuro_dataset_id}}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;processing_cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SDSC Expanse&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;eeglab_plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;clean_rawdata&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ICLabel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;AMICA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;firfilt&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;custom_code_applied&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{custom_dataset_code}}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;batch_processing&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The metadata section defines:
-- <strong>signalJourney version compatibility</strong> (<code>sj_version</code>, <code>schema_version</code>)
-- <strong>Pipeline identification</strong> (name, type, version)
-- <strong>Execution context</strong> (date, description)</p>
-<h3 id="2-processing-steps-structure">2. Processing Steps Structure<a class="headerlink" href="#2-processing-steps-structure" title="Permanent link">&para;</a></h3>
-<p>Each step follows this pattern:</p>
+<p>This demonstrates how <strong>domain-specific requirements</strong> can be accommodated within the signalJourney framework.</p>
+<h3 id="4-algorithm-selection-logic">4. Algorithm Selection Logic<a class="headerlink" href="#4-algorithm-selection-logic" title="Permanent link">&para;</a></h3>
+<p>Step 8 (ICA Decomposition) shows how algorithm selection can be documented:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Load Raw Data&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Load raw FIF data file.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Run ICA Decomposition&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Perform Independent Component Analysis using either AMICA (if &gt;=5 channels) or extended Infomax ICA to decompose EEG signals into independent components.&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;software&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MNE-Python&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.6.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;functionCall&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mne.io.read_raw_fif(&#39;sub-01_task-rest_raw.fif&#39;, preload=True)&quot;</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AMICA/EEGLAB&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.7/2023.1&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;functionCall&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runamica17_nsg(EEG, &#39;batch&#39;, 1) OR pop_runica(EEG, &#39;icatype&#39;, &#39;runica&#39;, &#39;concatcond&#39;, &#39;on&#39;, &#39;extended&#39;, 1, &#39;lrate&#39;, 1e-5, &#39;maxsteps&#39;, 2000)&quot;</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sub-01_task-rest_raw.fif&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;preload&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;inputSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;outputTargets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Key elements:
-- <strong>Step identification</strong> (<code>stepId</code>, <code>name</code>, <code>description</code>)
-- <strong>Software documentation</strong> (exact function calls, versions)
-- <strong>Parameter tracking</strong> (all settings used)
-- <strong>Input/output specification</strong> (data flow)</p>
-<h3 id="3-input-sources">3. Input Sources<a class="headerlink" href="#3-input-sources" title="Permanent link">&para;</a></h3>
-<p>Input sources can be:</p>
-<p><strong>File input</strong> (Step 1):
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;inputSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;sourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../sourcedata/sub-01/eeg/sub-01_task-rest_raw.fif&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;entityLabels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rest&quot;</span>
+<span class="w">    </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ica_method}}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;amica_options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;batch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;runica_options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;icatype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runica&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;concatcond&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nt">&quot;extended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;lrate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-5</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;maxsteps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div></p>
-<p><strong>Previous step output</strong> (Steps 2-5):
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;inputSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;sourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previousStepOutput&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;outputId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Loaded raw data object.&quot;</span><span class="w"> </span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div></p>
-<h3 id="4-output-targets">4. Output Targets<a class="headerlink" href="#4-output-targets" title="Permanent link">&para;</a></h3>
-<p><strong>In-memory objects</strong> (intermediate results):
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;outputTargets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;in-memory&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mne.io.Raw&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Band-pass filtered data.&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div></p>
-<p><strong>Saved files</strong> (final results):
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;outputTargets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./derivatives/signaljourney/sub-01/eeg/sub-01_task-rest_desc-preproc_eeg.fif&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FIF&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Preprocessed EEG data file.&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div></p>
-<h3 id="5-quality-metrics">5. Quality Metrics<a class="headerlink" href="#5-quality-metrics" title="Permanent link">&para;</a></h3>
-<p>Steps can include quality metrics for validation:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;qualityMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;channelsInterpolated&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;EEG 053&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;EEG 021&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;numChannelsInterpolated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="6-dependencies">6. Dependencies<a class="headerlink" href="#6-dependencies" title="Permanent link">&para;</a></h3>
-<p>Steps can depend on previous steps:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">]</span>
-</code></pre></div>
-<p>This ensures proper execution order and data flow.</p>
-<h2 id="summary-metrics">Summary Metrics<a class="headerlink" href="#summary-metrics" title="Permanent link">&para;</a></h2>
-<p>The pipeline concludes with overall metrics:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;summaryMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;finalSamplingRateHz&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;totalChannels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;numBadChannelsDetected&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>This basic preprocessing example demonstrates:
-- <strong>Linear pipeline structure</strong> (each step feeds into the next)
-- <strong>File input/output</strong> (loading and saving data)
-- <strong>Parameter documentation</strong> (all settings preserved)
-- <strong>Quality tracking</strong> (interpolated channels recorded)
-- <strong>BIDS compatibility</strong> (entity labels, standardized naming)</p>
-<p>This foundation can be extended with more complex processing steps, parallel branches, or integration with other pipelines.</p>
+<p>This shows how <strong>conditional algorithm selection</strong> and <strong>multiple parameter sets</strong> can be documented.</p>
+<h3 id="5-template-variables-and-flexibility">5. Template Variables and Flexibility<a class="headerlink" href="#5-template-variables-and-flexibility" title="Permanent link">&para;</a></h3>
+<p>Throughout the pipeline, template variables (e.g., <code>{{subject}}</code>, <code>{{session}}</code>, <code>{{good_data_percentage}}</code>) demonstrate how signalJourney files can serve as <strong>reusable templates</strong> for batch processing while maintaining complete parameter documentation.</p>
+<h2 id="production-pipeline-characteristics">Production Pipeline Characteristics<a class="headerlink" href="#production-pipeline-characteristics" title="Permanent link">&para;</a></h2>
+<p>This real-world example demonstrates several characteristics of production-grade pipeline documentation:</p>
+<h3 id="comprehensive-parameter-documentation">Comprehensive Parameter Documentation<a class="headerlink" href="#comprehensive-parameter-documentation" title="Permanent link">&para;</a></h3>
+<p>Every parameter for every tool is explicitly documented, from basic settings to complex nested configurations.</p>
+<h3 id="quality-control-integration">Quality Control Integration<a class="headerlink" href="#quality-control-integration" title="Permanent link">&para;</a></h3>
+<p>Quality metrics are computed and preserved at each critical step, enabling systematic quality assessment.</p>
+<h3 id="error-handling-and-validation">Error Handling and Validation<a class="headerlink" href="#error-handling-and-validation" title="Permanent link">&para;</a></h3>
+<p>Steps include validation checks (import status, channel locations) before proceeding with processing.</p>
+<h3 id="batch-processing-support">Batch Processing Support<a class="headerlink" href="#batch-processing-support" title="Permanent link">&para;</a></h3>
+<p>Template variables and extension metadata support automated processing of multiple datasets.</p>
+<h3 id="compliance-and-standards">Compliance and Standards<a class="headerlink" href="#compliance-and-standards" title="Permanent link">&para;</a></h3>
+<p>BIDS entity labels and standardized naming conventions ensure compatibility with neuroimaging standards.</p>
+<h2 id="comparison-with-schema-examples">Comparison with Schema Examples<a class="headerlink" href="#comparison-with-schema-examples" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Schema Examples</th>
+<th>NEMAR Pipeline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Steps</strong></td>
+<td>4-5 simple steps</td>
+<td>12 complex steps</td>
+</tr>
+<tr>
+<td><strong>Dependencies</strong></td>
+<td>Linear chain</td>
+<td>Complex multi-input dependencies</td>
+</tr>
+<tr>
+<td><strong>Outputs</strong></td>
+<td>Basic file/memory</td>
+<td>Files + inline data + variables</td>
+</tr>
+<tr>
+<td><strong>Quality Metrics</strong></td>
+<td>Minimal</td>
+<td>Comprehensive multi-level</td>
+</tr>
+<tr>
+<td><strong>Extensions</strong></td>
+<td>None</td>
+<td>Domain-specific (NEMAR)</td>
+</tr>
+<tr>
+<td><strong>Parameters</strong></td>
+<td>Simplified</td>
+<td>Production-complete</td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>Basic</td>
+<td>Multi-stage validation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage-in-research">Usage in Research<a class="headerlink" href="#usage-in-research" title="Permanent link">&para;</a></h2>
+<p>This pipeline documentation enables:</p>
+<ol>
+<li><strong>Exact Reproduction</strong> - Every parameter and dependency is documented</li>
+<li><strong>Quality Assessment</strong> - Comprehensive metrics enable data quality evaluation  </li>
+<li><strong>Method Comparison</strong> - Complete parameter sets support systematic comparisons</li>
+<li><strong>Regulatory Compliance</strong> - Full audit trail for clinical/regulatory applications</li>
+<li><strong>Educational Value</strong> - Complete workflow documentation for training</li>
+</ol>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>NEMAR Pipeline</strong>: <a href="https://github.com/sccn/NEMAR-pipeline">GitHub Repository</a></li>
+<li><strong>EEGLAB</strong>: <a href="https://sccn.ucsd.edu/eeglab/">Official Website</a></li>
+<li><strong>Clean Raw Data</strong>: <a href="https://github.com/sccn/clean_rawdata">Plugin Documentation</a></li>
+<li><strong>ICLabel</strong>: <a href="https://github.com/sccn/ICLabel">Plugin Documentation</a></li>
+<li><strong>signalJourney</strong>: <a href="https://github.com/NeurodataWithoutBorders/signalJourney">Specification</a></li>
+</ul>
+<p>This NEMAR example demonstrates the full potential of signalJourney for documenting complex, production-grade signal processing workflows with complete transparency and reproducibility. </p>
 
 
 
@@ -1723,7 +1653,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:44 UTC">June 27, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:57 UTC">June 27, 2025</span>
   </span>
 
     
@@ -1733,7 +1663,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 2, 2025 02:27:11 UTC">May 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:57 UTC">June 27, 2025</span>
   </span>
 
     
@@ -1793,10 +1723,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.sections", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.sections", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

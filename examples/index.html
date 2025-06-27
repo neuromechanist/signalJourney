@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#examples-index" class="md-skip">
+        <a href="#signaljourney-examples" class="md-skip">
           Skip to content
         </a>
       
@@ -1419,8 +1419,115 @@
   
 
 
-<h1 id="examples-index">Examples Index<a class="headerlink" href="#examples-index" title="Permanent link">&para;</a></h1>
-<p>Examples of signalJourney files for common pipelines. Choose one of the topics on the left to get started.</p>
+<h1 id="signaljourney-examples">signalJourney Examples<a class="headerlink" href="#signaljourney-examples" title="Permanent link">&para;</a></h1>
+<p>Welcome to the signalJourney examples! These examples demonstrate how to document signal processing pipelines using the signalJourney specification. Each example includes a detailed breakdown of the JSON structure and showcases different features of the format.</p>
+<h2 id="example-categories">Example Categories<a class="headerlink" href="#example-categories" title="Permanent link">&para;</a></h2>
+<h3 id="schema-examples">📚 Schema Examples<a class="headerlink" href="#schema-examples" title="Permanent link">&para;</a></h3>
+<p>These examples are found in the <a href="https://github.com/neuromechanist/signalJourney/tree/main/schema/examples"><code>schema/examples/</code></a> directory and demonstrate core signalJourney features:</p>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Pipeline Type</th>
+<th>Key Features</th>
+<th>Software</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="basic_preprocessing/">Basic Preprocessing</a></td>
+<td>Linear preprocessing</td>
+<td>File I/O, step dependencies, quality metrics</td>
+<td>MNE-Python</td>
+</tr>
+<tr>
+<td><a href="ica_decomposition/">ICA Decomposition</a></td>
+<td>Artifact removal</td>
+<td>Pipeline chaining, multiple outputs, cross-step references</td>
+<td>MNE-Python</td>
+</tr>
+<tr>
+<td><a href="connectivity/">Connectivity Analysis</a></td>
+<td>Network analysis</td>
+<td>Parallel processing, multiple metrics</td>
+<td>MNE-Python</td>
+</tr>
+<tr>
+<td><a href="source_localization/">Source Localization</a></td>
+<td>Source modeling</td>
+<td>Forward/inverse modeling, anatomical integration</td>
+<td>MNE-Python</td>
+</tr>
+<tr>
+<td><a href="time_frequency/">Time-Frequency Analysis</a></td>
+<td>Spectral analysis</td>
+<td>Frequency decomposition, statistical testing</td>
+<td>MNE-Python</td>
+</tr>
+</tbody>
+</table>
+<h3 id="real-world-examples">🏭 Real-World Examples<a class="headerlink" href="#real-world-examples" title="Permanent link">&para;</a></h3>
+<p>Complete, production-ready pipeline documentation from actual research workflows:</p>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Description</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="real_world/nemar_pipeline/">NEMAR Pipeline</a></td>
+<td>EEGLAB-based preprocessing for OpenNeuro</td>
+<td>12-step workflow, inline data, quality assessment</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-youll-learn">What You'll Learn<a class="headerlink" href="#what-youll-learn" title="Permanent link">&para;</a></h2>
+<h3 id="basic-concepts">Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Pipeline metadata</strong> - How to document pipeline information, versions, and execution context</li>
+<li><strong>Processing steps</strong> - Structure for documenting individual processing stages</li>
+<li><strong>Input/output specification</strong> - Tracking data flow between steps</li>
+<li><strong>Parameter documentation</strong> - Preserving all settings for reproducibility</li>
+</ul>
+<h3 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Pipeline chaining</strong> - Linking outputs from one pipeline as inputs to another</li>
+<li><strong>Multiple output types</strong> - In-memory objects, saved files, variables, and inline data</li>
+<li><strong>Quality metrics</strong> - Step-level and pipeline-level quality assessment</li>
+<li><strong>Cross-step dependencies</strong> - Complex data flows with multiple inputs per step</li>
+</ul>
+<h3 id="data-flow-patterns">Data Flow Patterns<a class="headerlink" href="#data-flow-patterns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Linear pipelines</strong> - Sequential processing (basic preprocessing)</li>
+<li><strong>Branching workflows</strong> - Parallel processing streams (connectivity analysis)</li>
+<li><strong>Integration patterns</strong> - Combining results from multiple sources (source localization)</li>
+<li><strong>Iterative processes</strong> - Optimization and refinement loops</li>
+</ul>
+<h2 id="visual-documentation">Visual Documentation<a class="headerlink" href="#visual-documentation" title="Permanent link">&para;</a></h2>
+<p>Each example includes <strong>mermaid flowcharts</strong> that visualize:
+- 🔷 <strong>Processing steps</strong> (blue boxes)
+- 📁 <strong>Input files</strong> (orange boxes)<br />
+- 💾 <strong>Output files</strong> (green boxes)
+- 📊 <strong>Inline data</strong> (purple boxes)
+- ➡️ <strong>Data flow</strong> (arrows showing dependencies)</p>
+<p>These flowcharts make it easy to understand pipeline structure at a glance.</p>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Start with <a href="basic_preprocessing/">Basic Preprocessing</a></strong> to understand fundamental concepts</li>
+<li><strong>Explore <a href="ica_decomposition/">ICA Decomposition</a></strong> to see pipeline chaining</li>
+<li><strong>Check out other examples</strong> based on your analysis needs</li>
+<li><strong>Review <a href="real_world/nemar_pipeline/">NEMAR Pipeline</a></strong> for a complete real-world example</li>
+</ol>
+<h2 id="json-schema-reference">JSON Schema Reference<a class="headerlink" href="#json-schema-reference" title="Permanent link">&para;</a></h2>
+<p>All examples validate against the signalJourney JSON schema. For detailed field specifications, see:
+- <a href="../specification/overview/">Schema Overview</a>
+- <a href="../specification/fields/">Field Definitions</a>
+- <a href="../specification/validation/">Validation Guide</a></p>
+<h2 id="contributing-examples">Contributing Examples<a class="headerlink" href="#contributing-examples" title="Permanent link">&para;</a></h2>
+<p>Have a pipeline you'd like to document as an example? See our <a href="../contributing/">contributing guide</a> for how to add new examples to the collection.</p>
 
 
 
@@ -1443,7 +1550,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 4, 2025 17:45:32 UTC">May 4, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:44 UTC">June 27, 2025</span>
   </span>
 
     
