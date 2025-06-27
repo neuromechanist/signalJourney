@@ -6,26 +6,26 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Documentation for the signalJourney specification and tools." name="description"/>
-<link href="https://neuromechanist.github.io/signalJourney/examples/real_world/nemar_pipeline/" rel="canonical"/>
-<link href="../../best_practices/" rel="prev"/>
-<link href="../../../api/" rel="next"/>
-<link href="../../../assets/images/favicon.png" rel="icon"/>
+<link href="https://neuromechanist.github.io/signalJourney/examples/time_frequency_eeglab/" rel="canonical"/>
+<link href="../time_frequency/" rel="prev"/>
+<link href="../source_localization/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
-<title>NEMAR Pipeline - Signal Journey</title>
-<link href="../../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
-<link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<title>EEGLAB - Signal Journey</title>
+<link href="../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../../../assets/_mkdocstrings.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#real-world-example-nemar-eeg-processing-pipeline">
+<a class="md-skip" href="#example-time-frequency-analysis-eeglab">
           Skip to content
         </a>
 </div>
@@ -33,7 +33,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Signal Journey" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Signal Journey">
+<a aria-label="Signal Journey" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Signal Journey">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              NEMAR Pipeline
+              EEGLAB
             
           </span>
 </div>
@@ -114,7 +114,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../introduction/">
+<a class="md-tabs__link" href="../../introduction/">
         
   
   
@@ -125,7 +125,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../specification/">
+<a class="md-tabs__link" href="../../specification/">
           
   
   
@@ -136,7 +136,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../guides/">
+<a class="md-tabs__link" href="../../guides/">
           
   
   
@@ -147,7 +147,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tutorials/">
+<a class="md-tabs__link" href="../../tutorials/">
           
   
   
@@ -158,7 +158,7 @@
         </a>
 </li>
 <li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../../">
+<a class="md-tabs__link" href="../">
           
   
   
@@ -169,7 +169,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../api/">
+<a class="md-tabs__link" href="../../api/">
           
   
   
@@ -180,7 +180,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../bids/">
+<a class="md-tabs__link" href="../../bids/">
           
   
   
@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../contributing/">
+<a class="md-tabs__link" href="../../contributing/">
         
   
   
@@ -202,7 +202,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../faq/">
+<a class="md-tabs__link" href="../../faq/">
         
   
   
@@ -222,7 +222,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Signal Journey" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Signal Journey">
+<a aria-label="Signal Journey" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Signal Journey">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
     Signal Journey
@@ -239,7 +239,7 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../introduction/">
+<a class="md-nav__link" href="../../introduction/">
 <span class="md-ellipsis">
     Introduction
     
@@ -249,7 +249,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../specification/">
+<a class="md-nav__link" href="../../specification/">
 <span class="md-ellipsis">
     Specification
     
@@ -266,7 +266,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../specification/overview/">
+<a class="md-nav__link" href="../../specification/overview/">
 <span class="md-ellipsis">
     Core Concepts
     
@@ -274,7 +274,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../specification/fields/">
+<a class="md-nav__link" href="../../specification/fields/">
 <span class="md-ellipsis">
     Field Details
     
@@ -282,7 +282,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../specification/validation/">
+<a class="md-nav__link" href="../../specification/validation/">
 <span class="md-ellipsis">
     Validation
     
@@ -290,7 +290,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../specification/namespaces/">
+<a class="md-nav__link" href="../../specification/namespaces/">
 <span class="md-ellipsis">
     Namespaces
     
@@ -298,7 +298,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../specification/versioning/">
+<a class="md-nav__link" href="../../specification/versioning/">
 <span class="md-ellipsis">
     Versioning
     
@@ -311,7 +311,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../guides/">
+<a class="md-nav__link" href="../../guides/">
 <span class="md-ellipsis">
     Guides
     
@@ -328,7 +328,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../guides/validator_python/">
+<a class="md-nav__link" href="../../guides/validator_python/">
 <span class="md-ellipsis">
     Python Validator
     
@@ -336,7 +336,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../guides/validator_cli/">
+<a class="md-nav__link" href="../../guides/validator_cli/">
 <span class="md-ellipsis">
     CLI Validator
     
@@ -344,7 +344,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../guides/tools_matlab/">
+<a class="md-nav__link" href="../../guides/tools_matlab/">
 <span class="md-ellipsis">
     MATLAB Tools
     
@@ -357,7 +357,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../tutorials/">
+<a class="md-nav__link" href="../../tutorials/">
 <span class="md-ellipsis">
     Tutorials
     
@@ -374,7 +374,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tutorials/creating_manual/">
+<a class="md-nav__link" href="../../tutorials/creating_manual/">
 <span class="md-ellipsis">
     Creating Manually
     
@@ -382,7 +382,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tutorials/python_lib/">
+<a class="md-nav__link" href="../../tutorials/python_lib/">
 <span class="md-ellipsis">
     Using Python Lib
     
@@ -390,7 +390,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tutorials/matlab_tools/">
+<a class="md-nav__link" href="../../tutorials/matlab_tools/">
 <span class="md-ellipsis">
     Using MATLAB Tools
     
@@ -398,7 +398,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tutorials/validating/">
+<a class="md-nav__link" href="../../tutorials/validating/">
 <span class="md-ellipsis">
     Validating Pipelines
     
@@ -411,7 +411,7 @@
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../">
+<a class="md-nav__link" href="../">
 <span class="md-ellipsis">
     Examples
     
@@ -443,7 +443,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../basic_preprocessing/">
+<a class="md-nav__link" href="../basic_preprocessing/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -451,7 +451,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../basic_preprocessing_eeglab/">
+<a class="md-nav__link" href="../basic_preprocessing_eeglab/">
 <span class="md-ellipsis">
     EEGLAB
     
@@ -477,7 +477,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../ica_decomposition/">
+<a class="md-nav__link" href="../ica_decomposition/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -485,7 +485,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../ica_decomposition_eeglab/">
+<a class="md-nav__link" href="../ica_decomposition_eeglab/">
 <span class="md-ellipsis">
     EEGLAB
     
@@ -495,8 +495,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_5_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_5_4" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
 <span class="md-ellipsis">
     Time-Frequency Analysis
@@ -504,27 +504,103 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_5_4_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_5_4_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_5_4">
 <span class="md-nav__icon md-icon"></span>
             Time-Frequency Analysis
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../time_frequency/">
+<a class="md-nav__link" href="../time_frequency/">
 <span class="md-ellipsis">
     MNE-Python
     
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../time_frequency_eeglab/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    EEGLAB
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     EEGLAB
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pipeline-overview">
+<span class="md-ellipsis">
+      Pipeline Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pipeline-flowchart">
+<span class="md-ellipsis">
+      Pipeline Flowchart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-eeglab-features">
+<span class="md-ellipsis">
+      Key EEGLAB Features
+    </span>
+</a>
+<nav aria-label="Key EEGLAB Features" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#time-frequency-functions">
+<span class="md-ellipsis">
+      Time-Frequency Functions
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#signaljourney-documentation">
+<span class="md-ellipsis">
+      signalJourney Documentation
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example-json-structure">
+<span class="md-ellipsis">
+      Example JSON Structure
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eeglab-vs-mne-python-comparison">
+<span class="md-ellipsis">
+      EEGLAB vs MNE-Python Comparison
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usage-notes">
+<span class="md-ellipsis">
+      Usage Notes
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -545,7 +621,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../source_localization/">
+<a class="md-nav__link" href="../source_localization/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -553,7 +629,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../source_localization_eeglab/">
+<a class="md-nav__link" href="../source_localization_eeglab/">
 <span class="md-ellipsis">
     EEGLAB
     
@@ -579,7 +655,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../connectivity/">
+<a class="md-nav__link" href="../connectivity/">
 <span class="md-ellipsis">
     MNE-Python
     
@@ -587,7 +663,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../connectivity_eeglab/">
+<a class="md-nav__link" href="../connectivity_eeglab/">
 <span class="md-ellipsis">
     EEGLAB
     
@@ -598,15 +674,15 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../best_practices/">
+<a class="md-nav__link" href="../best_practices/">
 <span class="md-ellipsis">
     Best Practices
     
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_5_8" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_8" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
 <span class="md-ellipsis">
     Real-World Examples
@@ -614,109 +690,19 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_5_8_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_5_8_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_5_8">
 <span class="md-nav__icon md-icon"></span>
             Real-World Examples
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    NEMAR Pipeline
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../real_world/nemar_pipeline/">
 <span class="md-ellipsis">
     NEMAR Pipeline
     
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pipeline-architecture">
-<span class="md-ellipsis">
-      Pipeline Architecture
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#processing-flow">
-<span class="md-ellipsis">
-      Processing Flow
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-features">
-<span class="md-ellipsis">
-      Advanced Features
-    </span>
-</a>
-<nav aria-label="Advanced Features" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#inline-data-preservation">
-<span class="md-ellipsis">
-      Inline Data Preservation
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#multi-level-quality-assessment">
-<span class="md-ellipsis">
-      Multi-Level Quality Assessment
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#extension-schema-integration">
-<span class="md-ellipsis">
-      Extension Schema Integration
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#conditional-algorithm-selection">
-<span class="md-ellipsis">
-      Conditional Algorithm Selection
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#template-variables-and-batch-processing">
-<span class="md-ellipsis">
-      Template Variables and Batch Processing
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#research-applications">
-<span class="md-ellipsis">
-      Research Applications
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#references">
-<span class="md-ellipsis">
-      References
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -727,7 +713,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../api/">
+<a class="md-nav__link" href="../../api/">
 <span class="md-ellipsis">
     API Reference
     
@@ -759,7 +745,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../bids/">
+<a class="md-nav__link" href="../../bids/">
 <span class="md-ellipsis">
     BIDS Integration
     
@@ -767,7 +753,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pipeline_research/">
+<a class="md-nav__link" href="../../pipeline_research/">
 <span class="md-ellipsis">
     Pipeline Research
     
@@ -778,7 +764,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../contributing/">
+<a class="md-nav__link" href="../../contributing/">
 <span class="md-ellipsis">
     Contributing
     
@@ -786,7 +772,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../faq/">
+<a class="md-nav__link" href="../../faq/">
 <span class="md-ellipsis">
     FAQ
     
@@ -800,156 +786,123 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="real-world-example-nemar-eeg-processing-pipeline">Real-World Example: NEMAR EEG Processing Pipeline<a class="headerlink" href="#real-world-example-nemar-eeg-processing-pipeline" title="Permanent link">¶</a></h1>
-<p>This example demonstrates the complete NEMAR (EEGLAB-based) EEG processing pipeline documented in <a href="../nemar_pipeline.signalJourney.json"><code>nemar_pipeline.signalJourney.json</code></a>. This production pipeline processes OpenNeuro EEG datasets and showcases advanced signalJourney features including inline data preservation, multi-level quality metrics, and extension schema integration.</p>
-<h2 id="pipeline-architecture">Pipeline Architecture<a class="headerlink" href="#pipeline-architecture" title="Permanent link">¶</a></h2>
-<p>The NEMAR pipeline implements a 12-step EEG preprocessing workflow organized into four main processing stages:</p>
-<ol>
-<li><strong>Data Import &amp; Validation</strong> (Steps 1-3): BIDS import, status verification, channel location checks</li>
-<li><strong>Channel Selection &amp; Preprocessing</strong> (Steps 4-6): Non-EEG removal, DC offset correction, high-pass filtering  </li>
-<li><strong>Automated Artifact Rejection</strong> (Step 7): Clean Raw Data algorithm, ICA decomposition (Step 8), ICLabel classification (Step 9)</li>
-<li><strong>Quality Assessment &amp; Export</strong> (Steps 10-12): Data quality metrics, power spectral analysis, dataset export</li>
-</ol>
-<h2 id="processing-flow">Processing Flow<a class="headerlink" href="#processing-flow" title="Permanent link">¶</a></h2>
+<h1 id="example-time-frequency-analysis-eeglab">Example: Time-Frequency Analysis (EEGLAB)<a class="headerlink" href="#example-time-frequency-analysis-eeglab" title="Permanent link">¶</a></h1>
+<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/time_frequency_analysis_pipeline_eeglab.signalJourney.json"><code>time_frequency_analysis_pipeline_eeglab.signalJourney.json</code></a> example file, which documents time-frequency decomposition using EEGLAB's <code>timef</code> function.</p>
+<h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">¶</a></h2>
+<p>This EEGLAB pipeline demonstrates time-frequency analysis using EEGLAB's wavelet decomposition capabilities:
+- <strong>Load cleaned data</strong> from ICA decomposition pipeline
+- <strong>Extract event-related epochs</strong> for time-frequency analysis
+- <strong>Compute time-frequency decomposition</strong> using <code>timef</code> function
+- <strong>Apply baseline correction</strong> and save results
+- <strong>Generate visualization plots</strong> for ERSP and ITC</p>
+<h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A["1.Import BIDS Dataset<br/>'pop_importbids'"] --&gt; B["2.Check Import Status"]
-    B --&gt; C["3.Check Channel Locations"]
-    C --&gt; D["4.Remove Non-EEG Channels<br/>'pop_select'"]
-    D --&gt; E["5.Remove DC Offset<br/>'pop_rmbase'"]
-    E --&gt; F["6.High-pass Filter<br/>'pop_eegfiltnew'"]
-    F --&gt; G["7.Clean Raw Data<br/>'clean_rawdata'"]
-    G --&gt; H["8.Run ICA Decomposition<br/>'runica'"]
-    H --&gt; I["9.ICLabel Classification<br/>'ICLabel'"]
-    I --&gt; J["10.Data Quality Assessment<br/>Quality metrics"]
-    J --&gt; K["11.Power Spectral Analysis<br/>Line noise assessment"]
-    K --&gt; L["12.Save Processed Dataset<br/>Final output"]
+    A[Load Cleaned Data<br/>pop_loadset] --&gt; B[Extract Epochs<br/>pop_epoch]
+    B --&gt; C[Time-Frequency Decomposition<br/>timef function]
+    C --&gt; D[Save TF Results<br/>.mat file]
+    D --&gt; E[Generate Plots<br/>ERSP &amp; ITC]
 
-    %% Inline Data Outputs
-    D --&gt; D1["📊 removed_channels<br/>Channel list"]
-    G --&gt; G1["📊 clean_sample_mask<br/>Time samples"]
-    G --&gt; G2["📊 clean_channel_mask<br/>Channel mask"]
-    G --&gt; G3["📊 rejected_channels<br/>Rejected list"]
-    H --&gt; H1["📊 ica_weights<br/>Weight matrix"]
-    H --&gt; H2["📊 ica_sphere<br/>Sphere matrix"]
-    H --&gt; H3["📊 ica_components<br/>Activations"]
-    I --&gt; I1["📊 ic_classification<br/>Probabilities"]
-    I --&gt; I2["📊 flagged_components<br/>Artifact indices"]
-    J --&gt; J1["📊 data_quality_metrics<br/>QC measures"]
-    K --&gt; K1["📊 power_spectrum<br/>PSD data"]
-    K --&gt; K2["📊 line_noise_assessment<br/>Noise levels"]
+    C --&gt; F[ERSP Matrix<br/>Inline Data]
+    C --&gt; G[ITC Matrix<br/>Variables]
+    C --&gt; H[Power Baseline<br/>Variables]
 
-    %% Saved File Outputs
-    J --&gt; J2["💾 dataqual.json<br/>Quality report"]
-    L --&gt; L1["💾 processed_eeg.set<br/>Final dataset"]
-    L --&gt; L2["💾 pipeline_status.csv<br/>Step status"]
-
-    %% Styling
-    classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
-    classDef savedFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-
-    class A,B,C,D,E,F,G,H,I,J,K,L processStep
-    class D1,G1,G2,G3,H1,H2,H3,I1,I2,J1,K1,K2 inlineData
-    class J2,L1,L2 savedFile
+    style A fill:#e1f5fe
+    style D fill:#f3e5f5
+    style E fill:#f3e5f5
+    style B fill:#fff3e0
+    style C fill:#fff3e0
+    style F fill:#fce4ec
+    style G fill:#fce4ec
+    style H fill:#fce4ec
 </code></pre>
-<h2 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">¶</a></h2>
-<h3 id="inline-data-preservation">Inline Data Preservation<a class="headerlink" href="#inline-data-preservation" title="Permanent link">¶</a></h3>
-<p>Critical intermediate results are preserved using <code>inlineData</code> targets, enabling post-hoc analysis and reproducibility. Key examples include ICA decomposition matrices, component classifications, and quality control masks:</p>
+<h2 id="key-eeglab-features">Key EEGLAB Features<a class="headerlink" href="#key-eeglab-features" title="Permanent link">¶</a></h2>
+<h3 id="time-frequency-functions">Time-Frequency Functions<a class="headerlink" href="#time-frequency-functions" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong><code>timef</code></strong>: EEGLAB's comprehensive time-frequency analysis function</li>
+<li><strong>Wavelet parameters</strong>: Cycle specification for frequency-dependent resolution</li>
+<li><strong>Baseline correction</strong>: Built-in baseline normalization options</li>
+<li><strong>Output flexibility</strong>: ERSP, ITC, and power baseline matrices</li>
+</ul>
+<h3 id="signaljourney-documentation">signalJourney Documentation<a class="headerlink" href="#signaljourney-documentation" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Parameter preservation</strong>: Complete <code>timef</code> parameter documentation</li>
+<li><strong>Multiple outputs</strong>: ERSP, ITC, and baseline data saved separately</li>
+<li><strong>Visualization integration</strong>: Plot generation as documented processing step</li>
+</ul>
+<h2 id="example-json-structure">Example JSON Structure<a class="headerlink" href="#example-json-structure" title="Permanent link">¶</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inlineData"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ica_weights"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ica_weights_matrix}}"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"formatDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matrix of ICA unmixing weights [n_components x n_channels]"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ICA unmixing weight matrix"</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="multi-level-quality-assessment">Multi-Level Quality Assessment<a class="headerlink" href="#multi-level-quality-assessment" title="Permanent link">¶</a></h3>
-<p>Quality metrics are computed at both step-level and pipeline-level, providing comprehensive quality control:</p>
-<p><strong>Step-level metrics</strong> (e.g., Step 7 clean_rawdata):
-<div class="highlight"><pre><span></span><code><span class="nt">"qualityMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"percentDataRetained"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{percent_clean_data}}"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"percentChannelsRetained"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{percent_clean_channels}}"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"channelsRejected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{num_rejected_channels}}"</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<p><strong>Pipeline-level summary</strong>:
-<div class="highlight"><pre><span></span><code><span class="nt">"summaryMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"pipelineCompleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"totalProcessingSteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"overallDataQuality"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"goodDataPercent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{overall_good_data_percent}}"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"goodChannelsPercent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{overall_good_channels_percent}}"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"goodICAPercent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{overall_good_ica_percent}}"</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<h3 id="extension-schema-integration">Extension Schema Integration<a class="headerlink" href="#extension-schema-integration" title="Permanent link">¶</a></h3>
-<p>Domain-specific metadata is captured using the NEMAR extension schema:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"nemar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"dataset_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{openneuro_dataset_id}}"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"processing_cluster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDSC Expanse"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"eeglab_plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"clean_rawdata"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ICLabel"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AMICA"</span><span class="p">,</span><span class="w"> </span><span class="s2">"firfilt"</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"custom_code_applied"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{custom_dataset_code}}"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"batch_processing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="conditional-algorithm-selection">Conditional Algorithm Selection<a class="headerlink" href="#conditional-algorithm-selection" title="Permanent link">¶</a></h3>
-<p>Step 8 demonstrates algorithm selection logic with complete parameter documentation for both AMICA and runica ICA methods:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Run ICA Decomposition"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Perform Independent Component Analysis using either AMICA (if &gt;=5 channels) or extended Infomax ICA"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute Time-Frequency Decomposition"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMICA/EEGLAB"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7/2023.1"</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runamica17_nsg(EEG, 'batch', 1) OR pop_runica(EEG, 'icatype', 'runica', 'extended', 1)"</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EEGLAB"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[ersp, itc, powbase, times, freqs] = timef(EEG.data, EEG.pnts, [EEG.xmin EEG.xmax]*1000, EEG.srate, [3 0.5], 'baseline', [-500 0], 'freqs', [2 40])"</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ica_method}}"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"amica_options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"batch"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span>
-<span class="w">    </span><span class="nt">"runica_options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"icatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runica"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"concatcond"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span>
-<span class="w">      </span><span class="nt">"extended"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"lrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-5</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"maxsteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">"cycles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"baseline"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-500</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"freqs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"plotitc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"plotersp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="template-variables-and-batch-processing">Template Variables and Batch Processing<a class="headerlink" href="#template-variables-and-batch-processing" title="Permanent link">¶</a></h2>
-<p>Template variables (e.g., <code>{{subject}}</code>, <code>{{session}}</code>, <code>{{openneuro_dataset_id}}</code>) enable automated batch processing while maintaining complete parameter documentation. This approach supports systematic processing of multiple datasets with consistent methodology.</p>
-<h2 id="research-applications">Research Applications<a class="headerlink" href="#research-applications" title="Permanent link">¶</a></h2>
-<p>This documentation format enables:</p>
-<ul>
-<li><strong>Exact reproduction</strong> through complete parameter and dependency documentation</li>
-<li><strong>Quality assessment</strong> via comprehensive multi-level metrics</li>
-<li><strong>Method comparison</strong> with complete parameter sets and summary metrics</li>
-<li><strong>Regulatory compliance</strong> through full audit trails of the processing steps and parameters</li>
-<li><strong>Storage efficiency</strong> through inline data preservation of key intermediate results, eliminating the need to store both raw and processed datasets</li>
-</ul>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">¶</a></h2>
-<ul>
-<li><a href="https://github.com/sccn/NEMAR-pipeline">NEMAR Pipeline Repository</a></li>
-<li><a href="https://sccn.ucsd.edu/eeglab/">EEGLAB</a></li>
-<li><a href="https://github.com/sccn/clean_rawdata">Clean Raw Data Plugin</a></li>
-<li><a href="https://github.com/sccn/ICLabel">ICLabel Plugin</a></li>
-</ul>
-<p>This NEMAR example demonstrates the full potential of signalJourney for documenting complex, production-grade signal processing workflows with complete transparency and reproducibility. </p>
+<h2 id="eeglab-vs-mne-python-comparison">EEGLAB vs MNE-Python Comparison<a class="headerlink" href="#eeglab-vs-mne-python-comparison" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>EEGLAB Version</th>
+<th>MNE-Python Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Function</strong></td>
+<td><code>timef</code> (all-in-one)</td>
+<td><code>tfr_morlet</code>, <code>tfr_multitaper</code></td>
+</tr>
+<tr>
+<td><strong>Baseline</strong></td>
+<td>Built-in correction</td>
+<td>Separate <code>apply_baseline</code></td>
+</tr>
+<tr>
+<td><strong>Outputs</strong></td>
+<td>ERSP, ITC, power baseline</td>
+<td>Power, ITC (separate functions)</td>
+</tr>
+<tr>
+<td><strong>Plotting</strong></td>
+<td>Integrated visualization</td>
+<td>External plotting functions</td>
+</tr>
+<tr>
+<td><strong>Flexibility</strong></td>
+<td>Single comprehensive function</td>
+<td>Modular approach</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
+<p>This example demonstrates:
+- <strong>EEGLAB time-frequency workflows</strong> using the <code>timef</code> function
+- <strong>Complete parameter documentation</strong> for wavelet analysis
+- <strong>Multiple output documentation</strong> (ERSP, ITC, baseline)
+- <strong>Integrated visualization</strong> as part of the processing pipeline</p>
+<p>The pipeline showcases how signalJourney can document EEGLAB's integrated approach to time-frequency analysis while preserving all parameters for reproducibility. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 19:24:46 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:57 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:13:10 UTC">June 27, 2025</span>
 </span>
 </aside>
 </article>
@@ -983,8 +936,8 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.sections", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.sections", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
 <script type="module">import mermaid from "https://unpkg.com/mermaid@10.6.1/dist/mermaid.esm.min.mjs";
 window.mermaidConfig = {default: {
     startOnLoad: false
