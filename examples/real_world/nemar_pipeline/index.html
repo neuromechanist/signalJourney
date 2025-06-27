@@ -1,227 +1,120 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-        <meta name="description" content="Documentation for the signalJourney specification and tools.">
-      
-      
-      
-        <link rel="canonical" href="https://neuromechanist.github.io/signalJourney/examples/real_world/nemar_pipeline/">
-      
-      
-      
-      
-      <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
-    
-    
-      
-        <title>Real-World Example: NEMAR EEG Processing Pipeline - Signal Journey</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
-      
-        
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
-      
-      
+<!DOCTYPE html>
 
-
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
-    
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#real-world-example-nemar-eeg-processing-pipeline" class="md-skip">
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Documentation for the signalJourney specification and tools." name="description"/>
+<link href="https://neuromechanist.github.io/signalJourney/examples/real_world/nemar_pipeline/" rel="canonical"/>
+<link href="../../best_practices/" rel="prev"/>
+<link href="../../../api/" rel="next"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
+<title>NEMAR Pipeline - Signal Journey</title>
+<link href="../../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#real-world-example-nemar-eeg-processing-pipeline">
           Skip to content
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
+</div>
+<div data-md-component="announce">
+</div>
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Signal Journey" class="md-header__button md-logo" aria-label="Signal Journey" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Signal Journey" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Signal Journey">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
             Signal Journey
           </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
             
-              Real-World Example: NEMAR EEG Processing Pipeline
+              NEMAR Pipeline
             
           </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
 </form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
-      
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/neuromechanist/signalJourney/" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/neuromechanist/signalJourney/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
     neuromechanist/signalJourney
   </div>
 </a>
-      </div>
-    
-  </nav>
-  
+</div>
+</nav>
 </header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../introduction/" class="md-tabs__link">
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../introduction/">
         
   
   
@@ -230,19 +123,9 @@
   Introduction
 
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../../specification/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../specification/">
           
   
   
@@ -251,20 +134,9 @@
   Specification
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../../guides/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../guides/">
           
   
   
@@ -273,20 +145,9 @@
   Guides
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../../tutorials/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tutorials/">
           
   
   
@@ -295,20 +156,9 @@
   Tutorials
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../" class="md-tabs__link">
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../">
           
   
   
@@ -317,20 +167,9 @@
   Examples
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../../api/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../api/">
           
   
   
@@ -339,20 +178,9 @@
   API Reference
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../../bids/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../bids/">
           
   
   
@@ -361,18 +189,9 @@
   Related Topics
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../contributing/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../contributing/">
         
   
   
@@ -381,17 +200,9 @@
   Contributing
 
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../faq/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../faq/">
         
   
   
@@ -400,1066 +211,507 @@
   FAQ
 
       </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
+</li>
+</ul>
+</div>
 </nav>
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-  
-
-
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Signal Journey" class="md-nav__button md-logo" aria-label="Signal Journey" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Signal Journey" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Signal Journey">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
     Signal Journey
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/neuromechanist/signalJourney/" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/neuromechanist/signalJourney/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
     neuromechanist/signalJourney
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../introduction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../introduction/">
+<span class="md-ellipsis">
     Introduction
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../../specification/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../specification/">
+<span class="md-ellipsis">
     Specification
     
   </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
             Specification
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../specification/overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../specification/overview/">
+<span class="md-ellipsis">
     Core Concepts
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../specification/fields/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../specification/fields/">
+<span class="md-ellipsis">
     Field Details
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../specification/validation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../specification/validation/">
+<span class="md-ellipsis">
     Validation
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../specification/namespaces/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../specification/namespaces/">
+<span class="md-ellipsis">
     Namespaces
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../specification/versioning/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../specification/versioning/">
+<span class="md-ellipsis">
     Versioning
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../../guides/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../guides/">
+<span class="md-ellipsis">
     Guides
     
   </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
             Guides
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../guides/validator_python/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../guides/validator_python/">
+<span class="md-ellipsis">
     Python Validator
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../guides/validator_cli/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../guides/validator_cli/">
+<span class="md-ellipsis">
     CLI Validator
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../guides/tools_matlab/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../guides/tools_matlab/">
+<span class="md-ellipsis">
     MATLAB Tools
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../../tutorials/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../tutorials/">
+<span class="md-ellipsis">
     Tutorials
     
   </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
             Tutorials
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../tutorials/creating_manual/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/creating_manual/">
+<span class="md-ellipsis">
     Creating Manually
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../tutorials/python_lib/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/python_lib/">
+<span class="md-ellipsis">
     Using Python Lib
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../tutorials/matlab_tools/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/matlab_tools/">
+<span class="md-ellipsis">
     Using MATLAB Tools
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../tutorials/validating/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/validating/">
+<span class="md-ellipsis">
     Validating Pipelines
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
     Examples
     
   </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
             Examples
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../basic_preprocessing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../basic_preprocessing/">
+<span class="md-ellipsis">
     Basic Preprocessing
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../ica_decomposition/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ica_decomposition/">
+<span class="md-ellipsis">
     ICA Decomposition
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../time_frequency/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../time_frequency/">
+<span class="md-ellipsis">
     Time-Frequency
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../source_localization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../source_localization/">
+<span class="md-ellipsis">
     Source Localization
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../connectivity/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../connectivity/">
+<span class="md-ellipsis">
     Connectivity
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../best_practices/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../best_practices/">
+<span class="md-ellipsis">
     Best Practices
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_5_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
+<span class="md-ellipsis">
+    Real-World Examples
     
-      
-      
-  
-  
-  
-  
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_5_8_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_8">
+<span class="md-nav__icon md-icon"></span>
+            Real-World Examples
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    NEMAR Pipeline
     
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    NEMAR Pipeline
     
-      
-        
-          
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../../api/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pipeline-architecture">
+<span class="md-ellipsis">
+      Pipeline Architecture
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#processing-flow">
+<span class="md-ellipsis">
+      Processing Flow
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#advanced-features">
+<span class="md-ellipsis">
+      Advanced Features
+    </span>
+</a>
+<nav aria-label="Advanced Features" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inline-data-preservation">
+<span class="md-ellipsis">
+      Inline Data Preservation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-level-quality-assessment">
+<span class="md-ellipsis">
+      Multi-Level Quality Assessment
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#extension-schema-integration">
+<span class="md-ellipsis">
+      Extension Schema Integration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conditional-algorithm-selection">
+<span class="md-ellipsis">
+      Conditional Algorithm Selection
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#template-variables-and-batch-processing">
+<span class="md-ellipsis">
+      Template Variables and Batch Processing
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#research-applications">
+<span class="md-ellipsis">
+      Research Applications
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#references">
+<span class="md-ellipsis">
+      References
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../api/">
+<span class="md-ellipsis">
     API Reference
     
   </span>
-  
-
-            </a>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
             API Reference
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
     Related Topics
     
   </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
             Related Topics
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../bids/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../bids/">
+<span class="md-ellipsis">
     BIDS Integration
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../pipeline_research/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pipeline_research/">
+<span class="md-ellipsis">
     Pipeline Research
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../contributing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../contributing/">
+<span class="md-ellipsis">
     Contributing
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../faq/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../faq/">
+<span class="md-ellipsis">
     FAQ
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-  
-  
-
-
-<h1 id="real-world-example-nemar-eeg-processing-pipeline">Real-World Example: NEMAR EEG Processing Pipeline<a class="headerlink" href="#real-world-example-nemar-eeg-processing-pipeline" title="Permanent link">&para;</a></h1>
-<p>This page documents the NEMAR (EEGLAB-based) EEG processing pipeline as represented in <a href="../nemar_pipeline.signalJourney.json"><code>nemar_pipeline.signalJourney.json</code></a>. This is a <strong>production pipeline</strong> used to process OpenNeuro EEG datasets, demonstrating the full power of signalJourney for documenting complex, real-world workflows.</p>
-<h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">&para;</a></h2>
-<p>The NEMAR pipeline is a comprehensive EEG preprocessing workflow that processes BIDS-formatted EEG datasets using EEGLAB and its plugins. It demonstrates several advanced signalJourney features:</p>
-<ul>
-<li><strong>12-step processing workflow</strong> with complex dependencies</li>
-<li><strong>Inline data preservation</strong> for critical intermediate results</li>
-<li><strong>Comprehensive quality assessment</strong> at multiple levels</li>
-<li><strong>Extension schema integration</strong> for domain-specific metadata</li>
-<li><strong>Production-grade parameter documentation</strong></li>
+</a>
+</li>
 </ul>
-<h3 id="key-processing-stages">Key Processing Stages<a class="headerlink" href="#key-processing-stages" title="Permanent link">&para;</a></h3>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="real-world-example-nemar-eeg-processing-pipeline">Real-World Example: NEMAR EEG Processing Pipeline<a class="headerlink" href="#real-world-example-nemar-eeg-processing-pipeline" title="Permanent link">¶</a></h1>
+<p>This example demonstrates the complete NEMAR (EEGLAB-based) EEG processing pipeline documented in <a href="../nemar_pipeline.signalJourney.json"><code>nemar_pipeline.signalJourney.json</code></a>. This production pipeline processes OpenNeuro EEG datasets and showcases advanced signalJourney features including inline data preservation, multi-level quality metrics, and extension schema integration.</p>
+<h2 id="pipeline-architecture">Pipeline Architecture<a class="headerlink" href="#pipeline-architecture" title="Permanent link">¶</a></h2>
+<p>The NEMAR pipeline implements a 12-step EEG preprocessing workflow organized into four main processing stages:</p>
 <ol>
-<li><strong>Data Import &amp; Validation</strong> (Steps 1-3)</li>
-<li><strong>Channel Selection &amp; Preprocessing</strong> (Steps 4-6) </li>
-<li><strong>Automated Artifact Rejection</strong> (Step 7)</li>
-<li><strong>ICA Decomposition &amp; Classification</strong> (Steps 8-9)</li>
-<li><strong>Quality Assessment &amp; Analysis</strong> (Steps 10-11)</li>
-<li><strong>Results Export</strong> (Step 12)</li>
+<li><strong>Data Import &amp; Validation</strong> (Steps 1-3): BIDS import, status verification, channel location checks</li>
+<li><strong>Channel Selection &amp; Preprocessing</strong> (Steps 4-6): Non-EEG removal, DC offset correction, high-pass filtering  </li>
+<li><strong>Automated Artifact Rejection</strong> (Step 7): Clean Raw Data algorithm, ICA decomposition (Step 8), ICLabel classification (Step 9)</li>
+<li><strong>Quality Assessment &amp; Export</strong> (Steps 10-12): Data quality metrics, power spectral analysis, dataset export</li>
 </ol>
-<h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>flowchart TD
-    A[&quot;1.Import BIDS Dataset&lt;br/&gt;&#39;pop_importbids&#39;&quot;] --&gt; B[&quot;2.Check Import Status&quot;]
-    B --&gt; C[&quot;3.Check Channel Locations&quot;]
-    C --&gt; D[&quot;4.Remove Non-EEG Channels&lt;br/&gt;&#39;pop_select&#39;&quot;]
-    D --&gt; E[&quot;5.Remove DC Offset&lt;br/&gt;&#39;pop_rmbase&#39;&quot;]
-    E --&gt; F[&quot;6.High-pass Filter&lt;br/&gt;&#39;pop_eegfiltnew&#39;&quot;]
-    F --&gt; G[&quot;7.Clean Raw Data&lt;br/&gt;&#39;clean_rawdata&#39;&quot;]
-    G --&gt; H[&quot;8.Run ICA Decomposition&lt;br/&gt;&#39;runica&#39;&quot;]
-    H --&gt; I[&quot;9.ICLabel Classification&lt;br/&gt;&#39;ICLabel&#39;&quot;]
-    I --&gt; J[&quot;10.Data Quality Assessment&lt;br/&gt;Quality metrics&quot;]
-    J --&gt; K[&quot;11.Power Spectral Analysis&lt;br/&gt;Line noise assessment&quot;]
-    K --&gt; L[&quot;12.Save Processed Dataset&lt;br/&gt;Final output&quot;]
+<h2 id="processing-flow">Processing Flow<a class="headerlink" href="#processing-flow" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    A["1.Import BIDS Dataset<br/>'pop_importbids'"] --&gt; B["2.Check Import Status"]
+    B --&gt; C["3.Check Channel Locations"]
+    C --&gt; D["4.Remove Non-EEG Channels<br/>'pop_select'"]
+    D --&gt; E["5.Remove DC Offset<br/>'pop_rmbase'"]
+    E --&gt; F["6.High-pass Filter<br/>'pop_eegfiltnew'"]
+    F --&gt; G["7.Clean Raw Data<br/>'clean_rawdata'"]
+    G --&gt; H["8.Run ICA Decomposition<br/>'runica'"]
+    H --&gt; I["9.ICLabel Classification<br/>'ICLabel'"]
+    I --&gt; J["10.Data Quality Assessment<br/>Quality metrics"]
+    J --&gt; K["11.Power Spectral Analysis<br/>Line noise assessment"]
+    K --&gt; L["12.Save Processed Dataset<br/>Final output"]
 
     %% Inline Data Outputs
-    D --&gt; D1[&quot;📊 removed_channels&lt;br/&gt;Channel list&quot;]
-    G --&gt; G1[&quot;📊 clean_sample_mask&lt;br/&gt;Time samples&quot;]
-    G --&gt; G2[&quot;📊 clean_channel_mask&lt;br/&gt;Channel mask&quot;]
-    G --&gt; G3[&quot;📊 rejected_channels&lt;br/&gt;Rejected list&quot;]
-    H --&gt; H1[&quot;📊 ica_weights&lt;br/&gt;Weight matrix&quot;]
-    H --&gt; H2[&quot;📊 ica_sphere&lt;br/&gt;Sphere matrix&quot;]
-    H --&gt; H3[&quot;📊 ica_components&lt;br/&gt;Activations&quot;]
-    I --&gt; I1[&quot;📊 ic_classification&lt;br/&gt;Probabilities&quot;]
-    I --&gt; I2[&quot;📊 flagged_components&lt;br/&gt;Artifact indices&quot;]
-    J --&gt; J1[&quot;📊 data_quality_metrics&lt;br/&gt;QC measures&quot;]
-    K --&gt; K1[&quot;📊 power_spectrum&lt;br/&gt;PSD data&quot;]
-    K --&gt; K2[&quot;📊 line_noise_assessment&lt;br/&gt;Noise levels&quot;]
+    D --&gt; D1["📊 removed_channels<br/>Channel list"]
+    G --&gt; G1["📊 clean_sample_mask<br/>Time samples"]
+    G --&gt; G2["📊 clean_channel_mask<br/>Channel mask"]
+    G --&gt; G3["📊 rejected_channels<br/>Rejected list"]
+    H --&gt; H1["📊 ica_weights<br/>Weight matrix"]
+    H --&gt; H2["📊 ica_sphere<br/>Sphere matrix"]
+    H --&gt; H3["📊 ica_components<br/>Activations"]
+    I --&gt; I1["📊 ic_classification<br/>Probabilities"]
+    I --&gt; I2["📊 flagged_components<br/>Artifact indices"]
+    J --&gt; J1["📊 data_quality_metrics<br/>QC measures"]
+    K --&gt; K1["📊 power_spectrum<br/>PSD data"]
+    K --&gt; K2["📊 line_noise_assessment<br/>Noise levels"]
 
     %% Saved File Outputs
-    J --&gt; J2[&quot;💾 dataqual.json&lt;br/&gt;Quality report&quot;]
-    L --&gt; L1[&quot;💾 processed_eeg.set&lt;br/&gt;Final dataset&quot;]
-    L --&gt; L2[&quot;💾 pipeline_status.csv&lt;br/&gt;Step status&quot;]
+    J --&gt; J2["💾 dataqual.json<br/>Quality report"]
+    L --&gt; L1["💾 processed_eeg.set<br/>Final dataset"]
+    L --&gt; L2["💾 pipeline_status.csv<br/>Step status"]
 
     %% Styling
     classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -1469,265 +721,142 @@
     class A,B,C,D,E,F,G,H,I,J,K,L processStep
     class D1,G1,G2,G3,H1,H2,H3,I1,I2,J1,K1,K2 inlineData
     class J2,L1,L2 savedFile
+</code></pre>
+<h2 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">¶</a></h2>
+<h3 id="inline-data-preservation">Inline Data Preservation<a class="headerlink" href="#inline-data-preservation" title="Permanent link">¶</a></h3>
+<p>Critical intermediate results are preserved using <code>inlineData</code> targets, enabling post-hoc analysis and reproducibility. Key examples include ICA decomposition matrices, component classifications, and quality control masks:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inlineData"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ica_weights"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ica_weights_matrix}}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"formatDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matrix of ICA unmixing weights [n_components x n_channels]"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ICA unmixing weight matrix"</span>
+<span class="p">}</span>
 </code></pre></div>
-<h2 id="advanced-signaljourney-features-demonstrated">Advanced signalJourney Features Demonstrated<a class="headerlink" href="#advanced-signaljourney-features-demonstrated" title="Permanent link">&para;</a></h2>
-<h3 id="1-inline-data-preservation">1. Inline Data Preservation<a class="headerlink" href="#1-inline-data-preservation" title="Permanent link">&para;</a></h3>
-<p>The NEMAR pipeline showcases extensive use of <code>inlineData</code> to preserve critical intermediate results:</p>
-<p><strong>ICA Weight Matrix (Step 8):</strong>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ica_weights&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ica_weights_matrix}}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;formatDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Matrix of ICA unmixing weights [n_components x n_channels]&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ICA unmixing weight matrix&quot;</span>
+<h3 id="multi-level-quality-assessment">Multi-Level Quality Assessment<a class="headerlink" href="#multi-level-quality-assessment" title="Permanent link">¶</a></h3>
+<p>Quality metrics are computed at both step-level and pipeline-level, providing comprehensive quality control:</p>
+<p><strong>Step-level metrics</strong> (e.g., Step 7 clean_rawdata):
+<div class="highlight"><pre><span></span><code><span class="nt">"qualityMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"percentDataRetained"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{percent_clean_data}}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"percentChannelsRetained"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{percent_clean_channels}}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"channelsRejected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{num_rejected_channels}}"</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>Component Classifications (Step 9):</strong>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;targetType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inlineData&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ic_classification&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ic_labels_probabilities}}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;formatDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Matrix of classification probabilities [n_components x n_classes]&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ICLabel classification probabilities for each component&quot;</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<p>This approach ensures that <strong>critical analysis results are preserved</strong> within the signalJourney file itself, supporting reproducibility and post-hoc analysis.</p>
-<h3 id="2-comprehensive-quality-metrics">2. Comprehensive Quality Metrics<a class="headerlink" href="#2-comprehensive-quality-metrics" title="Permanent link">&para;</a></h3>
-<p>The pipeline implements quality assessment at multiple levels:</p>
-<p><strong>Step-level Quality (Step 7 - Clean Raw Data):</strong>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;qualityMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;percentDataRetained&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{percent_clean_data}}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;percentChannelsRetained&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{percent_clean_channels}}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;channelsRejected&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{num_rejected_channels}}&quot;</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<p><strong>Pipeline-level Summary:</strong>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;summaryMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;pipelineCompleted&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;totalProcessingSteps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;overallDataQuality&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;goodDataPercent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{overall_good_data_percent}}&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;goodChannelsPercent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{overall_good_channels_percent}}&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;goodICAPercent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{overall_good_ica_percent}}&quot;</span>
+<p><strong>Pipeline-level summary</strong>:
+<div class="highlight"><pre><span></span><code><span class="nt">"summaryMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"pipelineCompleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"totalProcessingSteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"overallDataQuality"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"goodDataPercent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{overall_good_data_percent}}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"goodChannelsPercent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{overall_good_channels_percent}}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"goodICAPercent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{overall_good_ica_percent}}"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<h3 id="3-extension-schema-integration">3. Extension Schema Integration<a class="headerlink" href="#3-extension-schema-integration" title="Permanent link">&para;</a></h3>
-<p>The pipeline uses the NEMAR extension schema for domain-specific metadata:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;nemar&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;dataset_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{openneuro_dataset_id}}&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;processing_cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SDSC Expanse&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;eeglab_plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;clean_rawdata&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ICLabel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;AMICA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;firfilt&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;custom_code_applied&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{custom_dataset_code}}&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;batch_processing&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<h3 id="extension-schema-integration">Extension Schema Integration<a class="headerlink" href="#extension-schema-integration" title="Permanent link">¶</a></h3>
+<p>Domain-specific metadata is captured using the NEMAR extension schema:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"nemar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"dataset_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{openneuro_dataset_id}}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"processing_cluster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SDSC Expanse"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"eeglab_plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"clean_rawdata"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ICLabel"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AMICA"</span><span class="p">,</span><span class="w"> </span><span class="s2">"firfilt"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"custom_code_applied"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{custom_dataset_code}}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"batch_processing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This demonstrates how <strong>domain-specific requirements</strong> can be accommodated within the signalJourney framework.</p>
-<h3 id="4-algorithm-selection-logic">4. Algorithm Selection Logic<a class="headerlink" href="#4-algorithm-selection-logic" title="Permanent link">&para;</a></h3>
-<p>Step 8 (ICA Decomposition) shows how algorithm selection can be documented:</p>
+<h3 id="conditional-algorithm-selection">Conditional Algorithm Selection<a class="headerlink" href="#conditional-algorithm-selection" title="Permanent link">¶</a></h3>
+<p>Step 8 demonstrates algorithm selection logic with complete parameter documentation for both AMICA and runica ICA methods:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;stepId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Run ICA Decomposition&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Perform Independent Component Analysis using either AMICA (if &gt;=5 channels) or extended Infomax ICA to decompose EEG signals into independent components.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;software&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AMICA/EEGLAB&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.7/2023.1&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">&quot;functionCall&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runamica17_nsg(EEG, &#39;batch&#39;, 1) OR pop_runica(EEG, &#39;icatype&#39;, &#39;runica&#39;, &#39;concatcond&#39;, &#39;on&#39;, &#39;extended&#39;, 1, &#39;lrate&#39;, 1e-5, &#39;maxsteps&#39;, 2000)&quot;</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Run ICA Decomposition"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Perform Independent Component Analysis using either AMICA (if &gt;=5 channels) or extended Infomax ICA"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMICA/EEGLAB"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7/2023.1"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runamica17_nsg(EEG, 'batch', 1) OR pop_runica(EEG, 'icatype', 'runica', 'extended', 1)"</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ica_method}}&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;amica_options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;batch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;runica_options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;icatype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runica&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;concatcond&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">      </span><span class="nt">&quot;extended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;lrate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-5</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;maxsteps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span>
+<span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ica_method}}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amica_options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"batch"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"runica_options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"icatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runica"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"concatcond"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nt">"extended"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"lrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-5</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"maxsteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This shows how <strong>conditional algorithm selection</strong> and <strong>multiple parameter sets</strong> can be documented.</p>
-<h3 id="5-template-variables-and-flexibility">5. Template Variables and Flexibility<a class="headerlink" href="#5-template-variables-and-flexibility" title="Permanent link">&para;</a></h3>
-<p>Throughout the pipeline, template variables (e.g., <code>{{subject}}</code>, <code>{{session}}</code>, <code>{{good_data_percentage}}</code>) demonstrate how signalJourney files can serve as <strong>reusable templates</strong> for batch processing while maintaining complete parameter documentation.</p>
-<h2 id="production-pipeline-characteristics">Production Pipeline Characteristics<a class="headerlink" href="#production-pipeline-characteristics" title="Permanent link">&para;</a></h2>
-<p>This real-world example demonstrates several characteristics of production-grade pipeline documentation:</p>
-<h3 id="comprehensive-parameter-documentation">Comprehensive Parameter Documentation<a class="headerlink" href="#comprehensive-parameter-documentation" title="Permanent link">&para;</a></h3>
-<p>Every parameter for every tool is explicitly documented, from basic settings to complex nested configurations.</p>
-<h3 id="quality-control-integration">Quality Control Integration<a class="headerlink" href="#quality-control-integration" title="Permanent link">&para;</a></h3>
-<p>Quality metrics are computed and preserved at each critical step, enabling systematic quality assessment.</p>
-<h3 id="error-handling-and-validation">Error Handling and Validation<a class="headerlink" href="#error-handling-and-validation" title="Permanent link">&para;</a></h3>
-<p>Steps include validation checks (import status, channel locations) before proceeding with processing.</p>
-<h3 id="batch-processing-support">Batch Processing Support<a class="headerlink" href="#batch-processing-support" title="Permanent link">&para;</a></h3>
-<p>Template variables and extension metadata support automated processing of multiple datasets.</p>
-<h3 id="compliance-and-standards">Compliance and Standards<a class="headerlink" href="#compliance-and-standards" title="Permanent link">&para;</a></h3>
-<p>BIDS entity labels and standardized naming conventions ensure compatibility with neuroimaging standards.</p>
-<h2 id="comparison-with-schema-examples">Comparison with Schema Examples<a class="headerlink" href="#comparison-with-schema-examples" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Schema Examples</th>
-<th>NEMAR Pipeline</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Steps</strong></td>
-<td>4-5 simple steps</td>
-<td>12 complex steps</td>
-</tr>
-<tr>
-<td><strong>Dependencies</strong></td>
-<td>Linear chain</td>
-<td>Complex multi-input dependencies</td>
-</tr>
-<tr>
-<td><strong>Outputs</strong></td>
-<td>Basic file/memory</td>
-<td>Files + inline data + variables</td>
-</tr>
-<tr>
-<td><strong>Quality Metrics</strong></td>
-<td>Minimal</td>
-<td>Comprehensive multi-level</td>
-</tr>
-<tr>
-<td><strong>Extensions</strong></td>
-<td>None</td>
-<td>Domain-specific (NEMAR)</td>
-</tr>
-<tr>
-<td><strong>Parameters</strong></td>
-<td>Simplified</td>
-<td>Production-complete</td>
-</tr>
-<tr>
-<td><strong>Validation</strong></td>
-<td>Basic</td>
-<td>Multi-stage validation</td>
-</tr>
-</tbody>
-</table>
-<h2 id="usage-in-research">Usage in Research<a class="headerlink" href="#usage-in-research" title="Permanent link">&para;</a></h2>
-<p>This pipeline documentation enables:</p>
-<ol>
-<li><strong>Exact Reproduction</strong> - Every parameter and dependency is documented</li>
-<li><strong>Quality Assessment</strong> - Comprehensive metrics enable data quality evaluation  </li>
-<li><strong>Method Comparison</strong> - Complete parameter sets support systematic comparisons</li>
-<li><strong>Regulatory Compliance</strong> - Full audit trail for clinical/regulatory applications</li>
-<li><strong>Educational Value</strong> - Complete workflow documentation for training</li>
-</ol>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h2 id="template-variables-and-batch-processing">Template Variables and Batch Processing<a class="headerlink" href="#template-variables-and-batch-processing" title="Permanent link">¶</a></h2>
+<p>Template variables (e.g., <code>{{subject}}</code>, <code>{{session}}</code>, <code>{{openneuro_dataset_id}}</code>) enable automated batch processing while maintaining complete parameter documentation. This approach supports systematic processing of multiple datasets with consistent methodology.</p>
+<h2 id="research-applications">Research Applications<a class="headerlink" href="#research-applications" title="Permanent link">¶</a></h2>
+<p>This documentation format enables:</p>
 <ul>
-<li><strong>NEMAR Pipeline</strong>: <a href="https://github.com/sccn/NEMAR-pipeline">GitHub Repository</a></li>
-<li><strong>EEGLAB</strong>: <a href="https://sccn.ucsd.edu/eeglab/">Official Website</a></li>
-<li><strong>Clean Raw Data</strong>: <a href="https://github.com/sccn/clean_rawdata">Plugin Documentation</a></li>
-<li><strong>ICLabel</strong>: <a href="https://github.com/sccn/ICLabel">Plugin Documentation</a></li>
-<li><strong>signalJourney</strong>: <a href="https://github.com/NeurodataWithoutBorders/signalJourney">Specification</a></li>
+<li><strong>Exact reproduction</strong> through complete parameter and dependency documentation</li>
+<li><strong>Quality assessment</strong> via comprehensive multi-level metrics</li>
+<li><strong>Method comparison</strong> with complete parameter sets</li>
+<li><strong>Regulatory compliance</strong> through full audit trails</li>
+<li><strong>Educational applications</strong> with complete workflow transparency</li>
+</ul>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://github.com/sccn/NEMAR-pipeline">NEMAR Pipeline Repository</a></li>
+<li><a href="https://sccn.ucsd.edu/eeglab/">EEGLAB</a></li>
+<li><a href="https://github.com/sccn/clean_rawdata">Clean Raw Data Plugin</a></li>
+<li><a href="https://github.com/sccn/ICLabel">ICLabel Plugin</a></li>
 </ul>
 <p>This NEMAR example demonstrates the full potential of signalJourney for documenting complex, production-grade signal processing workflows with complete transparency and reproducibility. </p>
-
-
-
-
-
-
-
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:57 UTC">June 27, 2025</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:57 UTC">June 27, 2025</span>
-  </span>
-
-    
-    
-    
-  </aside>
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:47:49 UTC">June 27, 2025</span>
+</span>
+<span class="md-source-file__fact">
+<span class="md-icon" title="Created">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 18:33:57 UTC">June 27, 2025</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   Back to top
 </button>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      Copyright &copy; 2025 signalJourney Contributors
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2025 signalJourney Contributors
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
       Material for MkDocs
     </a>
-  
 </div>
-      
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    
-    
-      
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.sections", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-    
-    
-      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
-      
-    
-  </body>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.sections", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.6.1/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
 </html>
