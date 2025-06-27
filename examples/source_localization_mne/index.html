@@ -580,23 +580,91 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#json-example">
+<a class="md-nav__link" href="#key-mne-python-features-demonstrated">
 <span class="md-ellipsis">
-      JSON Example
+      Key MNE-Python Features Demonstrated
+    </span>
+</a>
+<nav aria-label="Key MNE-Python Features Demonstrated" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#source-localization-functions">
+<span class="md-ellipsis">
+      Source Localization Functions
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
+<a class="md-nav__link" href="#advanced-source-modeling">
 <span class="md-ellipsis">
-      Overview
+      Advanced Source Modeling
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example-json-structure">
+<span class="md-ellipsis">
+      Example JSON Structure
+    </span>
+</a>
+<nav aria-label="Example JSON Structure" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inverse-solution-application">
+<span class="md-ellipsis">
+      Inverse Solution Application
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#source-localization-features">
+<span class="md-ellipsis">
+      Source Localization Features
+    </span>
+</a>
+<nav aria-label="Source Localization Features" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anatomical-integration">
+<span class="md-ellipsis">
+      Anatomical Integration
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#key-sections-explained">
+<a class="md-nav__link" href="#forward-modeling-accuracy">
 <span class="md-ellipsis">
-      Key Sections Explained
+      Forward Modeling Accuracy
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inverse-solution-methods">
+<span class="md-ellipsis">
+      Inverse Solution Methods
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mne-python-vs-eeglab-comparison">
+<span class="md-ellipsis">
+      MNE-Python vs EEGLAB Comparison
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usage-notes">
+<span class="md-ellipsis">
+      Usage Notes
     </span>
 </a>
 </li>
@@ -762,125 +830,206 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="example-source-localization-mne-python">Example: Source Localization (MNE-Python)<a class="headerlink" href="#example-source-localization-mne-python" title="Permanent link">¶</a></h1>
-<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/source_localization_pipeline_mne.signalJourney.json"><code>source_localization_pipeline_mne.signalJourney.json</code></a> example file, documenting a source localization workflow. This pipeline documents the process of estimating the brain sources of EEG activity using the MNE-Python software suite.</p>
+<p>This page explains the <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/source_localization_pipeline_mne.signalJourney.json"><code>source_localization_pipeline_mne.signalJourney.json</code></a> example file, documenting a source localization workflow using distributed source modeling with MNE-Python.</p>
 <h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">¶</a></h2>
-<p>This MNE-Python pipeline demonstrates source localization using forward/inverse modeling:
-- <strong>Load preprocessed data</strong>
-- <strong>Create forward model</strong>
-- <strong>Compute noise covariance</strong>
-- <strong>Compute inverse solution</strong>
-- <strong>Estimate source time courses</strong></p>
+<p>This MNE-Python pipeline demonstrates brain source localization using forward/inverse modeling:
+- <strong>Load preprocessed evoked data</strong> from averaged epochs
+- <strong>Setup source space</strong> using FreeSurfer fsaverage template
+- <strong>Compute BEM solution</strong> for head modeling
+- <strong>Create forward solution</strong> (leadfield matrix)
+- <strong>Compute noise covariance</strong> from baseline periods
+- <strong>Create inverse operator</strong> for source estimation
+- <strong>Apply dSPM inverse solution</strong> to estimate source time courses</p>
 <h2 id="pipeline-flowchart">Pipeline Flowchart<a class="headerlink" href="#pipeline-flowchart" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Load Preprocessed Data] --&gt; B[Create Forward Model]
-    B --&gt; C[Compute Noise Covariance]
-    C --&gt; D[Compute Inverse Solution]
-    D --&gt; E[Estimate Source Time Courses]
+    A[Load Evoked Data<br/>mne.read_evokeds] --&gt; B[Setup Source Space<br/>mne.setup_source_space]
+    B --&gt; C[Compute BEM Solution<br/>mne.make_bem_solution]
+    C --&gt; D[Create Forward Solution<br/>mne.make_forward_solution]
+    D --&gt; E[Compute Covariance<br/>mne.compute_covariance]
+    E --&gt; F[Create Inverse Operator<br/>mne.minimum_norm.make_inverse_operator]
+    F --&gt; G[Apply dSPM Solution<br/>mne.minimum_norm.apply_inverse]
+
+    %% Input data and resources
+    H["📁 sub-01_task-rest_ave.fif<br/>Averaged evoked data"] --&gt; A
+    I["📁 sub-01_task-rest_epo.fif<br/>Epochs for covariance"] --&gt; E
+    J["📁 fsaverage<br/>Template brain anatomy"] --&gt; B
+    K["📁 BEM surfaces<br/>Head model"] --&gt; C
+
+    %% Intermediate outputs
+    A --&gt; A1["📊 Evoked Object<br/>Averaged responses"]
+    B --&gt; B1["📊 Source Space<br/>Cortical vertices (oct6)"]
+    C --&gt; C1["📊 BEM Solution<br/>Head conductivity model"]
+    D --&gt; D1["📊 Forward Solution<br/>Leadfield matrix"]
+    E --&gt; E1["📊 Covariance Matrix<br/>Noise covariance"]
+    F --&gt; F1["📊 Inverse Operator<br/>dSPM operator"]
+
+    %% Analysis parameters
+    B --&gt; V1["📊 Source Spacing<br/>oct6 (4098 vertices)"]
+    C --&gt; V2["📊 Conductivity<br/>[0.3, 0.006, 0.3] S/m"]
+    F --&gt; V3["📊 SNR Parameters<br/>λ² = 1/SNR²"]
+
+    %% Final outputs
+    G --&gt; L["💾 sub-01_task-rest_desc-dSPM_stc.h5<br/>Source time courses"]
+    G --&gt; M["💾 sub-01_task-rest_desc-sources_plot.png<br/>Brain activation plot"]
+
+    %% Quality metrics
+    D --&gt; Q1["📈 Forward channels: 64<br/>Source points: 4098"]
+    G --&gt; Q2["📈 Peak activation: 15.2 dSPM<br/>Location: Left STG"]
+
+    %% Styling
+    classDef processStep fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef inputFile fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef outputFile fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef inlineData fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+    classDef qualityMetric fill:#f9f9f9,stroke:#666,stroke-width:1px
+
+    class A,B,C,D,E,F,G processStep
+    class H,I,J,K inputFile
+    class L,M outputFile
+    class A1,B1,C1,D1,E1,F1,V1,V2,V3 inlineData
+    class Q1,Q2 qualityMetric
 </code></pre>
-<h2 id="json-example">JSON Example<a class="headerlink" href="#json-example" title="Permanent link">¶</a></h2>
-<p>See the full JSON file: <a href="https://github.com/neuromechanist/signalJourney/blob/main/schema/examples/source_localization_pipeline_mne.signalJourney.json"><code>source_localization_pipeline_mne.signalJourney.json</code></a></p>
+<h2 id="key-mne-python-features-demonstrated">Key MNE-Python Features Demonstrated<a class="headerlink" href="#key-mne-python-features-demonstrated" title="Permanent link">¶</a></h2>
+<h3 id="source-localization-functions">Source Localization Functions<a class="headerlink" href="#source-localization-functions" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong><code>mne.read_evokeds</code></strong>: Load averaged evoked responses from FIF files</li>
+<li><strong><code>mne.setup_source_space</code></strong>: Create source space from FreeSurfer anatomy</li>
+<li><strong><code>mne.make_bem_solution</code></strong>: Compute boundary element model head solution</li>
+<li><strong><code>mne.make_forward_solution</code></strong>: Calculate leadfield matrix</li>
+<li><strong><code>mne.minimum_norm.make_inverse_operator</code></strong>: Create inverse solution operator</li>
+<li><strong><code>mne.minimum_norm.apply_inverse</code></strong>: Apply dSPM source estimation</li>
+</ul>
+<h3 id="advanced-source-modeling">Advanced Source Modeling<a class="headerlink" href="#advanced-source-modeling" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Source space</strong>: Cortical surface-based source model with configurable resolution</li>
+<li><strong>Forward modeling</strong>: Realistic head geometry using boundary element method</li>
+<li><strong>Inverse methods</strong>: dSPM, sLORETA, eLORETA distributed source solutions</li>
+<li><strong>Regularization</strong>: SNR-based regularization parameter selection</li>
+</ul>
+<h2 id="example-json-structure">Example JSON Structure<a class="headerlink" href="#example-json-structure" title="Permanent link">¶</a></h2>
+<p>The forward solution computation demonstrates complex dependency management:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"sj_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"schema_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example signalJourney file for a source localization pipeline using MNE-Python (dSPM)."</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"pipelineInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Source Localization (dSPM)"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Performs source localization on evoked data using dSPM inverse solution with a BEM head model."</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"pipelineType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source-localization"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"executionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-05-02T13:00:00Z"</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Create Forward Solution"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute leadfield matrix relating sources to sensors."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MNE-Python"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.6.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mne.make_forward_solution(evoked.info, trans, src, bem_sol, eeg=True, mindist=5.0)"</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"processingSteps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="c1">// ... steps detailed below ...</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">"summaryMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"analysisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Source Localization"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"inverseMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dSPM"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"headModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BEM"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"sourceSpace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fsaverage (oct6)"</span>
+<span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"trans"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fsaverage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"eeg"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"meg"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"mindist"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"n_jobs"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"verbose"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"dependsOn"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="inverse-solution-application">Inverse Solution Application<a class="headerlink" href="#inverse-solution-application" title="Permanent link">¶</a></h3>
+<p>The dSPM application step shows advanced parameter control:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"stepId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apply dSPM Solution"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Estimate source time courses using dynamic Statistical Parametric Mapping."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MNE-Python"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.6.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"functionCall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mne.minimum_norm.apply_inverse(evoked, inverse_operator, lambda2, method='dSPM')"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dSPM"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"lambda2"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.111111</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"pick_ori"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"verbose"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"qualityMetrics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"peakActivation"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"peakLocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Left STG"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"snrEstimate"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
-<p>The pipeline performs the following steps:</p>
-<ol>
-<li>Loads evoked EEG data (averaged epochs).</li>
-<li>Sets up a source space based on the <code>fsaverage</code> template brain.</li>
-<li>Computes a Boundary Element Model (BEM) head model solution.</li>
-<li>Computes the forward solution (leadfield matrix).</li>
-<li>Computes a noise covariance matrix from baseline epochs.</li>
-<li>Creates the inverse operator.</li>
-<li>Applies the dSPM inverse solution to the evoked data.</li>
-<li>Saves the resulting source time courses (STC).</li>
-</ol>
-<h2 id="key-sections-explained">Key Sections Explained<a class="headerlink" href="#key-sections-explained" title="Permanent link">¶</a></h2>
+<h2 id="source-localization-features">Source Localization Features<a class="headerlink" href="#source-localization-features" title="Permanent link">¶</a></h2>
+<h3 id="anatomical-integration">Anatomical Integration<a class="headerlink" href="#anatomical-integration" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong><code>pipelineInfo</code>:</strong> Defines the pipeline name, description, type ("source-localization"), etc.</li>
-<li><strong><code>processingSteps</code>:</strong><ul>
-<li><strong>Step 1: Load Evoked Data</strong><ul>
-<li><code>inputSources</code>: Loads an evoked data file (<code>*_ave.fif</code>), potentially from a previous averaging pipeline.</li>
-<li><code>outputTargets</code>: Outputs a list containing the loaded Evoked object(s).</li>
+<li><strong>FreeSurfer compatibility</strong>: Seamless integration with FreeSurfer anatomy</li>
+<li><strong>Template brains</strong>: Support for fsaverage and individual anatomies</li>
+<li><strong>Source space options</strong>: Surface-based, volumetric, or mixed source models</li>
+<li><strong>Coordinate systems</strong>: MNI, Talairach, and individual head coordinates</li>
 </ul>
-</li>
-<li><strong>Step 2: Setup Source Space</strong><ul>
-<li><code>software</code>: MNE-Python, <code>mne.setup_source_space</code>.</li>
-<li><code>parameters</code>: Specifies the template subject (<code>fsaverage</code>), spacing (<code>oct6</code>), and path to the FreeSurfer subjects directory (using an environment variable placeholder <code>subjects_dir_env_var</code>).</li>
-<li><code>inputSources</code>: References an external <code>resource</code> (the fsaverage MRI data).</li>
-<li><code>outputTargets</code>: Outputs the computed <code>mne.SourceSpaces</code> object.</li>
+<h3 id="forward-modeling-accuracy">Forward Modeling Accuracy<a class="headerlink" href="#forward-modeling-accuracy" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>BEM head model</strong>: Multi-layer realistic head geometry</li>
+<li><strong>Conductor specification</strong>: Brain, skull, and scalp conductivity values</li>
+<li><strong>Sensor modeling</strong>: Accurate EEG and MEG sensor positions</li>
+<li><strong>Quality assessment</strong>: Forward solution validation metrics</li>
 </ul>
-</li>
-<li><strong>Step 3: Compute BEM Solution</strong><ul>
-<li><code>dependsOn</code>: <code>[]</code> (Can be computed independently if MRI data is available).</li>
-<li><code>software</code>: MNE-Python, <code>mne.make_bem_model</code> and <code>mne.make_bem_solution</code>.</li>
-<li><code>parameters</code>: Specifies BEM parameters like conductivity.</li>
-<li><code>inputSources</code>: References an external <code>resource</code> (BEM surfaces).</li>
-<li><code>outputTargets</code>: Outputs the BEM solution dictionary.</li>
+<h3 id="inverse-solution-methods">Inverse Solution Methods<a class="headerlink" href="#inverse-solution-methods" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Minimum norm estimation</strong>: L2-regularized linear inverse solutions</li>
+<li><strong>dSPM normalization</strong>: Dynamic statistical parametric mapping</li>
+<li><strong>sLORETA</strong>: Standardized low resolution electromagnetic tomography</li>
+<li><strong>eLORETA</strong>: Exact low resolution electromagnetic tomography</li>
 </ul>
-</li>
-<li><strong>Step 4: Make Forward Solution</strong><ul>
-<li><code>dependsOn</code>: <code>["1", "2", "3"]</code> (Needs evoked data info, source space, and BEM).</li>
-<li><code>software</code>: MNE-Python, <code>mne.make_forward_solution</code>.</li>
-<li><code>parameters</code>: Specifies transform (<code>fsaverage</code>), sensor types (<code>eeg: true</code>), minimum distance, etc.</li>
-<li><code>inputSources</code>: References outputs from steps 1, 2, and 3.</li>
-<li><code>outputTargets</code>: Outputs the <code>mne.Forward</code> object.</li>
-</ul>
-</li>
-<li><strong>Step 5: Compute Covariance Matrix</strong><ul>
-<li><code>dependsOn</code>: <code>[]</code> (Typically computed from baseline periods of <em>epochs</em>, not the evoked data itself, so often done separately or uses a pre-computed matrix).</li>
-<li><code>software</code>: MNE-Python, <code>mne.compute_covariance</code>.</li>
-<li><code>parameters</code>: Specifies the time window (<code>tmax=0.</code>) and estimation <code>method</code>.</li>
-<li><code>inputSources</code>: References the <em>epochs</em> file (<code>*_epo.fif</code>) used for covariance estimation.</li>
-<li><code>outputTargets</code>: Outputs the <code>mne.Covariance</code> object.</li>
-</ul>
-</li>
-<li><strong>Step 6: Make Inverse Operator</strong><ul>
-<li><code>dependsOn</code>: <code>["1", "4", "5"]</code> (Needs evoked info, forward solution, and covariance).</li>
-<li><code>software</code>: MNE-Python, <code>make_inverse_operator</code>.</li>
-<li><code>parameters</code>: Specifies inverse solution parameters (<code>loose</code>, <code>depth</code>).</li>
-<li><code>inputSources</code>: References outputs from steps 1, 4, and 5.</li>
-<li><code>outputTargets</code>: Outputs the <code>mne.minimum_norm.InverseOperator</code> object.</li>
-</ul>
-</li>
-<li><strong>Step 7: Apply Inverse Solution (dSPM)</strong><ul>
-<li><code>dependsOn</code>: <code>["1", "6"]</code> (Needs evoked data and inverse operator).</li>
-<li><code>software</code>: MNE-Python, <code>apply_inverse</code>.</li>
-<li><code>parameters</code>: Specifies the inverse <code>method</code> ("dSPM") and regularization (<code>lambda2_snr</code>, derived from SNR).</li>
-<li><code>inputSources</code>: References outputs from steps 1 and 6.</li>
-<li><code>outputTargets</code>: Saves the final source estimate (<code>STC</code>) to a <code>file</code> (<code>format: "HDF5"</code>).</li>
-<li><code>qualityMetrics</code>: Records the inverse method and SNR estimate used.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong><code>summaryMetrics</code>:</strong> Provides overall information about the source localization approach used.</li>
-</ul>
-<p>This example demonstrates documenting a multi-step analysis with dependencies on external resources (MRI data) and intermediate computed objects (BEM, forward solution, covariance), highlighting the provenance tracking capabilities. </p>
+<h2 id="mne-python-vs-eeglab-comparison">MNE-Python vs EEGLAB Comparison<a class="headerlink" href="#mne-python-vs-eeglab-comparison" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>MNE-Python Version</th>
+<th>EEGLAB Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anatomy</strong></td>
+<td>FreeSurfer integration</td>
+<td>DIPFIT equivalent dipoles</td>
+</tr>
+<tr>
+<td><strong>Forward Model</strong></td>
+<td>BEM head model</td>
+<td>3-sphere or BEM</td>
+</tr>
+<tr>
+<td><strong>Inverse Method</strong></td>
+<td>dSPM, sLORETA, eLORETA</td>
+<td>LORETA, sLORETA</td>
+</tr>
+<tr>
+<td><strong>Source Space</strong></td>
+<td>Cortical surface-based</td>
+<td>Volumetric grid</td>
+</tr>
+<tr>
+<td><strong>Visualization</strong></td>
+<td>3D brain rendering</td>
+<td>2D slice display</td>
+</tr>
+<tr>
+<td><strong>File Format</strong></td>
+<td>HDF5, STC files</td>
+<td>.mat files</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage-notes">Usage Notes<a class="headerlink" href="#usage-notes" title="Permanent link">¶</a></h2>
+<p>This example demonstrates:
+- <strong>Comprehensive source localization</strong> with realistic head modeling
+- <strong>Multi-step dependency management</strong> for complex workflows
+- <strong>External resource integration</strong> (FreeSurfer, BEM surfaces)
+- <strong>Quality metrics</strong> for source localization validation
+- <strong>Advanced parameter documentation</strong> for reproducible inverse solutions</p>
+<p>The pipeline showcases MNE-Python's sophisticated source localization capabilities while maintaining complete parameter transparency for reproducible brain source estimation. The integration of anatomical templates and realistic head modeling provides state-of-the-art source localization accuracy. </p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:19:12 UTC">June 27, 2025</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:36:36 UTC">June 27, 2025</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">
